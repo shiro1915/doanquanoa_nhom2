@@ -1,0 +1,214 @@
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
+                        <span>Sản Phẩm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="shop__sidebar">
+                        <div class="sidebar__categories">
+                            <div class="section-title">
+                                <h4>DANH MỤC</h4>
+                            </div>
+                            <div class="categories__accordion">
+                                <div class="accordion" id="accordionExample">
+                                    <div class="card">
+                                        <div class="card-heading active">
+                                            <a href="#1" >Sách 1</a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading active">
+                                            <a href="#1" >Sách 1</a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading active">
+                                            <a href="#1" >Sách 1</a>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar__filter">
+                            <div class="section-title">
+                                <h4>TÌM THEO GIÁ</h4>
+                            </div>
+                            <div class="filter-range-wrap">
+                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                data-min="100000" data-max="5000000"></div>
+                                <div class="range-slider">
+                                    <form action="index.html" method="post">
+                                        
+                                        <div class="price-input">
+                                            <p>Giá từ:</p> <br>
+                                            <input type="text" id="minamount" > <p>đến</p>
+                                            <input type="text" id="maxamount" > <br>
+
+                                            <!-- Sử Dụng Thẻ a hoặc input de loc gia -->
+                                            <input type="submit" class="filter-price" name="" value="LỌC GIÁ">
+                                        </div>
+                                    </form>
+        
+                                </div>
+                            </div>
+                            <!-- <a href="#">LỌC GIÁ</a> -->
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-6-rp-mobile">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="public/img/product/book-1.jpg">
+                                    <div class="label sale">New</div>
+                                    <div class="label_right sale">-30%</div>
+                                    <ul class="product__hover">
+                                        <li><a href="public/img/product/book-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="product-details.html"><span class="icon_search_alt"></span></a></li>
+                                        
+                                        
+                                        <li>
+                                            <form action="blog.html" method="post">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <button type="submit">
+                                                    <a href="#"><span class="icon_bag_alt"></span></a>
+                                                </button>
+                                            </form>
+                                        </li>
+                                        
+                                    </ul>
+                                    
+                                </div>
+                                <div class="product__item__text">
+                                    <h6 class="text-truncate-1"><a href="product-details.html">Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">100.000đ <span>20.000đ</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-6-rp-mobile">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="public/img/product/book-1.jpg">
+                                    <div class="label sale">New</div>
+                                    <div class="label_right sale">-30%</div>
+                                    <ul class="product__hover">
+                                        <li><a href="public/img/product/book-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="product-details.html"><span class="icon_search_alt"></span></a></li>
+                                        
+                                        
+                                        <li>
+                                            <form action="blog.html" method="post">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <button type="submit">
+                                                    <a href="#"><span class="icon_bag_alt"></span></a>
+                                                </button>
+                                            </form>
+                                        </li>
+                                        
+                                    </ul>
+                                    
+                                </div>
+                                <div class="product__item__text">
+                                    <h6 class="text-truncate-1"><a href="product-details.html">Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">100.000đ <span>20.000đ</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-6-rp-mobile">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="public/img/product/book-1.jpg">
+                                    <div class="label sale">New</div>
+                                    <div class="label_right sale">-30%</div>
+                                    <ul class="product__hover">
+                                        <li><a href="public/img/product/book-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="product-details.html"><span class="icon_search_alt"></span></a></li>
+                                        
+                                        
+                                        <li>
+                                            <form action="blog.html" method="post">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <input type="hidden" name="">
+                                                <button type="submit">
+                                                    <a href="#"><span class="icon_bag_alt"></span></a>
+                                                </button>
+                                            </form>
+                                        </li>
+                                        
+                                    </ul>
+                                    
+                                </div>
+                                <div class="product__item__text">
+                                    <h6 class="text-truncate-1"><a href="product-details.html">Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">100.000đ <span>20.000đ</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <div class="pagination__option">
+                                <a href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
