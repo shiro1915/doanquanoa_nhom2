@@ -2,18 +2,12 @@
     ob_start();
     session_start();
 
-    $URL = 'index.php?url=';
 
-    require_once "model/pdo_library.php";
-    require_once "model/san-pham.php";
+    require_once "models/pdo_library.php";
+    require_once "models/ProductModel.php";
 
     require_once "components/head.php";
     require_once "components/header.php";
-    
-    
-    
-
-    
 
 
     if(!isset($_GET['url'])) {
@@ -29,8 +23,6 @@
                 require_once "views/shop.php";
                 break;
             case 'chitietsanpham':
-                
-
                 
                 break;
             case 'khoa-hoc':    
