@@ -5,6 +5,7 @@
 
     require_once "models/pdo_library.php";
     require_once "models/ProductModel.php";
+    require_once "models/CategoryModel.php";
 
     require_once "components/head.php";
     require_once "components/header.php";
@@ -24,6 +25,8 @@
                 break;
             case 'chitietsanpham':
                 
+                
+                require_once "views/productdetail.php";
                 break;
             case 'khoa-hoc':    
                 

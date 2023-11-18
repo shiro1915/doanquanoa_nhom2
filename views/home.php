@@ -1,3 +1,10 @@
+<?php
+    $listProducts = $ProductModel->select_products_limit(4);
+
+    $listCategories = $CategoryModel->select_categories_limit(8);
+
+?>
+
 <!-- Banner Section Begin -->
 <section class="container my-3">
         <div class="row">
@@ -56,19 +63,19 @@
         </div>
         
         <div class="row g-1 mb-4 mt-2 pb-4">
+            <?php foreach ($listCategories as $value) {
+                extract($value);
+            ?>
             <div class="col-lg-2 col-md-3 col-sm-6 text-center p-1 cate-gory">
-                <a href=""><img style="width: 50%;" src="public/img/product/book-1.jpg" alt=""></a>
+                <a href=""><img style="width: 50%;" src="upload/<?=$image?>" alt=""></a>
                 <div class="mt-2">
-                    <a class="cate-name text-dark" href="">Sản Phẩm Mới</a>
+                    <a class="cate-name text-dark" href="index.php?url=cua-hang&danhmuc=<?=$category_id?>"><?=$name?></a>
                 </div>
             </div>
             
-            <div class="col-lg-2 col-md-3 col-sm-6 text-center p-1 cate-gory">
-                <a href=""><img style="width: 50%;" src="public/img/product/book-1.jpg" alt=""></a>
-                <div class="mt-2">
-                    <a class="cate-name text-dark" href="">Sản Phẩm Mới</a>
-                </div>
-            </div>
+            <?php
+            }
+            ?>
             
             
         </div>
@@ -87,25 +94,33 @@
             
         </div>
         <div class="row property__gallery">
+            <?php foreach ($listProducts as $product) {
+                extract($product);
+
+                $discount_percentage = $ProductModel->discount_percentage($price, $sale_price);
+            ?>
             <div class="col-lg-3 col-md-4 col-sm-6 mix sach-1">
                 <div class="product__item sale">
-                    <div class="product__item__pic set-bg" data-setbg="public/img/product/book-1.jpg">
-                        <div class="label sale">New</div>
-                        <div class="label_right sale">-30%</div>
+                    <div class="product__item__pic set-bg" data-setbg="upload/<?=$image?>">
+                        <div class="label sale">Sale</div>
+                        <div class="label_right sale">-<?=$discount_percentage?></div>
                         <ul class="product__hover">
-                            <li><a href="public/img/product/book-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                            <li><a href="product-details.html"><span class="icon_search_alt"></span></a></li>
+                            <li><a href="upload/<?=$image?>" class="image-popup"><span class="arrow_expand"></span></a></li>
+                            <li>
+                                <a href="index.php?url=chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$category_id?>">
+                                <span class="icon_search_alt"></span>
+                                </a>
+                            </li>
                             
                             
                             <li>
                                 <form action="#" method="post">
-                                    <input type="hidden" name="">
-                                    <input type="hidden" name="">
-                                    <input type="hidden" name="">
-                                    <input type="hidden" name="">
-                                    <input type="hidden" name="">
-                                    <input type="hidden" name="">
-                                    <button type="submit" id="toastr-success-top-right">
+                                    <input type="hidden" name="product_id">
+                                    <input type="hidden" name="name">
+                                    <input type="hidden" name="image">
+                                    <input type="hidden" name="price">
+                                    
+                                    <button type="submit" name="them_vao_gio" id="toastr-success-top-right">
                                         <a href="#" ><span class="icon_bag_alt"></span></a>
                                     </button>
                                 </form>
@@ -115,7 +130,7 @@
                         
                     </div>
                     <div class="product__item__text">
-                        <h6 class="text-truncate-1"><a href="product-details.html">Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè Sách kế toán vỉa hè</a></h6>
+                        <h6 class="text-truncate-1"><a href=""><?=$name?></a></h6>
                         <div class="rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -123,10 +138,15 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">100.000đ <span>20.000đ</span></div>
+                        <div class="product__price"><?=number_format($sale_price) ."đ"?> <span><?=number_format($price)."đ"?></span></div>
                     </div>
                 </div>
             </div>
+
+            <?php 
+            } 
+            ?>
+
             <div class="col-lg-3 col-md-4 col-sm-6 mix sach-1">
                 <div class="product__item sale">
                     <div class="product__item__pic set-bg" data-setbg="public/img/product/book-1.jpg">
