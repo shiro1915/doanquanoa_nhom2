@@ -1675,7 +1675,7 @@ ol {
   font-size: 30px;
   font-weight: 600;
   color: #0A68FF;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 .product__details__price span {
   font-size: 18px;
@@ -1973,6 +1973,17 @@ ol {
   font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 35px;
+}
+
+.short__description p {
+  font-size: 16px;
+}
+.short__description h4 {
+  font-size: 16px;
+}
+.short__description ul li {
+  font-size: 16px;
+  color: #111;
 }
 
 /*---------------------

@@ -61,24 +61,9 @@
                     <a href="index.php?quanli=binh-luan" class="nav-item nav-link"><i class="fas fa-comment me-2"></i>Bình luận</a>
                     <a href="index.php?quanli=thong-ke" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Thống kê</a>
                     
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-book me-2"></i>Khóa học</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="index.php?quanli=them-khoa-hoc" class="dropdown-item">Thêm mới</a>
-                            <a href="index.php?quanli=danh-sach-khoa-hoc" class="dropdown-item">Tất cả khóa học</a>                         
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-video me-2"></i>Video khóa học</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            
-                            <a href="index.php?quanli=them-video" class="dropdown-item">Thêm mới</a>
-                            <a href="index.php?quanli=video-khoa-hoc" class="dropdown-item">Tất cả video</a>
-                            
-                        </div>
-                    </div>
                     
-                    <div class="nav-item dropdown">
+                    
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="signin.html" class="dropdown-item">Sign In</a>
@@ -86,7 +71,7 @@
                             <a href="404.html" class="dropdown-item">404 Error</a>
                             <a href="blank.html" class="dropdown-item">Blank Page</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </nav>
         </div>

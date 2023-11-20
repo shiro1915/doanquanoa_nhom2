@@ -75,9 +75,11 @@
                                 <?=$ProductModel->formatted_price($price); ?>
                             </span>
                         </div>
-                        <p class="text-truncate-2-pd-details"><?=$short_description?></p>
-
                         
+                        <div class="short__description">
+                            <?=$short_description?>
+                        </div>
+                           
                         <div class="product__details__button">
                             <form action="" method="post">
                                 

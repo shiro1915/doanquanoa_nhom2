@@ -37,6 +37,31 @@
     <script src="public_admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="public_admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+    <!--  CKEditor CDN -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#short_description'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        // Tạo trình soạn thảo cho #product_details
+        ClassicEditor
+            .create(document.querySelector('#product_details'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });    
+    </script>
+
     <!-- Template Javascript -->
     <script src="public_admin/js/main.js"></script>
 </body>

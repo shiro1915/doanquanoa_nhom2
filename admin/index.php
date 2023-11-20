@@ -3,7 +3,11 @@
 <?php
     ob_start();
     session_start();
-
+    require_once "models_admin/pdo_library.php";
+    require_once "models_admin/BaseModel.php";
+    require_once "models_admin/CategoryModel.php";
+    require_once "models_admin/ProductModel.php";
+    require_once "models_admin/CustomerModel.php";
 
     require_once "components/head.php";
     require_once "components/header.php";
@@ -38,34 +42,9 @@
                 break;
             case 'cap-nhat-danh-muc':
                 
-                    require_once "danh-muc/edit.php";   
+                require_once "danh-muc/edit.php";   
                 
                 break;
-            // Khóa học
-            case 'danh-sach-khoa-hoc':
-
-                require_once "khoa-hoc/list.php";         
-                break;
-            case 'them-khoa-hoc':
-                         
-                require_once "khoa-hoc/add.php";   
-                break;
-            case 'cap-nhat-khoa-hoc':
-                require_once "khoa-hoc/edit.php";   
-                break; 
-            //Video
-            case 'video-khoa-hoc':
-
-                require_once "video-courses/list.php";         
-                break;
-            case 'them-video':
-                         
-                require_once "video-courses/add.php";   
-                break;
-            case 'cap-nhat-video':
-                require_once "video-courses/edit.php";   
-                break;   
-                
             // Đơn hàng    
             
             case 'danh-sach-don-hang':
