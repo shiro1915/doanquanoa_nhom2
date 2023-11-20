@@ -4,8 +4,10 @@
 
 
     require_once "models/pdo_library.php";
+    require_once "models/BaseModel.php";
     require_once "models/ProductModel.php";
     require_once "models/CategoryModel.php";
+    require_once "models/CustomerModel.php";
 
     require_once "components/head.php";
     require_once "components/header.php";
@@ -53,6 +55,13 @@
             case 'chi-tiet-don-hang':    
                 require_once "views/my-orderdetails.php";
                 break; 
+            // User
+            case 'dang-nhap':    
+                require_once "views/user/login.php";
+                break; 
+            case 'dang-ky':    
+                require_once "views/user/register.php";
+                break;     
             default:
                 require_once "views/not-page.php";
                 break;
