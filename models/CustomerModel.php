@@ -13,6 +13,12 @@
             pdo_execute($sql, $username, $password, $full_name, $image, $email, $phone, $address);
         }
 
+        public function get_user_by_username($username) {
+            $sql = "SELECT * FROM users WHERE username = ?";
+
+            return pdo_query($sql, $username);
+        }
+
     }
 
     $CustomerModel = new CustomerModel();

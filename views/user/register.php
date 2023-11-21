@@ -148,7 +148,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                             </div>
-                            <input name="username" type="text" value="<?=$username_tmp?>" class="input form-control" id="username" placeholder="Họ tên" />
+                            <input name="username" type="text" value="<?=$username_tmp?>" class="input form-control" id="username" placeholder="Tên đăng nhập" />
                             <span class="w-100 text-danger"><?=$error['username']?></span>
                         </div>
                     </div>

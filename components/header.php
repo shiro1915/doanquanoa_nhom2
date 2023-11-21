@@ -68,16 +68,23 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="header__right">
-                        <!-- <div class="header__right__auth">
-                            <a href="#">Đăng nhập</a>
-                            <a href="#">Đăng ký</a>
-                        </div> -->
+                        
 
-                        <!-- TÊn login tối đa 10 ky tự -->
-                        <div class="header__right__auth acount">
-                            <a href="#"><img src="public/img/product/product-1.jpg" alt="">KHOA123456</a>
-                            
-                        </div>
+                        <?php if(isset($_SESSION['user'])) { ?>
+                            <div class="header__right__auth acount">
+                                <a href="#"><img src="upload/<?=$_SESSION['user']['image']?>" alt=""><?=$_SESSION['user']['username']?></a>
+                                
+                            </div>
+                        <?php 
+                        } else {
+                        ?>
+                            <div class="header__right__auth">
+                                <a href="index.php?url=dang-nhap">Đăng nhập</a>
+                                <a href="index.php?url=dang-ky">Đăng ký</a>
+                            </div>
+                        <?php 
+                        } 
+                        ?>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
                             

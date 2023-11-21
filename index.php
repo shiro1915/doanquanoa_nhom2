@@ -61,7 +61,11 @@
                 break; 
             case 'dang-ky':    
                 require_once "views/user/register.php";
-                break;     
+                break;  
+            case 'dang-xuat':    
+                unset($_SESSION['user']);
+                header("Location: index.php");
+                break;    
             default:
                 require_once "views/not-page.php";
                 break;
