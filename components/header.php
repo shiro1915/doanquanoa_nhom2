@@ -21,13 +21,23 @@
             <a href="index.php"><img src="public/img/logo.png" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__auth">
-            <a href="#">Đăng nhập</a>
-            <a href="#">Đăng ký</a>
-        </div>
+        
+        <?php if(isset($_SESSION['user'])) { ?>
         <div class="offcanvas__auth acount">
-            <a href="#"><img src="public/img/product/product-1.jpg" alt="">KHOA123456</a>
+            <a href="index.php?url=thong-tin-tai-khoan">
+                <img src="upload/<?=$_SESSION['user']['image']?>" alt=""><?=$_SESSION['user']['username']?>
+            </a>
         </div>
+        <?php 
+            } else {
+        ?>
+            <div class="offcanvas__auth">
+                <a href="index.php?url=dang-nhap">Đăng nhập</a>
+                <a href="index.php?url=dang-ky">Đăng ký</a>
+            </div>
+        <?php 
+            } 
+        ?>
         
     </div>
     <!-- Offcanvas Menu End -->
@@ -48,7 +58,7 @@
                             
                             <li><a href="index.php?url=cua-hang">Cửa hàng</a></li>
                             
-                            <li><a href="index.php?url=khoa-hoc">KHÓA HỌC</a></li>
+                            <li><a href="index.php?url=bai-viet">Bài viết</a></li>
                             <!-- <li><a href="./blog.html">bÀI viẾT</a></li> -->
                             <li><a href="index.php?url=lien-he">LIÊN HỆ</a></li>
 
@@ -72,7 +82,9 @@
 
                         <?php if(isset($_SESSION['user'])) { ?>
                             <div class="header__right__auth acount">
-                                <a href="#"><img src="upload/<?=$_SESSION['user']['image']?>" alt=""><?=$_SESSION['user']['username']?></a>
+                                <a href="index.php?url=thong-tin-tai-khoan">
+                                    <img src="upload/<?=$_SESSION['user']['image']?>" alt=""><?=$_SESSION['user']['username']?>
+                                </a>
                                 
                             </div>
                         <?php 

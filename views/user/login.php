@@ -8,7 +8,6 @@
         $password_tmp = $_SESSION['user_register']['password'];
     }
 
-    $list_users = $CustomerModel->select_all_users();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
         $username = trim($_POST["username_login"]);

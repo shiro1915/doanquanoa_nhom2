@@ -30,15 +30,6 @@
                 
                 require_once "views/productdetail.php";
                 break;
-            case 'khoa-hoc':    
-                
-                require_once "views/courses.php";
-                break;
-            
-            case 'chi-tiet-khoa-hoc':    
-                
-                require_once "views/course-details.php";
-                break; 
                 
             case 'lien-he':    
                 require_once "views/contact.php";
@@ -65,7 +56,10 @@
             case 'dang-xuat':    
                 unset($_SESSION['user']);
                 header("Location: index.php");
-                break;    
+                break;  
+            case 'thong-tin-tai-khoan':    
+                require_once "views/user/user-infor.php";
+                break;  
             default:
                 require_once "views/not-page.php";
                 break;
