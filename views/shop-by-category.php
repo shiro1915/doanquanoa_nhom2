@@ -1,14 +1,10 @@
 <?php
-    if (isset($_GET['page'])) {
-        $page = $_GET['page'];
-    } else {
-        $page = 1;
+    if(isset($_GET['id'])) {
+        $category_id = $_GET['id'];
+        $list_products = $ProductModel->select_products_by_cate($category_id);
     }
 
-    $list_products = $ProductModel->select_list_products($page, 9);
     $list_catgories = $CategoryModel->select_all_categories();
-
-
 ?>
 
 <!-- Breadcrumb Begin -->
@@ -43,7 +39,9 @@
                                     ?>
                                     <div class="card">
                                         <div class="card-heading active">
-                                            <a href="index.php?url=danh-muc-san-pham&id=<?=$category_id?>" ><?=$name?></a>
+                                            <a href="index.php?url=danh-muc-san-pham&id=<?=$category_id?>" >
+                                                <?=$name?>
+                                            </a>
                                         </div>
                                         
                                     </div>
@@ -132,57 +130,8 @@
                         <?php 
                         }
                         ?>
-
-                        <?php
-                            // Phân trang
-                            $qty_product = $ProductModel->count_products();
-                            $totalProducts = count($qty_product); // Tổng số sản phẩm
-                            $productsPerPage = 9; // sản phẩm trên 1 trang
-
-                            // Tính số trang
-                            $totalProducts = intval($totalProducts);
-                            $productsPerPage = intval($productsPerPage);
-                            $numberOfPages = ceil($totalProducts / $productsPerPage);
-
-                            $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 1;
-
-                            $html_pagination = '';
-                            $pagination_next = '';
-                            $pagination_prev = '';
-                            for ($i = 1; $i <= $numberOfPages; $i++) {
-                                if ($i === $currentPage) {
-                                    $active = 'active';
-                                } else {
-                                    $active = '';
-                                }
-
-                                $html_pagination .= '
-                                    <a class="' . $active . '" href="index.php?url=cua-hang&page=' . $i . '">' . $i . '</a>
-                                ';
-
-                                //  Next
-                                if ($currentPage < $numberOfPages) {
-                                    $pagination_next = '
-                                        <a href="index.php?url=cua-hang&page=' . ($currentPage + 1) . '"><i class="fa fa-angle-right"></i></a>
-                                    ';
-                                }
-
-                                //  Prev
-                                if ($currentPage > 1) {
-                                    $pagination_prev = '
-                                        <a href="index.php?url=cua-hang&page=' . ($currentPage - 1) . '"><i class="fa fa-angle-left"></i></a>
-                                    ';
-                                }
-                            }
-                        ?>
                         
-                        <div class="col-lg-12 text-center">
-                            <div class="pagination__option">
-                                <?=$pagination_prev?>
-                                <?=$html_pagination?>
-                                <?=$pagination_next?>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

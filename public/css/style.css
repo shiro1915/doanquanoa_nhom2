@@ -1539,10 +1539,10 @@ ol {
   display: inline-block;
   height: 40px;
   width: 40px;
-  border: 1px solid #f2f2f2;
+  border: 1px solid #0A68FF;
   border-radius: 50%;
   font-size: 14px;
-  color: #111111;
+  color: #0A68FF;
   font-weight: 600;
   line-height: 40px;
   text-align: center;
@@ -1560,8 +1560,13 @@ ol {
   font-weight: 600;
 }
 .pagination__option a:hover {
-  background: #0d0d0d;
-  border-color: #0d0d0d;
+  background: #0A68FF;
+  border-color: #0A68FF;
+  color: #ffffff;
+}
+.pagination__option .active {
+  background: #0A68FF;
+  border-color: #0A68FF;
   color: #ffffff;
 }
 

@@ -27,10 +27,12 @@
                 break;
             case 'chitietsanpham':
                 
-                
                 require_once "views/productdetail.php";
                 break;
-                
+            case 'danh-muc-san-pham':
+                        
+                require_once "views/shop-by-category.php";
+                break;    
             case 'lien-he':    
                 require_once "views/contact.php";
                 break;

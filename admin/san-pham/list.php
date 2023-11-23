@@ -30,6 +30,8 @@ $numberOfPages = ceil($totalProducts / $productsPerPage);
 $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 $html_pagination = '';
+$pagination_next = '';
+$pagination_prev = '';
 for ($i = 1; $i <= $numberOfPages; $i++) {
     if ($i === $currentPage) {
         $active = 'active';
@@ -42,6 +44,29 @@ for ($i = 1; $i <= $numberOfPages; $i++) {
             <a class="page-link" href="index.php?quanli=danh-sach-san-pham&page=' . $i . '">' . $i . '</a>
         </li>
     ';
+
+     //  Next
+    if ($currentPage < $numberOfPages) {
+        $pagination_next = '
+            <li class="page-item">
+                <a class="page-link" href="index.php?quanli=danh-sach-san-pham&page=' . ($currentPage + 1) . '">
+                    Next <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+            
+        ';
+    }
+
+    //  Prev
+    if ($currentPage > 1) {
+        $pagination_prev = '
+        <li class="page-item">
+            <a class="page-link" href="index.php?quanli=danh-sach-san-pham&page=' . ($currentPage - 1) . '">
+                <i class="fa fa-angle-left"></i> Prev 
+            </a>
+        </li>
+        ';
+    }
 }
 ?>
 
@@ -115,10 +140,10 @@ for ($i = 1; $i <= $numberOfPages; $i++) {
                             <img style="max-width: 50px;" src="../upload/<?=$value['image']?>" alt="">
                         </td>
                         <td>
-                            <?=number_format($value['price'])."đ"?>
+                            <?=number_format($value['price']).".đ"?>
                         </td>
                         <td>
-                            <?=number_format($value['sale_price'])."đ"?>
+                            <?=number_format($value['sale_price']).".đ"?>
                         </td>
 
                         <td>
@@ -147,7 +172,9 @@ for ($i = 1; $i <= $numberOfPages; $i++) {
             <div class="col-12 mt-4">
                 <nav>
                     <ul class="pagination justify-content-center">
+                        <?=$pagination_prev?>
                         <?=$html_pagination?>
+                        <?=$pagination_next?>
                     </ul>
                 </nav>
             </div>

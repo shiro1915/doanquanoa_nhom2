@@ -1,5 +1,5 @@
 <?php
-    $listProducts = $ProductModel->select_products_limit(4);
+    $listProducts = $ProductModel->select_products_limit(8);
 
     $listCategories = $CategoryModel->select_categories_limit(8);
 
@@ -65,11 +65,12 @@
         <div class="row g-1 mb-4 mt-2 pb-4">
             <?php foreach ($listCategories as $value) {
                 extract($value);
+                $link = 'index.php?url=danh-muc-san-pham&id=' .$category_id;
             ?>
             <div class="col-lg-2 col-md-3 col-sm-6 text-center p-1 cate-gory">
-                <a href=""><img style="width: 50%;" src="upload/<?=$image?>" alt=""></a>
+                <a href="<?=$link?>"><img style="width: 50%;" src="upload/<?=$image?>" alt=""></a>
                 <div class="mt-2">
-                    <a class="cate-name text-dark" href="index.php?url=cua-hang&danhmuc=<?=$category_id?>"><?=$name?></a>
+                    <a class="cate-name text-dark" href="<?=$link?>"><?=$name?></a>
                 </div>
             </div>
             
@@ -150,7 +151,7 @@
             
             
             <div class="col-lg-12 text-center mb-4">
-                <a href=" " class="btn btn-outline-primary">Xem tất cả</a>
+                <a href="index.php?url=cua-hang" class="btn btn-outline-primary">Xem tất cả</a>
             </div>
         </div>
         

@@ -54,7 +54,7 @@
                 <div class="col-xl-6 col-lg-7">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="index.php">TRANG CHỦ</a></li>
+                            <li ><a href="index.php">TRANG CHỦ</a></li>
                             
                             <li><a href="index.php?url=cua-hang">Cửa hàng</a></li>
                             
