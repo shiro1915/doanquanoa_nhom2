@@ -62,6 +62,18 @@
             });    
     </script>
 
+    <script>
+        function confirmDeletion() {
+        return confirm("Bạn có chắc muốn xóa? Sau khi xóa sẽ không thể khôi phục!   ");
+    
+        }
+
+        function confirmDeletionTemp() {
+        return confirm("Bạn có chắc muốn đưa sản phẩm vào thùng rác?");
+    
+        }
+    </script>
+
     <!-- Template Javascript -->
     <script src="public_admin/js/main.js"></script>
 </body>

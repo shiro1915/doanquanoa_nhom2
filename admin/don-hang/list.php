@@ -14,8 +14,7 @@
 
                         <th scope="col">#</th>
                         <th scope="col">Tên khách hàng</th> 
-                        <th scope="col">Ngày đặt</th>   
-                        <th scope="col">Số lượng</th>          
+                        <th scope="col">Ngày đặt</th>           
                         <th scope="col">Trạng Thái</th>
                         <th scope="col">Chỉnh sửa</th>
                     </tr>
@@ -29,7 +28,6 @@
                         <td>
                             20-11-2023
                         </td>
-                        <td>20</td>
                         <td> <a href="" class="btn btn-small btn-danger">Chờ xác nhận</a> </td>
                         <td>
 
@@ -53,8 +51,7 @@
                         <td>
                             20-11-2023
                         </td>
-                        <td>20</td>
-                        <td> <a href="" class="btn btn-small btn-success">Đang giao</a> </td>
+                        <td> <a href="" class="btn btn-small btn-danger">Chờ xác nhận</a> </td>
                         <td>
 
                             <div class="dropdown">

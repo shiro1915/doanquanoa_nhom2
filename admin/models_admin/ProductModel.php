@@ -10,7 +10,51 @@
         }
 
         public function select_products() {
-            $sql = "SELECT name FROM products";
+            $sql = "SELECT name FROM products WHERE status = 1";
+
+            return pdo_query($sql);
+        }
+
+        public function update_product_not_active($product_id) {
+            $sql = "UPDATE products SET status = 0 WHERE product_id = ?";
+
+            pdo_execute($sql, $product_id);
+        }
+
+        public function update_product_active($product_id) {
+            $sql = "UPDATE products SET status = 1 WHERE product_id = ?";
+
+            pdo_execute($sql, $product_id);
+        }
+
+        function select_list_products($keyword, $id_danhmuc, $page, $perPage) {
+            // Tính toán vị trí bắt đầu của kết quả trên trang hiện tại
+            $start = ($page - 1) * $perPage;
+        
+            // Bắt đầu câu truy vấn SQL
+            $sql = "SELECT * FROM products WHERE 1";
+            
+            // Thêm điều kiện tìm kiếm theo keyword
+            if($keyword != '') {
+                $sql .= " AND name LIKE '%" . $keyword . "%'";
+            }
+        
+            // Thêm điều kiện tìm kiếm theo id_danhmuc
+            if($id_danhmuc > 0) {
+                $sql .= " AND category_id ='" . $id_danhmuc . "'";
+            }
+        
+            // Sắp xếp theo id giảm dần
+            $sql .= " AND status = 1 ORDER BY product_id DESC";
+        
+            // Thêm phần phân trang
+            $sql .= " LIMIT " . $start . ", " . $perPage;
+        
+            return pdo_query($sql);
+        }
+
+        public function select_recycle_products() {
+            $sql = "SELECT * FROM products WHERE status = 0 ORDER BY product_id DESC";
 
             return pdo_query($sql);
         }
@@ -27,6 +71,11 @@
             return $format;
         }
 
+        // Delete
+        public function delete_product($product_id) {
+            $sql = "DELETE FROM products WHERE product_id = ?";
+            pdo_execute($sql, $product_id);
+        }
     }
 
     $ProductModel = new ProductModel();
