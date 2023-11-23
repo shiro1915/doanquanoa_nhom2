@@ -1,6 +1,6 @@
 <?php
     $success = '';
-    if(isset($_GET['xoatam'])) {
+    if(isset($_GET['xoatam']) && $_GET['xoatam'] > 0) {
         $product_id = $_GET['xoatam'];
 
         $ProductModel->update_product_not_active($product_id);

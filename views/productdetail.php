@@ -20,8 +20,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
-                        <a href="#">Sản phẩm </a>
+                        <a href="index.php"><i class="fa fa-home"></i> Trang chủ</a>
+                        <a href="index.php?url=cua-hang">Sản phẩm </a>
                         <span><?=$name?></span>
                     </div>
                 </div>

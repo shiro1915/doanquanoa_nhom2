@@ -59,6 +59,12 @@
             return pdo_query($sql);
         }
 
+        public function select_product_by_id($product_id) {
+            $sql = "SELECT * FROM products WHERE product_id =?";
+
+            return pdo_query_one($sql, $product_id);
+        }
+
         public function discount_percentage($price, $sale_price) {
             $discount_percentage = ($price - $sale_price) / $price * 100;
 
@@ -75,6 +81,26 @@
         public function delete_product($product_id) {
             $sql = "DELETE FROM products WHERE product_id = ?";
             pdo_execute($sql, $product_id);
+        }
+
+        public function update_product($category_id, $name, $image, $quantity, $price, $sale_price, $details, $short_description, $product_id) {
+            $sql = "UPDATE products SET 
+            category_id = '".$category_id."', 
+            name = '".$name."',";
+    
+            if ($image != '') {
+                $sql .= " image = '".$image."',";
+            }
+
+            $sql .= " quantity = '".$quantity."', 
+                    price = '".$price."', 
+                    sale_price = '".$sale_price."', 
+                    details = '".$details."', 
+                    short_description = '".$short_description."' 
+                    WHERE product_id = ".$product_id;
+            
+            
+            pdo_execute($sql);
         }
     }
 
