@@ -19,6 +19,21 @@
         
             return $html;
         }
+
+        public function is_image_valid($image)
+        {
+            $allowedExtensions = ['jpg', 'jpeg', 'png'];
+
+            // Lấy thông tin về file
+            $pathInfo = pathinfo($image);
+
+            // Kiểm tra phần mở rộng của file
+            $extension = strtolower($pathInfo['extension']);
+
+            return in_array($extension, $allowedExtensions);
+        }
+
+
     }
 
     $BaseModel = new BaseModel();

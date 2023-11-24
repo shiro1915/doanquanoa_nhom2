@@ -152,6 +152,9 @@ for ($i = 1; $i <= $numberOfPages; $i++) {
                                     <i class="bi bi-three-dots-vertical text-dark"></i>
                                 </a>
                                 <div class="dropdown-menu p-0">
+                                    <a class="dropdown-item" href="../index.php?url=chitietsanpham&id_sp=<?=$value['product_id']?>&id_dm=<?=$value['category_id']?>" target="_blank">
+                                        Xem
+                                    </a>
                                     <a class="dropdown-item" href="index.php?quanli=cap-nhat-san-pham&id=<?=$value['product_id']?>">Sửa</a>
                                     <a class="dropdown-item text-danger" onclick="return confirmDeletionTemp();" href="index.php?quanli=thung-rac-san-pham&xoatam=<?=$value['product_id']?>">
                                         Xóa tạm
@@ -163,7 +166,6 @@ for ($i = 1; $i <= $numberOfPages; $i++) {
                     <?php 
                     }
                     ?>
-
 
 
 
