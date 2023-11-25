@@ -57,7 +57,16 @@
                             
                         </div>
                     </div>
-                    <a href="index.php?quanli=khach-hang" class="nav-item nav-link"><i class="fas fa-users me-2"></i>Khách hàng</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-book me-2"></i> Bài viết</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="index.php?quanli=danh-sach-bai-viet" class="dropdown-item">Tất cả</a>
+                            <a href="index.php?quanli=them-bai-viet" class="dropdown-item">Thêm bài viết</a>
+                            <a href="index.php?quanli=danh-muc-bai-viet" class="dropdown-item">Chuyên mục</a>
+                            
+                        </div>
+                    </div>
+                    <a href="index.php?quanli=danh-sach-khach-hang" class="nav-item nav-link"><i class="fas fa-users me-2"></i>Khách hàng</a>
                     <a href="index.php?quanli=binh-luan" class="nav-item nav-link"><i class="fas fa-comment me-2"></i>Bình luận</a>
                     <a href="index.php?quanli=thong-ke" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Thống kê</a>
                     

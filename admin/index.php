@@ -55,6 +55,28 @@
 
                 require_once "don-hang/edit.php";         
                 break;
+            // Bài viết
+            case 'danh-sach-bai-viet':
+
+                require_once "bai-viet/list.php";         
+                break;
+            case 'them-bai-viet':
+
+                require_once "bai-viet/add.php";         
+                break;
+            case 'cap-nhat-bai-viet':
+                require_once "bai-viet/edit.php";         
+                break;    
+            case 'danh-muc-bai-viet':
+
+                require_once "bai-viet/category.php";         
+                break;
+            
+            // Khách hàng
+            case 'danh-sach-khach-hang':
+
+                require_once "khach-hang/list.php";         
+                break;    
 
             default:
                 require_once "components/404.php";
