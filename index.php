@@ -63,6 +63,15 @@
             case 'thong-tin-tai-khoan':    
                 require_once "views/user/user-infor.php";
                 break;  
+
+            //Bài viết
+            case 'bai-viet':    
+                require_once "views/blog/blogs.php";
+                break;    
+            case 'chi-tiet-bai-viet':    
+                require_once "views/blog/blog-details.php";
+                break;    
+
             default:
                 require_once "views/not-page.php";
                 break;
