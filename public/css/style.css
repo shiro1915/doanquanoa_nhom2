@@ -1681,6 +1681,8 @@ ol {
   font-weight: 600;
   color: #0A68FF;
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
 }
 .product__details__price span {
   font-size: 18px;

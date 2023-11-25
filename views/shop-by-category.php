@@ -1,7 +1,9 @@
 <?php
-    if(isset($_GET['id'])) {
+    if(isset($_GET['id']) && $_GET['id'] > 0) {
         $category_id = $_GET['id'];
         $list_products = $ProductModel->select_products_by_cate($category_id);
+    }else {
+        header("Location: index.php");
     }
 
     $list_catgories = $CategoryModel->select_all_categories();
@@ -13,8 +15,17 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
-                        <span>Sản Phẩm</span>
+                        <a href="index.php"><i class="fa fa-home"></i> Trang chủ</a>
+                        <a href="index.php?url=cua-hang">
+                            Sản phẩm
+                        </a>
+                        <span>
+                            <?php foreach ($list_catgories as $value) {
+                                if($value['category_id'] == $category_id) {
+                                    echo $value['name'];
+                                }
+                            } ?>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -81,6 +92,7 @@
                         
                     </div>
                 </div>
+                <?php if(count($list_products) >0) {?>
                 <div class="col-lg-9 col-md-9">
                     <div class="row">
                         <?php foreach ($list_products as $value) {
@@ -134,6 +146,18 @@
                         
                     </div>
                 </div>
+                <?php }else {?>
+                <div class="col-lg-9 col-md-9">
+                    <div class="container-fluid mt-5">
+                        <div class="row rounded justify-content-center mx-0 pt-5">
+                            <div class="col-md-6 text-center">
+                                <h4 class="mb-4">Danh mục chưa có sản phẩm</h4>
+                                <a class="btn btn-primary rounded-pill py-3 px-5" href="index.php?url=cua-hang">Trở lại cửa hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php }?>
             </div>
         </div>
     </section>

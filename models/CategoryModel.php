@@ -11,6 +11,12 @@
 
             return pdo_query($sql);
         }
+
+        public function select_name_categories() {
+            $sql = "SELECT category_id, name FROM categories";
+
+            return pdo_query($sql);
+        }
     }
 
     $CategoryModel = new CategoryModel();

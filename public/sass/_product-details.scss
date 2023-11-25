@@ -124,6 +124,8 @@
     font-weight: 600;
     color: $primary-color;
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
 
     span {
         font-size: 18px;

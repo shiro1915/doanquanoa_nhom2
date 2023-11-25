@@ -5,6 +5,7 @@
 
         $product_details = $ProductModel->select_products_by_id($id_sp);
         $similar_product = $ProductModel->select_products_similar($id_danhmuc);
+        $name_catgoty = $CategoryModel->select_name_categories();
     } 
 
     
@@ -12,7 +13,7 @@
 
 <?php
     extract($product_details);
-
+    $discount_percentage = $ProductModel->discount_percentage($price, $sale_price);
 ?>
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
@@ -22,6 +23,13 @@
                     <div class="breadcrumb__links">
                         <a href="index.php"><i class="fa fa-home"></i> Trang chủ</a>
                         <a href="index.php?url=cua-hang">Sản phẩm </a>
+                        <a href="index.php?url=danh-muc-san-pham&id=<?=$id_danhmuc?>">
+                            <?php foreach ($name_catgoty as $value) {
+                                if($value['category_id'] == $id_danhmuc) {
+                                    echo $value['name'];
+                                }
+                            } ?>
+                        </a>
                         <span><?=$name?></span>
                     </div>
                 </div>
@@ -60,7 +68,15 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product__details__text">
-                        <h3><?=$name?><span>Danh mục: Sách hay</span></h3>
+                        <h3><?=$name?>
+                            <span>
+                                Danh mục: <?php foreach ($name_catgoty as $value) {
+                                    if($value['category_id'] == $id_danhmuc) {
+                                        echo $value['name'];
+                                    }
+                                } ?>
+                            </span>
+                        </h3>
                         <div class="rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -71,9 +87,10 @@
                         </div>
                         <div class="product__details__price">
                             <?=$ProductModel->formatted_price($sale_price); ?> 
-                            <span>
+                            <span class="ml-2">
                                 <?=$ProductModel->formatted_price($price); ?>
                             </span>
+                            <div class="label_right ml-2"><?=$discount_percentage?></div>
                         </div>
                         
                         <div class="short__description">
@@ -245,3 +262,17 @@
         </div>
     </section>
     <!-- Product Details Section End -->
+
+
+    <style>
+        .label_right {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 700;
+            display: inline-block;
+            padding: 2px 8px;
+            text-transform: uppercase;
+            background: #ca1515;
+            border-radius: 5px;
+        }
+    </style>
