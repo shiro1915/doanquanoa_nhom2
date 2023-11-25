@@ -117,7 +117,7 @@
     <div class="row d-flex justify-content-center align-items-center m-0">
         <div class="login_oueter">
             
-            <form action="" method="post" id="login" autocomplete="off" class="bg-light border p-3">
+            <form action="" method="post" id="login" autocomplete="off" class="p-3">
                 <h4 class="my-3 text-center">ĐĂNG KÝ TÀI KHOẢN</h4>
                 <div class="form-row">
                     
@@ -205,6 +205,10 @@
                         <a href="#">Quên mật khẩu</a>
                     </div>
 
+                </div>
+                <div class="col-12 line"></div>
+                <div class="col-12 text-center">
+                    <a href="index.php?url=dang-nhap" class="btn btn-success w-50">Đăng nhập</a>
                 </div>
             </form>
         </div>

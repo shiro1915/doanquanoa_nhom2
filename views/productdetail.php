@@ -14,6 +14,13 @@
 <?php
     extract($product_details);
     $discount_percentage = $ProductModel->discount_percentage($price, $sale_price);
+
+    // Bình luận
+    if(isset($_GET['id_sp'])) {
+        $product_id = $_GET['id_sp'];
+        $list_comments = $CommentModel->select_comments_by_id($product_id);
+
+    }
 ?>
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
@@ -83,7 +90,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
-                            <span>( 138 bình luận )</span>
+                            <span>( <?=count($list_comments)?> bình luận )</span>
                         </div>
                         <div class="product__details__price">
                             <?=$ProductModel->formatted_price($sale_price); ?> 
@@ -133,7 +140,7 @@
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Mô tả</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Bình luận ( 2 )</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Bình luận ( <?=count($list_comments)?> )</a>
                             </li>
                             
                         </ul>
@@ -144,49 +151,8 @@
                                 <p></p>
                             </div>
                             
-                            <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <h6>Bình luận ( 2 )</h6>
-                                
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h4 class="mb-4">1 bình luận cho "Sách kế toán vỉa hè"</h4>
-                                            <div class="media mb-4">
-                                                <img src="img/product/product-1.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                                <div class="media-body">
-                                                    <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                                    
-                                                    <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="media mb-4">
-                                                <img src="img/product/product-1.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                                <div class="media-body">
-                                                    <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                                    
-                                                    <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h4 class="mb-4">Để lại bình luận</h4>
-                                            
-                                            
-                                            <form>
-                                                <div class="form-group">
-                                                    <label class="text-dark" for="message">Nội dung *</label>
-                                                    <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                                </div>
-                                                
-                                                
-                                                <div class="form-group mb-0">
-                                                    <input type="submit" value="Gửi bình luận" class="btn btn-primary px-3">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                
-                            </div>
+                            <!-- Bình luận   -->
+                            <?php include_once "views/comments.php"; ?>
                         </div>
                     </div>
                 </div>

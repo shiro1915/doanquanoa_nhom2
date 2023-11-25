@@ -66,7 +66,7 @@ label {
     <div class="row d-flex justify-content-center align-items-center m-0">
         <div class="login_oueter">
 
-            <form action="" method="post" id="login" autocomplete="off" class="bg-light border p-3">
+            <form action="" method="post" id="login" autocomplete="off" class="p-3">
                 <h4 class="my-3 text-center">ĐĂNG NHẬP</h4>
                 <div class="form-row">
 
@@ -104,10 +104,15 @@ label {
                         <button class="btn btn-primary w-100" type="submit" name="signin">Đăng nhập</button>
                     </div>
                     <div class="col-12 pt-3 text-center">
-                        <p><a href="#">Quên mật khẩu</a></p>
+                        <p class="mb-0"><a href="#">Quên mật khẩu?</a></p>
                     </div>
+                    
 
 
+                </div>
+                <div class="col-12 line"></div>
+                <div class="col-12 text-center">
+                    <a href="index.php?url=dang-ky" class="btn btn-success w-50">Tạo tài khoản</a>
                 </div>
             </form>
         </div>
