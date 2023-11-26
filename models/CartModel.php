@@ -12,6 +12,18 @@
             return pdo_query_one($sql);
         }
 
+        public function select_mini_carts($user_id, $limit) {
+            $sql = "SELECT * FROM carts WHERE user_id = $user_id ORDER BY cart_id DESC LIMIT $limit";
+
+            return pdo_query($sql);
+        }
+
+        public function count_cart($user_id) {
+            $sql = "SELECT cart_id FROM carts WHERE user_id = $user_id";
+
+            return pdo_query($sql);
+        }
+
         public function insert_cart($product_id, $user_id, $product_name, $product_price, $product_quantity, $product_image) {
             $sql = "INSERT INTO carts 
            (product_id, user_id, product_name, product_price, product_quantity, product_image)

@@ -3,6 +3,14 @@
     <!-- <div id="preloder">
         <div class="loader"></div>
     </div> -->
+    <?php
+    if(isset($_SESSION['user'])) {
+        $user_id = $_SESSION['user']['id'];
+        $count_carts = count($CartModel->count_cart($user_id));
+
+    }
+   
+    ?>
 
     <!-- Offcanvas Menu Begin -->
     <div class="offcanvas-menu-overlay"></div>
@@ -97,13 +105,25 @@
                         <?php 
                         } 
                         ?>
+
+                        <?php if(isset($_SESSION['user'])) {?>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
                             
                             <li><a id="cart-mini" href="#"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
+                                <div class="tip"><?=$count_carts?></div>
                             </a></li>
                         </ul>
+                        <?php }else {?>
+                            
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            
+                            <li><a onclick="alert('Vui lòng đăng nhập để sử dụng chức năng')" id="cart-mini" href="dang-nhap"><span class="icon_bag_alt"></span>
+                                <div class="tip">0</div>
+                            </a></li>
+                        </ul>
+                        <?php }?>
                     </div>
                 </div>
             </div>

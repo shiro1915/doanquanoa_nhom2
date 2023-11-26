@@ -1,3 +1,13 @@
+<?php
+    if(isset($_SESSION['user'])) {
+        $user_id = $_SESSION['user']['id'];
+        $list_minicarts = $CartModel->select_mini_carts($user_id, 5);
+        $count_carts = count($CartModel->count_cart($user_id));
+
+    }
+   
+?>
+
 <!-- Mini cart -->
 <div class="shopping-cart">
     <div class="shopping-cart-header">
@@ -11,7 +21,7 @@
             <div class="col-8">
                 
                 <div style="font-size: 25px;" class="float-right">
-                    <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">323</span>
+                    <i class="fa fa-shopping-cart cart-icon"></i><span class="badge"><?=$count_carts?></span>
                 </div>
             </div>
             
@@ -20,44 +30,26 @@
     
 
     <ul class="row pt-2 mini-cart">
+        <?php foreach ($list_minicarts as $value) {
+            extract($value);
+        ?>
         <li class="col-xl-12 col-md-4">
             <figure class="itemside mb-3">
-                <a href="#khoa" class="aside"><img src="./public/img/product/book-1.jpg" class="img-sm border"></a>
+                <a href="#khoa" class="aside"><img src="upload/<?=$product_image?>" class="img-sm border"></a>
                 <figcaption class="info align-self-center">
-                    <a href="" class="text-truncate-1 text-dark" class="title">Dell Laptop with 500GB HDD ith 500GB HDD ith 500GB HDD</a>
-                    <a href="" class="text-truncate-1 text-dark">Truyện tranh</a>
+                    <a href="" style="height: 47px;" class="text-truncate-2 text-dark" class="title"><?=$product_name?></a>
                     
-                    <span class="text-danger">100.000đ </span> <span>x1</span>
+                    <span class="text-primary"><?=number_format($product_price)?>đ </span> <span class="text-dark">x1</span>
                 </figcaption>
             </figure>
             
         </li>
+        <?php 
+        }
+        ?>
+        
         <li class="col-xl-12 col-md-4">
-            <figure class="itemside mb-3">
-                <div class="aside"><img src="./public/img/product/book-1.jpg" class="img-sm border"></div>
-                <figcaption class="info align-self-center">
-                    <a href="" class="text-truncate-1 text-dark" class="title">Dell Laptop with 500GB HDD ith 500GB HDD ith 500GB HDD</a>
-                    <a href="" class="text-truncate-1 text-dark">Truyện tranh</a>
-                    
-                    <span class="text-danger">100.000đ </span> <span>x1</span>
-                </figcaption>
-            </figure>
-            
-        </li>
-        <li class="col-xl-12 col-md-4">
-            <figure class="itemside mb-3">
-                <div class="aside"><img src="./public/img/product/book-1.jpg" class="img-sm border"></div>
-                <figcaption class="info align-self-center">
-                    <a href="" class="text-truncate-1 text-dark" class="title">Dell Laptop with 500GB HDD ith 500GB HDD ith 500GB HDD</a>
-                    <a href="" class="text-truncate-1 text-dark">Tiểu thuyết</a>
-                    
-                    <span class="text-danger">100.000đ </span> <span>x1</span>
-                </figcaption>
-            </figure>
-            
-        </li>
-        <li class="col-xl-12 col-md-4">
-            <div class="text-center text-dark">30 sản phẩm thêm vào giỏ</div>
+            <div class="text-center text-dark"><?=$count_carts?> sản phẩm thêm vào giỏ</div>
         </li>
     </ul>
     <hr>
