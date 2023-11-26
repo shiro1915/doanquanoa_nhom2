@@ -9,6 +9,7 @@
     require_once "models/CategoryModel.php";
     require_once "models/CustomerModel.php";
     require_once "models/CommentModel.php";
+    require_once "models/CartModel.php";
 
     require_once "components/head.php";
     require_once "components/header.php";

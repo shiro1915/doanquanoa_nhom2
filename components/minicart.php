@@ -74,7 +74,7 @@
 
     <div class="row">
         <div class="col-6">
-            <a href="shop-cart.html" class="button">Xem giỏ hàng</a>
+            <a href="gio-hang" class="button">Xem giỏ hàng</a>
             
         </div>
         <div class="col-6">

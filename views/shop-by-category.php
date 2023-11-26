@@ -112,15 +112,25 @@
                                         
                                         
                                         <li>
-                                            <form action="" method="post">
-                                            <input type="hidden" name="product_id">
-                                            <input type="hidden" name="name">
-                                            <input type="hidden" name="image">
-                                            <input type="hidden" name="price">
-                                                <button type="submit" name="them_vao_gio">
-                                                    <a href="#"><span class="icon_bag_alt"></span></a>
+                                        <?php if(isset($_SESSION['user'])) {?>
+                                            <form action="index.php?url=gio-hang" method="post">
+                                                <input value="<?=$product_id?>" type="hidden" name="product_id">
+                                                <input value="<?=$_SESSION['user']['id']?>" type="hidden" name="user_id">
+                                                <input value="<?=$name?>" type="hidden" name="name">
+                                                <input value="<?=$image?>"type="hidden" name="image">
+                                                <input value="<?=$sale_price?>" type="hidden" name="price">
+                                                <input value="1" type="hidden" name="product_quantity">
+                                                <input value="<?=$image?>" type="hidden" name="image">
+
+                                                <button type="submit" name="add_to_cart" id="toastr-success-top-right">
+                                                    <a href="#" ><span class="icon_bag_alt"></span></a>
                                                 </button>
                                             </form>
+                                        <?php }else{?>
+                                            <button type="submit" onclick="alert('Vui lòng dăng nhập để thực hiện chức năng');" name="add_to_cart" id="toastr-success-top-right">
+                                                <a href="dang-nhap" ><span class="icon_bag_alt"></span></a>
+                                            </button>
+                                        <?php }?>
                                         </li>
                                         
                                     </ul>

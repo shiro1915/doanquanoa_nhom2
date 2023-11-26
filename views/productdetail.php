@@ -119,12 +119,32 @@
                                 </div>
                             
                             </form>
-                              
-                            <div class="quantity">
+                            <?php if(isset($_SESSION['user'])) {?>
+                                <form action="index.php?url=gio-hang" method="post">
+                                    <input value="<?=$product_id?>" type="hidden" name="product_id">
+                                    <input value="<?=$_SESSION['user']['id']?>" type="hidden" name="user_id">
+                                    <input value="<?=$name?>" type="hidden" name="name">
+                                    <input value="<?=$image?>"type="hidden" name="image">
+                                    <input value="<?=$sale_price?>" type="hidden" name="price">
+                                    <input value="1" type="hidden" name="product_quantity">
+                                    <input value="<?=$image?>" type="hidden" name="image">
 
-                                <button style="border: none;" type="submit" class="cart-btn btn-primary"><span class="icon_bag_alt"></span> Thêm vào giỏ</button>
-                                <button type="submit" style="background-color: #ca1515; border: none;" class="cart-btn"><span class="icon_bag_alt"></span>Mua ngay</button>
-                            </div>
+                                    <div class="quantity">
+
+                                        <button name="add_to_cart" style="border: none;" type="submit" class="cart-btn btn-primary"><span class="icon_bag_alt"></span> Thêm vào giỏ</button>
+                                        <button name="add_to_cart" type="submit" style="background-color: #ca1515; border: none;" class="cart-btn"><span class="icon_bag_alt"></span>Mua ngay</button>
+                                    </div>
+                                </form>
+                            <?php }else{?>
+                                <div class="quantity">
+                                    <button name="add_to_cart" onclick="alert('Vui lòng dăng nhập để thực hiện chức năng');" style="border: none;" type="submit" class="cart-btn btn-primary">
+                                        <span class="icon_bag_alt"></span> <a href="dang-nhap" style="color: #ffffff;">Thêm vào giỏ</a>
+                                    </button>
+                                    <button name="add_to_cart" onclick="alert('Vui lòng dăng nhập để thực hiện chức năng');" type="submit" style="background-color: #ca1515; border: none;" class="cart-btn">
+                                        <span class="icon_bag_alt"></span> <a href="dang-nhap" style="color: #ffffff;">Mua ngay</a>
+                                    </button>
+                                </div>
+                            <?php }?>  
                             <ul>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                 <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
