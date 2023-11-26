@@ -39,6 +39,16 @@
 
             pdo_execute($sql);
         }
+
+        public function delete_product_in_cart($product_id, $user_id) {
+            $sql = "DELETE FROM carts WHERE product_id = ? AND user_id = ?";
+            pdo_execute($sql, $product_id, $user_id);
+        }
+
+        public function delete_cart_by_id($cart_id) {
+            $sql = "DELETE FROM carts WHERE cart_id = ?";
+            pdo_execute($sql, $cart_id);
+        }
     }
 
     $CartModel = new CartModel();

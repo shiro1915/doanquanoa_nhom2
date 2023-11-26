@@ -1,6 +1,7 @@
 <?php
 
     $success = '';
+    $error = '';
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_to_cart"])) {
         $product_id = $_POST["product_id"];
         $user_id = $_POST["user_id"];
@@ -13,19 +14,57 @@
         $product = $CartModel->select_cart_by_id($product_id, $user_id);
         // Kiểm tra xem có sản phẩm trong giỏ hàng hay không
         if($product && is_array($product)) {
-            $product_quantity = $product['product_quantity'] + 1;
+            // Số lượng mới = số lượng hiện tại + số lượng vừa thêm
+            $current_quantity = $product['product_quantity'];
+            $new_quantity = $current_quantity + $product_quantity;
 
             // Cập nhật số lượng
-            $CartModel->update_cart($product_quantity, $product_id, $user_id);
+            $CartModel->update_cart($new_quantity, $product_id, $user_id);
             $success .= 'Đã cập nhật số lượng cho sản phẩm: '.$product_name;
         }
         else {
             $product_quantity = $product_quantity;
             $CartModel->insert_cart($product_id, $user_id, $product_name, $product_price, $product_quantity, $product_image);
-            $success = "Đã thêm sản phẩm: ". $product_name ." vào giỏ hàng thành công ";
-            $success .= '<a href="index.php" style="font-weight = 600;" class="text-danger">Tiếp tục mua hàng</a>';
+            $success = "Đã thêm sản phẩm vào giỏ hàng";
+            
         }
 
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_cart"] ) && isset($_SESSION['user'])) {
+        // Lấy thông tin cần thiết từ form
+        $user_id = $_SESSION['user']['id'];
+        $product_id = $_POST["product_id"];
+        $new_quantity = $_POST["quantity"];
+        $index = 0; // Đếm số sản phẩm xóa
+
+        for ($i = 0; $i < count($product_id); $i++) {
+            $id = $product_id[$i];
+            $quantity = $new_quantity[$i];
+            
+            if ($quantity <= 0) {
+                // Nếu số lượng >=0 xóa sản phẩm trong giỏ hàng     
+                $CartModel->delete_product_in_cart($id, $user_id);
+
+                $index += 1;
+            } elseif($quantity > 0) {
+                $CartModel->update_cart($quantity, $id, $user_id);
+                
+            }
+        }
+        
+        if ($index > 0) {
+            $success = 'Đã xóa ' . $index . ' sản phẩm ra khỏi giỏ hàng';
+        } else {
+            $success = 'Cập nhật thành công';
+        }
+    }
+
+    if(isset($_GET['xoa'])) {
+        $cart_id = $_GET['xoa'];
+        $result = $CartModel->delete_cart_by_id($cart_id);
+
+        $success = 'Đã xóa 1 sản phẩm';
     }
 ?>
 
@@ -58,11 +97,12 @@
     <!-- Shop Cart Section Begin -->
     <section class="shop-cart spad">
         <div class="container">
+            <form action="" method="post">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="" method="post">
+                    <!-- <form action="" method="post"> -->
                         <div class="shop__cart__table">
-                            <?=$alert = $BaseModel->alert_error_success('', $success)?>
+                            <?=$alert = $BaseModel->alert_error_success($error, $success)?>
                             <table>
                                 <thead>
                                     <tr>
@@ -77,12 +117,21 @@
                                     <?php foreach ($list_carts as $value) {
                                         extract($value);
                                         $totalPrice = ($product_price * $product_quantity);
+                                        // Lấy id danh mục của sản phẩm để hiện thị đường dẫn sang trang ctsp
+                                        $product = $ProductModel->select_cate_in_product($product_id);
+                
                                     ?>
                                     <tr>
                                         <td class="cart__product__item">
-                                            <img src="upload/<?=$product_image?>" alt="">
+                                            <a href="chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$product['category_id']?>">
+                                                <img src="upload/<?=$product_image?>" alt="">
+                                            </a>
                                             <div class="cart__product__item__title">
-                                                <h6 class="text-truncate-1"><?=$product_name?></h6>
+                                                <h6 class="text-truncate-1">
+                                                    <a href="chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$product['category_id']?>" class="text-dark">
+                                                        <?=$product_name?>
+                                                    </a>
+                                                </h6>
                                                 <div class="rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
@@ -93,21 +142,22 @@
                                             </div>
                                         </td>
                                         <td class="cart__price"><?=number_format($product_price)?>đ</td>
+                                        <input type="hidden" name="product_id[]" value="<?=$product_id?>">
                                         <td class="cart__quantity">
                                             <!-- <div class="pro-qty">
                                                 <input type="text" value="1">
                                             </div> -->
                                             <div class="input-group float-left">
-                                                <div class="input-next-cart d-flex ">
+                                                <div class="input-next-cart d-flex "> 
                                                     <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                    <input type="number" step="1" max="" value="<?=$product_quantity?>" name="quantity" class="quantity-field-cart">
+                                                    <input type="number" step="1" max="" value="<?=$product_quantity?>" name="quantity[]" class="quantity-field-cart">
                                                     <input type="button" value="+" class="button-plus" data-field="quantity">
                                                 </div>                                           
                                             </div>
                                         </td>
                                         <td class="cart__total"><?=number_format($totalPrice)?>đ</td>
                                         <td class="cart__close">
-                                            <a href="">
+                                            <a href="index.php?url=gio-hang&xoa=<?=$cart_id?>">
                                                 <span class="icon_close"></span>
                                             </a>
                                         </td>
@@ -119,23 +169,24 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    <!-- </form> -->
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="cart__btn">
-                        <a href="#">Tiếp tục mua sắm</a>
+                        <a href="index.php?url=cua-hang">Tiếp tục mua sắm</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="cart__btn update__btn">
                         <!-- <a href="#"><span class="icon_loading"></span>Cập nhật giỏ hàng</a> -->
                         
-                        <button type="submit"><span class="icon_loading"></span>Cập nhật giỏ hàng</button>
+                        <button name="update_cart" type="submit"><span class="icon_loading"></span>Cập nhật giỏ hàng</button>
                     </div>
                 </div>
             </div>
+            </form>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="discount__content">

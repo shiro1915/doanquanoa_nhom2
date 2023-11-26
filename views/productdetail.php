@@ -105,28 +105,26 @@
                         </div>
                            
                         <div class="product__details__button">
-                            <form action="" method="post">
-                                
-                                <div class="input-group d-flex align-items-center">
-                                    <span class="text-dark">Số lượng</span>
-                                    <div class="input-next d-flex mx-4">
-                                        <input type="button" value="-" class="button-minus" data-field="quantity">
-                                        <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field">
-                                        <input type="button" value="+" class="button-plus" data-field="quantity">
-                                    </div>
-                                    <span class="text-dark"><?=$quantity?> sản phẩm có sẵn</span>
-
-                                </div>
                             
-                            </form>
                             <?php if(isset($_SESSION['user'])) {?>
-                                <form action="index.php?url=gio-hang" method="post">
+                                <form action="index.php?url=gio-hang" method="post">    
+                                    <div class="input-group d-flex align-items-center">
+                                        <span class="text-dark">Số lượng</span>
+                                        <div class="input-next-cart d-flex mx-4"> 
+                                            <input type="button" value="-" class="button-minus" data-field="quantity">
+                                            <input type="number" step="1" max="50" value="1" name="product_quantity" class="quantity-field-cart">
+                                            <input type="button" value="+" class="button-plus" data-field="quantity">
+                                        </div> 
+                                        <span class="text-dark"><?=$quantity?> sản phẩm có sẵn</span>
+
+                                    </div>
+                                    
                                     <input value="<?=$product_id?>" type="hidden" name="product_id">
                                     <input value="<?=$_SESSION['user']['id']?>" type="hidden" name="user_id">
                                     <input value="<?=$name?>" type="hidden" name="name">
                                     <input value="<?=$image?>"type="hidden" name="image">
                                     <input value="<?=$sale_price?>" type="hidden" name="price">
-                                    <input value="1" type="hidden" name="product_quantity">
+                                    <!-- <input value="1" type="hidden" name="product_quantity"> -->
                                     <input value="<?=$image?>" type="hidden" name="image">
 
                                     <div class="quantity">

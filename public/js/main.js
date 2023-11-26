@@ -233,41 +233,38 @@ Created: Colorib
     });
 
 
-    // Chi tiết sản phẩm tăng giảm
-    function incrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-      
-        if (!isNaN(currentVal)) {
-          parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
-        } else {
-          parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-      
-    function decrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-      
-        if (!isNaN(currentVal) && currentVal > 0) {
-          parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
-        } else {
-          parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-      
-    $('.input-group').on('click', '.button-plus', function(e) {
+    
+
+    // Tăng giảm số lượng sản phẩm giỏ hàng và chi tiết sản phẩm
+    $('.input-next-cart').on('click', '.button-plus', function(e) {
         incrementValue(e);
     });
-      
-    $('.input-group').on('click', '.button-minus', function(e) {
+
+    $('.input-next-cart').on('click', '.button-minus', function(e) {
         decrementValue(e);
     });
 
+    function incrementValue(e) {
+        e.preventDefault();
+        var fieldName = $(e.target).data('field');
+        var parent = $(e.target).closest('.input-next-cart');
+        var currentVal = parseInt(parent.find('.quantity-field-cart').val(), 10);
+
+        var newValue = (!isNaN(currentVal) && currentVal > 0) ? currentVal + 1 : 1;
+
+        parent.find('.quantity-field-cart').val(newValue);
+    }
+
+    function decrementValue(e) {
+        e.preventDefault();
+        var fieldName = $(e.target).data('field');
+        var parent = $(e.target).closest('.input-next-cart');
+        var currentVal = parseInt(parent.find('.quantity-field-cart').val(), 10);
+
+        var newValue = (!isNaN(currentVal) && currentVal > 0) ? currentVal - 1 : 0;
+
+        parent.find('.quantity-field-cart').val(newValue);
+    }
 
     // Mini cart
     (function(){

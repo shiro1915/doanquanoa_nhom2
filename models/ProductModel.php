@@ -12,6 +12,12 @@
             return pdo_query_one($sql, $id);
         }
 
+        public function select_cate_in_product($product_id) {
+            $sql = "SELECT category_id FROM products WHERE product_id = ?";
+ 
+            return pdo_query_one($sql, $product_id);
+        }
+
         public function select_products_similar($id) {
             $sql = "SELECT * FROM products WHERE category_id = ? ORDER BY product_id LIMIT 4";
  
