@@ -32,6 +32,7 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_cart"] ) && isset($_SESSION['user'])) {
+        // header("Location: index.php?url=gio-hang");
         // Lấy thông tin cần thiết từ form
         $user_id = $_SESSION['user']['id'];
         $product_id = $_POST["product_id"];
@@ -73,6 +74,7 @@
     if(isset($_SESSION['user'])) {
         $user_id = $_SESSION['user']['id'];
         $list_carts = $CartModel->select_all_carts($user_id);
+        $count_carts = count($CartModel->count_cart($user_id));
     }
     
 ?>
@@ -114,9 +116,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($list_carts as $value) {
+                                    <?php 
+                                    $totalPayment = 0;
+                                    foreach ($list_carts as $value) {
                                         extract($value);
                                         $totalPrice = ($product_price * $product_quantity);
+                                        //Tổn thanh toán
+                                        $totalPayment += $totalPrice;
                                         // Lấy id danh mục của sản phẩm để hiện thị đường dẫn sang trang ctsp
                                         $product = $ProductModel->select_cate_in_product($product_id);
                 
@@ -201,10 +207,11 @@
                     <div class="cart__total__procced">
                         <h6>Tổng tiền</h6>
                         <ul>
-                            <li>Số lượng <span>5 sản phẩm</span></li>
-                            <li>Tổng <span>500.000.đ</span></li>
+                            <li>Số lượng <span><?=$count_carts?> sản phẩm</span></li>
+                            <!-- Tổng thanh toán -->
+                            <li>Tổng <span><?=number_format($totalPayment)?>đ</span></li>
                         </ul>
-                        <a href="checkout.html" class="primary-btn">TIẾN HÀNH THANH TOÁN</a>
+                        <a href="index.php?url=thanh-toan" class="primary-btn">TIẾN HÀNH THANH TOÁN</a>
                     </div>
                 </div>
             </div>
@@ -242,3 +249,18 @@
         </div>
     </div>
 <?php }?>   
+
+
+<style>
+    .cart__btn a:hover {
+        background-color: #0A68FF;
+        color: #fff;
+        transition: 0.2s;
+    }
+
+    .cart__btn button:hover {
+        background-color: #0A68FF;
+        color: #fff;
+        transition: 0.2s;
+    }
+</style>

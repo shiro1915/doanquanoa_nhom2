@@ -1,74 +1,94 @@
-<div class="container pt-4 mb-5">
-        <article class="card">
-            <div class="card-header">
-                <span class="fw-500 text-black">Đơn mua</span>
-                <span class="float-right fw-500 text-black">Thời gian: 20-11-2023</span>
-            </div>
 
-            <div class="card-body">
 
-                <ul class="row">
-                    <li class="col-md-4">
-                        <figure class="itemside mb-3">
-                            <div class="aside"><img src="public/img/product/book-1.jpg" class="img-sm border"></div>
-                            <figcaption class="info align-self-center">
-                                <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span
-                                    class="text-danger">100.000đ </span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="col-md-4">
-                        <figure class="itemside mb-3">
-                            <div class="aside"><img src="public/img/product/book-1.jpg" class="img-sm border"></div>
-                            <figcaption class="info align-self-center">
-                                <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span
-                                    class="text-danger">100.000đ </span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="col-md-4">
-                        <figure class="itemside mb-3">
-                            <div class="aside"><img src="public/img/product/book-1.jpg" class="img-sm border"></div>
-                            <figcaption class="info align-self-center">
-                                <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span
-                                    class="text-danger">100.000đ </span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="col-md-4">
-                        <figure class="itemside mb-3">
-                            <div class="aside"><img src="public/img/product/book-1.jpg" class="img-sm border"></div>
-                            <figcaption class="info align-self-center">
-                                <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span
-                                    class="text-danger">100.000đ </span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="col-md-4">
-                        <figure class="itemside mb-3">
-                            <div class="aside"><img src="public/img/product/book-1.jpg" class="img-sm border"></div>
-                            <figcaption class="info align-self-center">
-                                <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span
-                                    class="text-danger">100.000đ </span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="col-md-4">
-                        <figure class="itemside mb-3">
-                            <div class="aside"><img src="public/img/product/book-1.jpg" class="img-sm border"></div>
-                            <figcaption class="info align-self-center">
-                                <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span
-                                    class="text-danger">100.000đ </span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                </ul>
-                <hr>
-                <a href="#" class="btn btn-success" data-abc="true"> <i class="fa fa-chevron-left"></i> Trở lại</a>
-                <div class="float-right">
-                    <a href="index.php?url=chi-tiet-don-hang" class="btn btn-secondary"> Xem chi tiết</a>
-                    <a href="#" class="btn btn-danger">Mua lại</a>
+<?php
+    if(isset($_SESSION['user'])) {
+        $user_id = $_SESSION['user']['id'];
+
+        $list_orders = $OrderModel->select_list_orders($user_id);
+
+?>
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="index.php"><i class="fa fa-home"></i> Trang chủ</a>
+                    <a href="index.php?url=thong-tin-tai-khoan">Tài khoản</a>
+                    <span>Đơn mua</span>
                 </div>
             </div>
-        </article>
+        </div>
     </div>
+</div>
+
+<?php
+    foreach ($list_orders as $value) {
+        extract($value);
+        $list_products_buyed = $OrderModel->select_orderdetails_and_products($order_id)
+?>
+
+<div class="container pt-4 mb-0">
+    <article class="card">
+        <div class="card-header" style="background-color: #f9f9f9">
+            <span class="fw-500 text-black">Đơn mua</span>
+            <span class="float-right fw-500 text-black">Thời gian: <?=$date?></span>
+        </div>
+
+        <div class="card-body">
+
+            <ul class="row">
+                
+                
+                <?php
+                    foreach ($list_products_buyed as $value) {
+                        extract($value);
+                ?>
+                <li class="col-md-4">
+                    <figure class="itemside mb-3">
+                        <div class="aside"><img src="upload/<?=$image?>" class="img-sm border"></div>
+                        <figcaption class="info align-self-center">
+                            <p class="title"><?=$product_name?> </p> 
+                            <span class="text-primary"><?=number_format($product_price)?>₫</span> <span style="font-size: 16px;" class="text-dark" >x<?=$quantity?></span>
+                        </figcaption>
+                    </figure>
+                </li>
+                <?php
+                   }
+                ?>
+                
+                
+            </ul>
+            <hr>
+            <div >
+                <a href="#" class="btn btn-custom" data-abc="true"> <i class="fa fa-chevron-left"></i> Trở lại</a>
+                <div class="float-right">
+                    <span class="text-dark">Thành tiền: </span> 
+                    <span style="font-weight: 600;" class="text-danger mr-3"><?=number_format($total)?>₫</span>
+                    <a href="index.php?url=chi-tiet-don-hang&id=<?=$order_id?>" class="btn btn-custom"> Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<?php
+    }
+?>
+
+<?php
+    }
+?>
+
+<div style="margin-bottom: 200px;"></div>
+<style>
+    .btn-custom {
+        color: #555;
+        background-color: #f6f6f6;
+        border-color: rgba(0,0,0,.09);
+    }
+
+    .btn-custom:hover {
+        background-color: #fff;
+    }
+
+    
+</style>
