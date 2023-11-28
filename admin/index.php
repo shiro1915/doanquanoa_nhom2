@@ -8,6 +8,7 @@
     require_once "models_admin/CategoryModel.php";
     require_once "models_admin/ProductModel.php";
     require_once "models_admin/CustomerModel.php";
+    require_once "models_admin/OrderModel.php";
 
     require_once "components/head.php";
     require_once "components/header.php";

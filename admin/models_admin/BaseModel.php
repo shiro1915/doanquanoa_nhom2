@@ -33,6 +33,15 @@
             return in_array($extension, $allowedExtensions);
         }
 
+        public function date_format($date, $plus_day) {
+            $datetime = new DateTime($date);
+
+            if($plus_day != '') {
+                $datetime->modify('+' . $plus_day . ' days');
+            }
+            return $formatted_date = $datetime->format('H:i d-m-Y');
+        }
+
 
     }
 
