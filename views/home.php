@@ -103,7 +103,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 mix sach-1">
                 <div class="product__item sale">
                     <div class="product__item__pic set-bg" data-setbg="upload/<?=$image?>">
-                        <div class="label sale">Sale</div>
+                        <!-- <div class="label sale">Sale</div> -->
                         <div class="label_right sale">-<?=$discount_percentage?></div>
                         <ul class="product__hover">
                             <li><a href="upload/<?=$image?>" class="image-popup"><span class="arrow_expand"></span></a></li>
@@ -148,7 +148,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price"><?=number_format($sale_price) ."đ"?> <span><?=number_format($price)."đ"?></span></div>
+                        <div class="product__price"><?=number_format($sale_price) ."₫"?> <span><?=number_format($price)."đ"?></span></div>
                     </div>
                 </div>
             </div>

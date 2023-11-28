@@ -134,6 +134,16 @@
                                     </div>
                                 </form>
                             <?php }else{?>
+                                <div class="input-group d-flex align-items-center">
+                                    <span class="text-dark">Số lượng</span>
+                                    <div class="input-next-cart d-flex mx-4"> 
+                                        <input type="button" value="-" class="button-minus" data-field="quantity">
+                                        <input type="number" step="1" max="50" value="1" name="product_quantity" class="quantity-field-cart">
+                                        <input type="button" value="+" class="button-plus" data-field="quantity">
+                                    </div> 
+                                    <span class="text-dark"><?=$quantity?> sản phẩm có sẵn</span>
+
+                                </div>
                                 <div class="quantity">
                                     <button name="add_to_cart" onclick="alert('Vui lòng dăng nhập để thực hiện chức năng');" style="border: none;" type="submit" class="cart-btn btn-primary">
                                         <span class="icon_bag_alt"></span> <a href="dang-nhap" style="color: #ffffff;">Thêm vào giỏ</a>
@@ -182,7 +192,7 @@
                     </div>
                 </div>
                 <?php
-                    foreach ($similar_product as $key => $value) {
+                    foreach ($similar_product as $value) {
                         if(is_array($value)) {
                             extract($value);
                             $discount_percentage = $ProductModel->discount_percentage($price, $sale_price);
@@ -192,7 +202,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix">
                     <div class="product__item sale">
                         <div class="product__item__pic set-bg" data-setbg="upload/<?=$image?>">
-                            <div class="label sale">New</div>
+                            
                             <div class="label_right sale">-<?=$discount_percentage?></div>
                             <ul class="product__hover">
                                 <li><a href="upload/<?=$image?> " class="image-popup"><span class="arrow_expand"></span></a></li>

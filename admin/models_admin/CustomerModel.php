@@ -13,6 +13,12 @@
             pdo_execute($sql, $username, $password, $full_name, $image, $email, $phone, $address);
         }
 
+        public function get_user_admin($username) {
+            $sql = "SELECT * FROM users WHERE username = ? AND role = 1";
+
+            return pdo_query($sql, $username);
+        }
+
     }
 
     $CustomerModel = new CustomerModel();

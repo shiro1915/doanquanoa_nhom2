@@ -57,6 +57,11 @@
 
             pdo_execute($sql);
         }
+
+        public function delete_category($category_id) {
+            $sql = "DELETE FROM categories WHERE category_id = ?";
+            pdo_execute($sql, $category_id);
+        }
     }
 
     $CategoryModel = new CategoryModel();

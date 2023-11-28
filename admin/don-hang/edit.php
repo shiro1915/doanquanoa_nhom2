@@ -51,7 +51,7 @@
                         <div class="aside"><img src="../upload/<?=$product_image?>" class="img-sm border"></div>
                         <figcaption class="info align-self-center">
                             <p class="title"><?=$product_name?> <br> </p> 
-                            <span class="text-danger"><?=number_format($price)?>₫ </span>
+                            <span class="text-danger"><?=number_format($price)?>₫ </span><span>x<?=$quantity?></span>
                         </figcaption>
                     </figure>
                 </li>
@@ -63,7 +63,7 @@
             </ul>
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="bg-custom rounded">
+                    <div class="bg-custom rounded border" style="background-color: #ffff;">
                         <div class="p-4">
                             <h6 class="mb-4">
                                 Trạng thái đơn hàng: <span class="text-danger"><?=$order_status?></span>
@@ -105,7 +105,7 @@
                                 <input type="hidden" name="order_id" value="<?=$order_id?>">
                                 <h6 class="mb-4">
                                     <input type="submit" name="update_status_order" value="Cập nhật" class="btn btn-custom">
-                                    <a href="" class="btn btn-custom">Xóa đơn</a>
+                                    
                                 </h6>
                             </form>
 
@@ -121,6 +121,14 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <p class="mb-0 text-right"><?=$full_name?></p>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 text-right">Số điện thoại</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="mb-0 text-right"><?=$order_phone?></p>
                                 </div>
                             </div>
                             

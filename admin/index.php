@@ -3,12 +3,17 @@
 <?php
     ob_start();
     session_start();
+    if(!isset($_SESSION['user_admin'])) {
+        header("Location: login.php");
+        exit();
+    }
     require_once "models_admin/pdo_library.php";
     require_once "models_admin/BaseModel.php";
     require_once "models_admin/CategoryModel.php";
     require_once "models_admin/ProductModel.php";
     require_once "models_admin/CustomerModel.php";
     require_once "models_admin/OrderModel.php";
+    require_once "models_admin/PostModel.php";
 
     require_once "components/head.php";
     require_once "components/header.php";
@@ -72,6 +77,16 @@
 
                 require_once "bai-viet/category.php";         
                 break;
+            case 'cap-nhat-danh-muc-bai-viet':
+
+                require_once "bai-viet/edit_catgory.php";         
+                break;
+            //Tài khoản
+            case 'dang-xuat':
+                unset($_SESSION['user_admin']);
+                header("Location: login.php");
+                break;
+                
             
             // Khách hàng
             case 'danh-sach-khach-hang':

@@ -30,6 +30,7 @@
                     foreach ($list_orders as $value) {
                         extract($value);
                         $i++;
+                        $formatted_date = $BaseModel->date_format($order_date, '');
 
                         //Trang thái đơn hàng
                         $order_status = '<a href="" class="btn btn-small btn-danger">Chờ xác nhận</a>';
@@ -45,7 +46,7 @@
                         <td><?=$i?></td>
                         <td><?=$full_name?></td>
                         <td>
-                            <?=$order_date?>
+                            <?=$formatted_date?>
                         </td>
                         <td class="text-dark" style="font-weight: 600;">
                             <?=number_format($total)?>₫

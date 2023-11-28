@@ -143,7 +143,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-white border-1 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">Hồ sơ</a>
-                            <a href="#" class="dropdown-item">Đăng xuất</a>
+                            <a href="index.php?quanli=dang-xuat" class="dropdown-item">Đăng xuất</a>
                         </div>
                     </div>
                 </div>

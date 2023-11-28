@@ -135,7 +135,7 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                     </div>
-                                    <div class="product__price"><?=number_format($sale_price)."đ"?> <span><?=number_format($price)."đ"?> </span></div>
+                                    <div class="product__price"><?=number_format($sale_price)."₫"?> <span><?=number_format($price)."đ"?> </span></div>
                                 </div>
                             </div>
                         </div>

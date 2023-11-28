@@ -47,7 +47,7 @@
             </span>
             <span class="float-right text-black">
                 Thời gian: 
-                <span style="font-weight: 600;" class="text-danger"><?=$date_formated?></span> 
+                <span style="font-weight: 600;" class="text-primary"><?=$date_formated?></span> 
             </span>
         </div>
 
