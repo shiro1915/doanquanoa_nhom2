@@ -43,6 +43,10 @@
             }
         }
 
+        if(empty($name)) {
+            $error['name']= 'Tên sản phẩm không được để trống';
+        }
+
         if(strlen($name) > 255) {
             $error['name']= 'Tên sản phẩm tối đa 255 ký tự';
         }

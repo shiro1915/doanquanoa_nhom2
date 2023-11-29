@@ -14,6 +14,7 @@
     require_once "models_admin/CustomerModel.php";
     require_once "models_admin/OrderModel.php";
     require_once "models_admin/PostModel.php";
+    require_once "models_admin/CommentModel.php";
 
     require_once "components/head.php";
     require_once "components/header.php";
@@ -92,7 +93,20 @@
             case 'danh-sach-khach-hang':
 
                 require_once "khach-hang/list.php";         
-                break;    
+                break; 
+            case 'them-khach-hang':
+
+                require_once "khach-hang/list.php";         
+                break;  
+            
+            // Bình luận  
+            case 'binh-luan':
+                require_once "binh-luan/list.php";         
+                break; 
+            case 'chi-tiet-binh-luan':
+                require_once "binh-luan/edit.php";         
+                break;
+            
 
             default:
                 require_once "components/404.php";

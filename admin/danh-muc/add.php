@@ -20,6 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_category"])) {
         }
     }
 
+    if(empty($name)) {
+        $error['name'] .= 'Vui lòng nhập tên danh mục';
+    }
+
     if(strlen($name) > 255) {
         $error['name'] .= 'Tên danh mục tối đa 255 ký tự';
     }

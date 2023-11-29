@@ -134,16 +134,16 @@ for ($i = 1; $i <= $numberOfPages; $i++) {
                     ?>
                     <tr>
 
-                        <td><?=$orderNumber?></td>
-                        <td><?=$value['name']?></td>
+                        <td class="text-dark"><?=$orderNumber?></td>
+                        <td class="text-dark"><?=$value['name']?></td>
                         <td>
                             <img style="max-width: 50px;" src="../upload/<?=$value['image']?>" alt="">
                         </td>
-                        <td>
-                            <?=number_format($value['price']).".đ"?>
+                        <td class="text-dark" style="font-weight: 600;">
+                            <?=number_format($value['price'])."₫"?>
                         </td>
-                        <td>
-                            <?=number_format($value['sale_price']).".đ"?>
+                        <td class="text-danger" style="font-weight: 600;">
+                            <?=number_format($value['sale_price'])."₫"?>
                         </td>
 
                         <td>

@@ -44,20 +44,22 @@
                     ?>
                     <tr>
                         <td><?=$i?></td>
-                        <td><?=$full_name?></td>
-                        <td>
+                        <td class="td-name">
+                            <?=$full_name?>
+                        </td>
+                        <td class="td-date">
                             <?=$formatted_date?>
                         </td>
                         <td class="text-dark" style="font-weight: 600;">
                             <?=number_format($total)?>₫
                         </td>
-                        <td> 
+                        <td class="td-responsive-2"> 
                             <?=$order_status?>
                         </td>
-                        <td>
+                        <td class="td-responsive-2">
                         
                             <a class="btn-sm btn-success" href="index.php?quanli=cap-nhat-don-hang&id=<?=$order_id?>">Xem</a>
-                            <a class="btn-sm btn-secondary" href="index.php?quanli=cap-nhat-don-hang&id=<?=$order_id?>">Cập nhật</a>                          
+                            <a class="btn-sm btn-secondary" href="index.php?quanli=cap-nhat-don-hang&id=<?=$order_id?>">Sửa</a>                          
                         </td>
                     </tr>
                     <?php
