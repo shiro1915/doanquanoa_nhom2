@@ -71,6 +71,12 @@
             case 'doi-mat-khau':    
                 require_once "views/user/change-password.php";
                 break;
+            case 'quen-mat-khau':    
+                require_once "views/user/forgot-password.php";
+                break;
+            case 'khoi-phuc-mat-khau':    
+                require_once "views/user/password-recovery.php";
+                break;
 
             //Bài viết
             case 'bai-viet':    

@@ -7,6 +7,12 @@
             return pdo_query($sql);
         }
 
+        public function select_email_in_users($email) {
+            $sql = "SELECT * FROM users WHERE email = ?";
+
+            return pdo_query_one($sql, $email);
+        }
+
         public function user_insert($username, $password, $full_name, $image, $email, $phone, $address) {
             $sql = "INSERT INTO users(username, password, full_name, image, email, phone, address) VALUES(?,?,?,?,?,?,?)";
 
@@ -23,6 +29,12 @@
             $sql = "UPDATE users SET password = ? WHERE user_id = ?";
 
             pdo_execute($sql, $new_password, $user_id);
+        }
+
+        public function reset_password($new_password, $email) {
+            $sql = "UPDATE users SET password = ? WHERE email = ?";
+
+            pdo_execute($sql, $new_password, $email);
         }
 
         public function update_user($full_name, $address, $phone, $image, $user_id) {

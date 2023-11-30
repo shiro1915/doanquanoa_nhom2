@@ -105,7 +105,7 @@ label {
                         <button class="btn btn-primary w-100" type="submit" name="signin">Đăng nhập</button>
                     </div>
                     <div class="col-12 pt-3 text-center">
-                        <p class="mb-0"><a href="#">Quên mật khẩu?</a></p>
+                        <p class="mb-0"><a href="quen-mat-khau">Quên mật khẩu?</a></p>
                     </div>
                     
 
