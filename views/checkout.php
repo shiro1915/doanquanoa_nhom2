@@ -120,7 +120,7 @@ try {
                             </div>
                             <div class="col-lg-12">
                                 <div class="cart__btn">
-                                    <a href="index.php?url=cua-hang">Chỉnh sửa thông tin</a>
+                                    <a href="index.php?url=ho-so">Chỉnh sửa thông tin</a>
                                 </div>
                             </div>
 

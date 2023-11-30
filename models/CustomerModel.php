@@ -19,6 +19,12 @@
             return pdo_query($sql, $username);
         }
 
+        public function update_password($new_password, $user_id) {
+            $sql = "UPDATE users SET password = ? WHERE user_id = ?";
+
+            pdo_execute($sql, $new_password, $user_id);
+        }
+
         public function update_user($full_name, $address, $phone, $image, $user_id) {
             $sql = "UPDATE users SET 
             full_name = '".$full_name."',";

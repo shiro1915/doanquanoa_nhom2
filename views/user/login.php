@@ -31,6 +31,7 @@
                         $_SESSION['user']['email'] = $user[0]['email'];
                         $_SESSION['user']['phone'] = $user[0]['phone'];
                         $_SESSION['user']['address'] = $user[0]['address'];
+                        $_SESSION['user']['password'] = $user[0]['password'];
                         
                         // Xóa session lưu trữ tạm
                         if(isset($_SESSION['user_register'])) unset($_SESSION['user_register']);

@@ -30,8 +30,14 @@
     
 
     <ul class="row pt-2 mini-cart">
-        <?php foreach ($list_minicarts as $value) {
+        
+        <?php 
+        $totalPayment = 0;
+        foreach ($list_minicarts as $value) {
             extract($value);
+            $totalPrice = ($product_price * $product_quantity);
+            //Tổn thanh toán
+            $totalPayment += $totalPrice;
         ?>
         <li class="col-xl-12 col-md-4">
             <figure class="itemside mb-3">
@@ -39,7 +45,7 @@
                 <figcaption class="info align-self-center">
                     <a href="" style="height: 47px;" class="text-truncate-2 text-dark" class="title"><?=$product_name?></a>
                     
-                    <span class="text-primary"><?=number_format($product_price)?>đ </span> <span class="text-dark">x1</span>
+                    <span class="text-primary"><?=number_format($product_price)?>đ </span> <span class="text-dark">x<?=$product_quantity?></span>
                 </figcaption>
             </figure>
             
@@ -58,7 +64,7 @@
             <div class="text-center">
                 <!-- <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">323</span> -->
                 <span class="text-dark font-weight-bolder">Tổng số phụ:</span>
-                <span class="text-danger font-weight-bolder">200.000₫</span>
+                <span class="text-danger font-weight-bolder"><?=number_format($totalPayment)?>₫</span>
             </div>
         </div>
     </div>
@@ -71,7 +77,7 @@
         </div>
         <div class="col-6">
             
-            <a href="checkout.html" class="button btn-outline-primary">Thanh toán</a>
+            <a href="thanh-toan" class="button btn-outline-primary">Thanh toán</a>
         </div>
     </div>
 
