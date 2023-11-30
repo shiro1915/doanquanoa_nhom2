@@ -19,6 +19,21 @@
             return pdo_query($sql, $username);
         }
 
+        public function update_user($full_name, $address, $phone, $image, $user_id) {
+            $sql = "UPDATE users SET 
+            full_name = '".$full_name."',";
+
+            if ($image != '') {
+                $sql .= " image = '".$image."',";
+            }
+    
+            $sql .= " address = '".$address."', phone = '".$phone."'
+                    WHERE user_id = ".$user_id;
+
+            
+
+            pdo_execute($sql);
+        }
     }
 
     $CustomerModel = new CustomerModel();

@@ -65,6 +65,12 @@
             case 'thong-tin-tai-khoan':    
                 require_once "views/user/user-infor.php";
                 break;  
+            case 'ho-so':    
+                require_once "views/user/edit-profile.php";
+                break; 
+            case 'doi-mat-khau':    
+                require_once "views/user/change-password.php";
+                break;
 
             //Bài viết
             case 'bai-viet':    
