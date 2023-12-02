@@ -44,6 +44,17 @@
             return pdo_query_one($sql, $comment_id);
         }
 
+        public function update_status_comment($status, $comment_id) {
+            $sql = "UPDATE comments SET status = ? WHERE comment_id = ?";
+
+            pdo_execute($sql, $status, $comment_id);
+        }
+
+        public function delete_comment($comment_id) {
+            $sql = "DELETE FROM comments WHERE comment_id = ?";
+            pdo_execute($sql, $comment_id);
+        }
+
 
     }
 

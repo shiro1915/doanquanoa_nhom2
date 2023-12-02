@@ -106,7 +106,6 @@
             case 'chi-tiet-binh-luan':
                 require_once "binh-luan/edit.php";         
                 break;
-            
 
             default:
                 require_once "components/404.php";

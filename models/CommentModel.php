@@ -12,7 +12,7 @@
             SELECT *
             FROM comments
             JOIN users ON comments.user_id = users.user_id
-            WHERE comments.product_id = ?
+            WHERE comments.product_id = ? AND status = 1
             ORDER BY comments.date DESC;
             
             ";
