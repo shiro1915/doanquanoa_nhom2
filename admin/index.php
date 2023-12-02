@@ -89,14 +89,14 @@
                 break;
                 
             
-            // Khách hàng
+            // Khách hàng & Tài khoản
             case 'danh-sach-khach-hang':
 
                 require_once "khach-hang/list.php";         
                 break; 
-            case 'them-khach-hang':
+            case 'them-tai-khoan':
 
-                require_once "khach-hang/list.php";         
+                require_once "khach-hang/add.php";         
                 break;  
             
             // Bình luận  

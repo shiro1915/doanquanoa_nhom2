@@ -1,8 +1,14 @@
+<?php
+    $list_users = $CustomerModel->select_all_users();
+
+?>
+
 <!-- LIST PRODUCTS -->
 <div class="container-fluid pt-4 px-4">
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">Danh sách khách hàng</h6>
+            <h6 class="mb-0">Danh sách tài khoản</h6>
+            <a href="them-tai-khoan" class="btn btn-custom"><i class="fa fa-plus"></i> Thêm tài khoản</a>
 
         </div>
 
@@ -15,25 +21,44 @@
                         <th scope="col">Ảnh</th> 
                         <th scope="col">Họ tên</th> 
                         <th scope="col">Email</th> 
-                        <th scope="col">Số điện thoại</th>        
+                        <th scope="col">Số điện thoại</th>   
+                        <th scope="col">Vai trò</th>      
                         <th scope="col">Chỉnh sửa</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    $i = 0;
+                    foreach ($list_users as $value) {
+                        extract($value);
+                        $i++;
+                    
+                    ?>
                     <tr>
-
-                        <td>1</td>
-                        <td><img src="" alt=""></td>
-                        <td>Nguyễn Khoa</td>
+                        <td><?=$i?></td>
                         <td>
-                            khoa123@gmail.com
+                            <img style="max-width: 50px;" src="../upload/<?=$image?>" alt="">
                         </td>
-                        <td> 0336216546 </td>
+                        <td><?=$full_name?></td>
                         <td>
-                            <a href="" class="btn-sm btn-success">Xem</a>
-                            <a href="" class="btn-sm btn-secondary">Sửa</a>
+                            <?=$email?>
+                        </td>
+                        <td> <?=$phone?> </td>
+                        <td> <?php
+                            if($role == 0) {
+                                echo "Khách hàng";
+                            }elseif($role == 1) {
+                                echo "Nhân viên";
+                            }
+                            ?> 
+                        </td>
+                        <td>
+                            <a href="" class="btn-sm btn-secondary">Cập nhật</a>
                         </td>
                     </tr>
+                    <?php
+                    }
+                    ?>
                     
                     
                 </tbody>

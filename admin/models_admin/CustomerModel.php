@@ -7,6 +7,12 @@
             return pdo_query($sql);
         }
 
+        public function select_all_users() {
+            $sql = "SELECT * FROM users ORDER BY user_id DESC";
+
+            return pdo_query($sql);
+        }
+
         public function user_insert($username, $password, $full_name, $image, $email, $phone, $address) {
             $sql = "INSERT INTO users(username, password, full_name, image, email, phone, address) VALUES(?,?,?,?,?,?,?)";
 
