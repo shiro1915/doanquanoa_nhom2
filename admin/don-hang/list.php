@@ -75,4 +75,8 @@
         </div>
     </div>
 </div>
-<!-- LIST PRODUCTS END -->
+<style>
+    td {
+        height: 50px;
+    }
+</style>

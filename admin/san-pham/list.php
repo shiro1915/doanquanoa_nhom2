@@ -135,7 +135,7 @@ for ($i = 1; $i <= $numberOfPages; $i++) {
                     <tr>
 
                         <td class="text-dark"><?=$orderNumber?></td>
-                        <td class="text-dark"><?=$value['name']?></td>
+                        <td class="text-dark" style="min-width: 200px;"><?=$value['name']?></td>
                         <td>
                             <img style="max-width: 50px;" src="../upload/<?=$value['image']?>" alt="">
                         </td>

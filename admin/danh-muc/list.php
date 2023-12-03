@@ -61,19 +61,19 @@
                     <tr>
                         <td><?=$i?></td>
                         
-                        <td><?=$category_name?></td>
+                        <td style="min-width: 200px;"><?=$category_name?></td>
                         <td>
                             <img style="max-width: 50px;" src="../upload/<?=$category_image?>" alt="">
                         </td>
                         <td><?=$qty_product?></td>
-                        <td> 
+                        <td style="min-width: 100px;"> 
                             <?php 
                             $trangThai = 'Tạm ẩn';
                             if($category_status == 1) {
                                 $trangThai = 'Hiển thị';
-                                echo '<span class="btn-sm btn-success">'.$trangThai.'</span>';
+                                echo '<span class="btn-small btn-success">'.$trangThai.'</span>';
                             }else {
-                                echo '<span class="btn-sm btn-danger">'.$trangThai.'</span>';
+                                echo '<span class="btn-small btn-danger">'.$trangThai.'</span>';
                             }
                             ?>
                             

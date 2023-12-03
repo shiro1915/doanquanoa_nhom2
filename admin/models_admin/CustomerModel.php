@@ -13,10 +13,10 @@
             return pdo_query($sql);
         }
 
-        public function user_insert($username, $password, $full_name, $image, $email, $phone, $address) {
-            $sql = "INSERT INTO users(username, password, full_name, image, email, phone, address) VALUES(?,?,?,?,?,?,?)";
+        public function user_insert($username, $password, $full_name, $image, $email, $phone, $address, $role) {
+            $sql = "INSERT INTO users(username, password, full_name, image, email, phone, address, role) VALUES(?,?,?,?,?,?,?,?)";
 
-            pdo_execute($sql, $username, $password, $full_name, $image, $email, $phone, $address);
+            pdo_execute($sql, $username, $password, $full_name, $image, $email, $phone, $address, $role);
         }
 
         public function get_user_admin($username) {

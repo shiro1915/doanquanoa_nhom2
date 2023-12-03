@@ -46,13 +46,13 @@
                     ?>
                     <tr>
                         <td><?=$i?></td>
-                        <td><?=$title?></td>
-                        <td><?=$author?></td>
-                        <td>
+                        <td style="min-width: 180px;"><?=$title?></td>
+                        <td style="min-width: 120px;"><?=$author?></td>
+                        <td style="min-width: 180px;">
                             <?=$category_name?>
                         </td>
-                        <td> <?=$created_at ?> </td>
-                        <td>
+                        <td style="min-width: 180px;"> <?=$created_at ?> </td>
+                        <td style="min-width: 180px;">
                             <a href="cap-nhat-bai-viet&id=<?=$post_id?>" class="btn-sm btn-success">Xem</a>
                             <a href="cap-nhat-bai-viet&id=<?=$post_id?>" class="btn-sm btn-secondary">Sửa</a>
                             <a onclick="return confirm('Bạn có chắc muốn xóa ?\nSau khi xóa sẽ không thể khôi phục');" href="danh-sach-bai-viet&xoa=<?=$post_id?>" class="btn-sm btn-danger">Xóa</a>
@@ -69,3 +69,8 @@
     </div>
 </div>
 <!-- LIST PRODUCTS END -->
+<style>
+    td {
+        height: 50px;
+    }
+</style>
