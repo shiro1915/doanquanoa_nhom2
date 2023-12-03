@@ -1,6 +1,11 @@
 <?php
-    $list_posts = $PostModel->select_all_posts();
+    if(isset($_GET['id']) && ($_GET['id'] > 0)) {
+        $category_id = $_GET['id'];
+    }
+    $list_post_by_cate = $PostModel->select_post_by_catgory($category_id);
 
+    //Side bar
+    $list_posts = $PostModel->select_all_posts();
     $list_post_catgories = $PostModel->select_post_category();
 ?>
 <div class="breadcrumb-option">
@@ -23,7 +28,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="row">
-                    <?php foreach ($list_posts as $value) {
+                    <?php foreach ($list_post_by_cate as $value) {
                         extract($value);
                     ?>
                     <div class="col-lg-6 col-md-4 col-sm-6">
@@ -97,13 +102,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
             <div class="col-lg-12 text-center">
                 <a href="#" class="primary-btn load-btn">Xem thêm</a>
             </div>

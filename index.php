@@ -11,6 +11,7 @@
     require_once "models/CommentModel.php";
     require_once "models/CartModel.php";
     require_once "models/OrderModel.php";
+    require_once "models/PostModel.php";
 
     require_once "components/head.php";
     require_once "components/header.php";
@@ -85,6 +86,9 @@
             case 'chi-tiet-bai-viet':    
                 require_once "views/blog/blog-details.php";
                 break;    
+            case 'danh-muc-bai-viet':    
+                require_once "views/blog/blog-by-category.php";
+                break;
 
             default:
                 require_once "views/not-page.php";
