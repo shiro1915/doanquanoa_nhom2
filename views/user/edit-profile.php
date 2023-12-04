@@ -36,7 +36,7 @@
             $error['phone'] = 'Số điện thoại không được để trống';
         }else {
             //Biểu thức chính quy kiểm tra định dạng sdt
-            if (!preg_match('/^(03|05|07|08|09)(([0-9]){8})/', $phone)) {
+            if (!preg_match('/^(03|05|07|08|09)\d{8}$/', $phone)) {
                 $error['phone'] = 'Số điện thoại không đúng định dạng.';
             }
         }

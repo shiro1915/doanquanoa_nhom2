@@ -195,13 +195,13 @@
             </form>
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="discount__content">
+                    <!-- <div class="discount__content">
                         <h6>MÃ GIẢM GIÁ</h6>
                         <form action="#">
                             <input type="text" placeholder="Nhập mã">
                             <button type="submit" class="site-btn">áp dụng</button>
                         </form>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-lg-4 offset-lg-2">
                     <div class="cart__total__procced">

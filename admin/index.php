@@ -58,6 +58,10 @@
 
                 require_once "don-hang/list.php";         
                 break;
+            case 'danh-sach-don-cho':
+
+                require_once "don-hang/unconfirmed.php";         
+                break;
             case 'cap-nhat-don-hang':
 
                 require_once "don-hang/edit.php";         
@@ -106,6 +110,14 @@
             case 'chi-tiet-binh-luan':
                 require_once "binh-luan/edit.php";         
                 break;
+            // Thống kê  
+            case 'thong-ke-san-pham':
+                require_once "thong-ke/products.php";         
+                break; 
+            case 'thong-ke-don-hang':
+                require_once "thong-ke/orders.php";         
+                break;
+            
 
             default:
                 require_once "components/404.php";

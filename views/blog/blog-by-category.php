@@ -87,7 +87,7 @@
                                         <img style="max-width: 110px;" src="upload/<?=$image?>" alt="">
                                     </div>
                                     <div class="blog__feature__item__text">
-                                        <h6><?=$title?></h6>
+                                        <h6 class="text-truncate-2"><?=$title?></h6>
                                         <span><?=$created_at?></span>
                                     </div>
                                 </a>

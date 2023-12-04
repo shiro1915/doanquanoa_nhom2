@@ -92,6 +92,22 @@
 ?>
 
 <?php
+    } else {
+?>
+<div class="row" style="margin-bottom: 400px;">
+    <div class="col-lg-12 col-md-12">
+        <div class="container-fluid mt-5">
+            <div class="row rounded justify-content-center mx-0 pt-5">
+                <div class="col-md-6 text-center">
+                    <h4 class="mb-4">Vui lòng đăng nhập để có thể sử dụng chức năng</h4>
+                    <a class="btn btn-primary rounded-pill py-3 px-5" href="index.php?url=dang-nhap">Đăng nhập</a>
+                    <a class="btn btn-secondary rounded-pill py-3 px-5" href="index.php">Trang chủ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
     }
 ?>
 

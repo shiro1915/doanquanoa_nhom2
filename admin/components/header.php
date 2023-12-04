@@ -30,13 +30,13 @@
                     </div>
                 </div> -->
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-shopping-basket me-2"></i>Đơn hàng</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             
                             <a href="index.php?quanli=danh-sach-don-hang" class="dropdown-item">Tất cả đơn</a>
-                            <a href="#1" class="dropdown-item">Đơn chờ xác nhận</a>
+                            <a href="danh-sach-don-cho" class="dropdown-item">Đơn chờ xác nhận</a>
                             
                         </div>
                     </div>
@@ -66,9 +66,19 @@
                             
                         </div>
                     </div>
-                    <a href="index.php?quanli=danh-sach-khach-hang" class="nav-item nav-link"><i class="fas fa-users me-2"></i>Khách hàng</a>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-chart-bar me-2"></i> Thống kê</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="thong-ke-san-pham" class="dropdown-item">Sản phẩm - danh mục</a>
+                            <a href="thong-ke-don-hang" class="dropdown-item">Đơn hàng</a>
+                            
+                        </div>
+                    </div>
+                    
+                    <a href="index.php?quanli=danh-sach-khach-hang" class="nav-item nav-link"><i class="fas fa-users me-2"></i>Thành viên</a>
                     <a href="index.php?quanli=binh-luan" class="nav-item nav-link"><i class="fas fa-comment me-2"></i>Bình luận</a>
-                    <a href="index.php?quanli=thong-ke" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Thống kê</a>
+
                     
                     
                     

@@ -73,7 +73,7 @@
             $error['password'] = 'Mật khẩu phải chứa ít nhất 8 ký tự.';
         }
 
-        if (!preg_match('/^(03|05|07|08|09)(([0-9]){8})/', $phone)) {
+        if (!preg_match('/^(03|05|07|08|09)\d{8}$/', $phone)) {
             $error['phone'] = 'Số điện thoại không đúng định dạng.';
         }
 
@@ -128,7 +128,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
                             </div>
-                            <input name="email_register" type="email" value="<?=$email_tmp?>" class="input form-control" id="email_res" placeholder="Email" />
+                            <input name="email_register" type="email" value="<?=$email_tmp?>" class="input form-control" id="email_res" required="true"  placeholder="Email" />
                             <span class="w-100 text-danger"><?=$error['email']?></span>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                             </div>
-                            <input name="full_name" type="text" value="<?=$fullname_tmp?>" class="input form-control" id="full_name" placeholder="Họ và tên" />
+                            <input name="full_name" type="text" value="<?=$fullname_tmp?>" class="input form-control" id="full_name" required="true"  placeholder="Họ và tên" />
                             <span class="w-100 text-danger"><?=$error['fullname']?></span>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                             </div>
-                            <input name="username" type="text" value="<?=$username_tmp?>" class="input form-control" id="username" placeholder="Tên đăng nhập" />
+                            <input name="username" type="text" value="<?=$username_tmp?>" class="input form-control" id="username" required="true"  placeholder="Tên đăng nhập" />
                             <span class="w-100 text-danger"><?=$error['username']?></span>
                         </div>
                     </div>
