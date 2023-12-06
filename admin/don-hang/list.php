@@ -6,7 +6,10 @@
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Danh sách đơn hàng</h6>
-
+            <div class="d-flex align-items-center">
+                <span style="margin-right: 10px; color: #111;">Xuất Exel:</span>
+                <a href="xuat-exel" style="margin-right: 5px;" class="btn btn-custom ml-3"><i class="fas fa-download"></i> Tất cả</a>
+            </div>
         </div>
 
 

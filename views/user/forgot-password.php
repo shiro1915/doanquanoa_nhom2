@@ -18,15 +18,13 @@
             $token = bin2hex(random_bytes(50));
 
             $title = 'Khôi phục mật khẩu FAHASA';
-            $content = '<h2>Chúng tôi nhận được một yêu cầu khôi phục mật khẩu của bạn</h2>';
 
             // Thêm đường dẫn khôi phục vào nội dung email
             $recoveryLink = URL_RECOVERY.'khoi-phuc-mat-khau&email='.$email.'&token='.$token;
-            $content .= '<p>Đường dẫn khôi phục chỉ sử dụng được 1 lần và có hiệu lực trong 30 phút</p>';
-            $content .= '<p>Để khôi phục mật khẩu, vui lòng truy cập <a href="'.$recoveryLink.'">'.$recoveryLink.'</a></p><br>';
-            $content .= '<p>FAHASA xin cảm ơn đã sử dụng dịch vụ của chúng tôi</p>';
+            // Đường dẫn đã thêm vào file thems-email.php
+            include "views/user/thems-email.php";
 
-            $result = sendEmail($email, $title, $content);
+            $result = sendEmail($email, $title, $html_forgot_password);
 
             if ($result) {
                 $success = 'Chúng tôi vừa gửi 1 email khôi phục mật khẩu cho bạn.Vui lòng kiểm tra email';

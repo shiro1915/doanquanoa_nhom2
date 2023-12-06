@@ -117,6 +117,9 @@
             case 'thong-ke-don-hang':
                 require_once "thong-ke/orders.php";         
                 break;
+            case 'xuat-exel':
+                require_once "export_exel/export_orders.php";         
+                break;
             
 
             default:
