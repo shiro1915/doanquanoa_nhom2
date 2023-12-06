@@ -12,6 +12,12 @@
             return pdo_query_one($sql, $id);
         }
 
+        public function select_products_order_by($limit, $order_by) {
+            $sql = "SELECT * FROM products WHERE status = 1 ORDER BY product_id $order_by LIMIT $limit";
+ 
+            return pdo_query($sql);
+        }
+
         public function select_cate_in_product($product_id) {
             $sql = "SELECT category_id FROM products WHERE product_id = ?";
  

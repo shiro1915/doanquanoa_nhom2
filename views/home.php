@@ -3,6 +3,8 @@
 
     $listCategories = $CategoryModel->select_categories_limit(8);
 
+    $product_limit_3 = $ProductModel->select_products_limit(3);
+    $product_order_by = $ProductModel->select_products_order_by(3, 'ASC');
 ?>
 
 <!-- Banner Section Begin -->
@@ -182,21 +184,21 @@
                         <div class="banner__text">
                             <span>Bộ sưu tập</span>
                             <h1>Sách thiếu nhi</h1>
-                            <a href="#">Mua ngay</a>
+                            <a href="cua-hang">Mua ngay</a>
                         </div>
                     </div>
                     <div class="banner__item">
                         <div class="banner__text">
                             <span>Bộ sưu tập</span>
                             <h1>Halloween Sale</h1>
-                            <a href="#">Mua ngay</a>
+                            <a href="cua-hang">Mua ngay</a>
                         </div>
                     </div>
                     <div class="banner__item">
                         <div class="banner__text">
                             <span>Bộ sưu tập</span>
                             <h1>Truyện tranh</h1>
-                            <a href="#">Mua ngay</a>
+                            <a href="cua-hang">Mua ngay</a>
                         </div>
                     </div>
                 </div>
@@ -215,12 +217,19 @@
                     <div class="section-title">
                         <h4>Xu hướng</h4>
                     </div>
+                    <?php
+                        foreach ($product_limit_3 as $value) {
+                            extract($value);
+                        
+                    ?>
                     <div class="trend__item">
                         <div class="trend__item__pic">
-                            <img src="public/img/product/book-1.jpg" style="width: 90px;" alt="">
+                            <a href="chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$category_id?>"><img src="upload/<?=$image?>" style="width: 90px;" alt=""></a>
                         </div>
                         <div class="trend__item__text">
-                            <h6>Sách kế toán vỉa hè</h6>
+                            <h6>
+                                <a href="chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$category_id?>" class="text-dark"><?=$name?></a>
+                            </h6>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -228,41 +237,12 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">100.000đ</div>
+                            <div class="product__price"><?=number_format($sale_price)?>₫</div>
                         </div>
                     </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="public/img/product/book-1.jpg" style="width: 90px;" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Sách kế toán vỉa hè</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">100.000đ</div>
-                        </div>
-                    </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="public/img/product/book-1.jpg" style="width: 90px;" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Sách kế toán vỉa hè</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">100.000đ</div>
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
@@ -270,12 +250,19 @@
                     <div class="section-title">
                         <h4>BÁN CHẠY</h4>
                     </div>
+                    <?php
+                        foreach ($product_order_by as $value) {
+                            extract($value);
+                        
+                    ?>
                     <div class="trend__item">
                         <div class="trend__item__pic">
-                            <img src="public/img/product/book-1.jpg" style="width: 90px;" alt="">
+                            <a href="chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$category_id?>"><img src="upload/<?=$image?>" style="width: 90px;" alt=""></a>
                         </div>
                         <div class="trend__item__text">
-                            <h6>Sách kế toán vỉa hè</h6>
+                            <h6>
+                                <a href="chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$category_id?>" class="text-dark"><?=$name?></a>
+                            </h6>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -283,41 +270,12 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">100.000đ</div>
+                            <div class="product__price"><?=number_format($sale_price)?>₫</div>
                         </div>
                     </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="public/img/product/book-1.jpg" style="width: 90px;" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Sách kế toán vỉa hè</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">100.000đ</div>
-                        </div>
-                    </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="public/img/product/book-1.jpg" style="width: 90px;" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Sách kế toán vỉa hè</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">100.000đ</div>
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
@@ -325,12 +283,19 @@
                     <div class="section-title">
                         <h4>Hot sale</h4>
                     </div>
+                    <?php
+                        foreach ($product_limit_3 as $value) {
+                            extract($value);
+                        
+                    ?>
                     <div class="trend__item">
                         <div class="trend__item__pic">
-                            <img src="public/img/product/book-1.jpg" style="width: 90px;" alt="">
+                            <a href="chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$category_id?>"><img src="upload/<?=$image?>" style="width: 90px;" alt=""></a>
                         </div>
                         <div class="trend__item__text">
-                            <h6>Sách kế toán vỉa hè</h6>
+                            <h6>
+                                <a href="chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$category_id?>" class="text-dark"><?=$name?></a>
+                            </h6>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -338,41 +303,12 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">100.000đ</div>
+                            <div class="product__price"><?=number_format($sale_price)?>₫</div>
                         </div>
                     </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="public/img/product/book-1.jpg" style="width: 90px;" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Sách kế toán vỉa hè</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">100.000đ</div>
-                        </div>
-                    </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="public/img/product/book-1.jpg" style="width: 90px;" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Sách kế toán vỉa hè</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">100.000đ</div>
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>
