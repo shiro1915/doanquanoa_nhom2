@@ -23,6 +23,7 @@
     <!-- Libraries Stylesheet -->
     <link href="public_admin/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="public_admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="public_admin/css/bootstrap.min.css" rel="stylesheet">
