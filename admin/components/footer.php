@@ -54,6 +54,46 @@
             });
         }
 
+        if(document.getElementById('orders-list')) {
+            const dataTableSearch = new DataTable("#orders-list", {
+                responsive: true,
+                searchable: true,
+                fixedHeight: false,
+                lengthMenu: [5, 10, 15, 20, 25],
+                pageLength: 5
+            });
+        }
+
+        if(document.getElementById('comments-list')) {
+            const dataTableSearch = new DataTable("#comments-list", {
+                responsive: true,
+                searchable: true,
+                fixedHeight: false,
+                lengthMenu: [5, 10, 15, 20, 25],
+                pageLength: 5
+            });
+        }
+
+        if(document.getElementById('post-list')) {
+            const dataTableSearch = new DataTable("#post-list", {
+                responsive: true,
+                searchable: true,
+                fixedHeight: false,
+                lengthMenu: [5, 10, 15, 20, 25],
+                pageLength: 5
+            });
+        }
+
+        if(document.getElementById('users-list')) {
+            const dataTableSearch = new DataTable("#users-list", {
+                responsive: true,
+                searchable: true,
+                fixedHeight: false,
+                lengthMenu: [5, 10, 15, 20, 25],
+                pageLength: 5
+            });
+        }
+
         ClassicEditor
             .create(document.querySelector('#short_description'))
             .then(editor => {
