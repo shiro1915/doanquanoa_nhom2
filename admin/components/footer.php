@@ -36,12 +36,24 @@
     <script src="public_admin/lib/tempusdominus/js/moment.min.js"></script>
     <script src="public_admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="public_admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
     <!--  CKEditor CDN -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
     <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
 
     <script>
+
+        if(document.getElementById('categories-list')) {
+            const dataTableSearch = new DataTable("#categories-list", {
+                responsive: true,
+                searchable: true,
+                fixedHeight: false,
+                lengthMenu: [5, 10, 15, 20, 25],
+                pageLength: 5
+            });
+        }
+
         ClassicEditor
             .create(document.querySelector('#short_description'))
             .then(editor => {
