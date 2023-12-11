@@ -113,6 +113,17 @@
 <script src="public/js/owl.carousel.min.js"></script>
 <script src="public/js/jquery.nicescroll.min.js"></script>
 <script src="public/js/main.js"></script>
+
+<!-- dialogflow -->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+    intent="WELCOME"
+    chat-title="Chat"
+    agent-id="a111a74a-8334-4098-9636-0f1433d6fc97"
+    language-code="vi"
+></df-messenger>
+
+
 </body>
 
 </html>

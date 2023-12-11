@@ -211,7 +211,8 @@
                             <!-- Tổng thanh toán -->
                             <li>Tổng <span><?=number_format($totalPayment)?>đ</span></li>
                         </ul>
-                        <a href="index.php?url=thanh-toan" class="primary-btn">TIẾN HÀNH THANH TOÁN</a>
+                        <a href="index.php?url=thanh-toan" class="primary-btn">THANH TOÁN COD</a>
+                        <a href="thanh-toan-momo" class="btn-momo primary-btn mt-3">THANH TOÁN MOMO</a>
                     </div>
                 </div>
             </div>
@@ -262,5 +263,15 @@
         background-color: #0A68FF;
         color: #fff;
         transition: 0.2s;
+    }
+
+    .btn-momo {
+        background-color: #D82D8B;
+        color: #fff;
+    }
+
+    .btn-momo:hover {
+        opacity: 0.8;
+        color: #fff;
     }
 </style>

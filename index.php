@@ -13,6 +13,7 @@
     require_once "models/OrderModel.php";
     require_once "models/PostModel.php";
     define('BASE_URL', 'index.php?url=');
+    define('URL_MOMO', 'http://localhost/DUAN1_BOOKSTORE/cam-on');
 
     require_once "components/head.php";
     require_once "components/header.php";
@@ -50,6 +51,9 @@
             case 'thanh-toan-2':    
                 require_once "views/checkout-address.php";
                 break; 
+            case 'thanh-toan-momo':    
+                require_once "views/checkout/checkout_momo.php";
+                break;
             case 'cam-on':    
                 require_once "views/thanks.php";
                 break; 
