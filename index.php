@@ -14,6 +14,7 @@
     require_once "models/PostModel.php";
     define('BASE_URL', 'index.php?url=');
     define('URL_MOMO', 'http://localhost/DUAN1_BOOKSTORE/cam-on');
+    define('URL_ORDER', 'http://localhost/DUAN1_BOOKSTORE/don-hang');
 
     require_once "components/head.php";
     require_once "components/header.php";

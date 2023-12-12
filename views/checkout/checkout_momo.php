@@ -1,6 +1,6 @@
 <!-- Breadcrumb Begin -->
 <?php
-    
+
     $error = array(
         'address' => '',
         'phone' => '',
@@ -54,6 +54,9 @@ try {
             // Bước 2: Lấy order_id mới tạo để thểm vào Oderdetails
             $result_select = $OrderModel->select_order_id();
             $order_id = $result_select['order_id'];
+
+            // Gửi mail
+            include_once "views/checkout/send-mail-order.php";
 
             if(!empty($order_id)) {
                 // Insert orderdetails
