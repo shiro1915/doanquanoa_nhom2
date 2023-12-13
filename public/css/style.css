@@ -241,11 +241,15 @@ ol {
 
 .search-model-form input {
   width: 500px;
-  font-size: 40px;
+  font-size: 25px;
   border: none;
   border-bottom: 2px solid #dddddd;
   background: 0 0;
-  color: #999;
+  color: #111;
+}
+
+.search-model-form input:focus {
+  border-bottom: 2px solid #111;
 }
 
 .search-close-switch {

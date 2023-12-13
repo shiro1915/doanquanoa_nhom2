@@ -117,6 +117,15 @@
             case 'thong-ke-don-hang':
                 require_once "thong-ke/orders.php";         
                 break;
+            case 'bieu-do-luot-ban':
+                require_once "thong-ke/chart-order.php";         
+                break;
+            case 'top-luot-ban':
+                require_once "thong-ke/top-orders.php";         
+                break;
+            case 'luot-ban-theo-ngay':
+                require_once "thong-ke/chart-order-date.php";         
+                break;
             case 'xuat-exel':
                 require_once "export_exel/export_orders.php";         
                 break;

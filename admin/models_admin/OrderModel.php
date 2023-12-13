@@ -132,6 +132,41 @@
             return pdo_query($sql);
         }
 
+        // Top sản phẩm bán chạy
+        public function get_order_top_limit($top) {
+            $sql = "SELECT
+                        categories.name as cate_name, products.name as product_name,
+                        SUM(orderdetails.quantity) as total_sold_quantity,
+                        COUNT(orderdetails.product_id) as count_sold_products
+                    FROM
+                        products
+                        LEFT JOIN categories ON categories.category_id = products.category_id
+                        LEFT JOIN orderdetails ON orderdetails.product_id = products.product_id
+                        LEFT JOIN orders ON orders.order_id = orderdetails.order_id
+                    GROUP BY
+                        categories.category_id, products.name DESC
+                    ORDER BY
+                        total_sold_quantity DESC
+                        LIMIT $top";
+        
+            return pdo_query($sql);
+        }
+
+        // Số sản phẩm bán theo ngày
+        public function get_order_sold_by_day($limit) {
+            $sql = "SELECT
+                        DATE(orders.date) as order_date,
+                        SUM(orderdetails.quantity) as total_sold_quantity
+                    FROM
+                        orderdetails
+                        LEFT JOIN orders ON orders.order_id = orderdetails.order_id
+                    GROUP BY
+                        order_date DESC
+                    LIMIT $limit";
+        
+            return pdo_query($sql);
+        }
+
         //End Tổng doanh thu thống kê
 
         public function update_status_order($status, $order_id) {

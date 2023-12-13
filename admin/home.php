@@ -44,30 +44,11 @@
         </div>
     </div>
 </div>
-<!-- Sale & Revenue End -->
 
 
-<!-- Sales Chart Start -->
-<div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-sm-12 col-xl-6">
-            <div class="bg-light text-center rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Sản phẩm</h6>
-                    <a href="">Xem thêm</a>
-                </div>
-                <canvas id="worldwide-sales"></canvas>
-            </div>
-        </div>
-        <div class="col-sm-12 col-xl-6">
-            <div class="bg-light text-center rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Bán hàng & Doanh thu</h6>
-                    <a href="">Xem thêm</a>
-                </div>
-                <canvas id="salse-revenue"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Sales Chart End -->
+<?php
+    // include_once "thong-ke/top-orders.php";
+
+    include_once "thong-ke/chart-order-date.php";
+?>
+

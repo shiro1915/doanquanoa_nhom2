@@ -76,9 +76,9 @@
                             <a class="btn btn-sm btn-secondary" href="index.php?quanli=thung-rac-san-pham&khoiphuc=<?=$value['product_id']?>">
                                 <i class="fa fa-undo"></i> Khôi phục
                             </a>
-                            <a class="btn btn-sm btn-danger" onclick="return confirmDeletion();" href="index.php?quanli=thung-rac-san-pham&xoa=<?=$value['product_id']?>">
+                            <!-- <a class="btn btn-sm btn-danger" onclick="return confirmDeletion();" href="index.php?quanli=thung-rac-san-pham&xoa=<?=$value['product_id']?>">
                                 <i class="fa fa-trash"></i> Xóa vĩnh viễn
-                            </a>
+                            </a> -->
 
                         </td>
                     </tr>
