@@ -30,6 +30,24 @@
             return pdo_query($sql, $id);
         }
 
+        public function search_products($query) {
+            $sql = "SELECT * FROM products WHERE name LIKE '%$query%' ";
+ 
+            return pdo_query($sql);
+        }
+
+        public function search_products_by_price($from_price, $to_price) {
+            $sql = "SELECT * FROM products WHERE sale_price BETWEEN '$from_price' AND '$to_price' ";
+ 
+            return pdo_query($sql);
+        }
+
+        public function get_min_max_prices() {
+            $sql = "SELECT MIN(sale_price) AS min_price, MAX(sale_price) AS max_price FROM products WHERE status = 1";
+        
+            return pdo_query_one($sql);
+        }
+
         public function select_all_products() {
             $sql = "SELECT * FROM products WHERE status = 1 ORDER BY product_id DESC";
 

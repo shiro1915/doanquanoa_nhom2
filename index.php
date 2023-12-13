@@ -101,6 +101,10 @@
             case 'danh-muc-bai-viet':    
                 require_once "views/blog/blog-by-category.php";
                 break;
+            //Bài viết
+            case 'tim-kiem':    
+                require_once "views/search.php";
+                break;    
 
             default:
                 require_once "views/not-page.php";
