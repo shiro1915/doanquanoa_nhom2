@@ -97,6 +97,12 @@
             return $format;
         }
 
+        public function update_views($product_id ) {
+            $sql = "UPDATE products SET views = views + 1 WHERE product_id  = ?";
+            pdo_execute($sql, $product_id );
+            
+        }
+
     }
 
     $ProductModel = new ProductModel();

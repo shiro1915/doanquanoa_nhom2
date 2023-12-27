@@ -3,6 +3,8 @@
         $id_sp = $_GET['id_sp'];
         $id_danhmuc = $_GET['id_dm'];
 
+        $product_details = $ProductModel->update_views($id_sp);
+
         $product_details = $ProductModel->select_products_by_id($id_sp);
         $similar_product = $ProductModel->select_products_similar($id_danhmuc);
         $name_catgoty = $CategoryModel->select_name_categories();

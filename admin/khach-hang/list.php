@@ -23,7 +23,7 @@
                         <th scope="col">Email</th> 
                         <th scope="col">Số điện thoại</th>   
                         <th scope="col">Vai trò</th>      
-                        <th scope="col">Chỉnh sửa</th>
+                        <!-- <th scope="col">Chỉnh sửa</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -52,9 +52,9 @@
                             }
                             ?> 
                         </td>
-                        <td>
+                        <!-- <td>
                             <a href="" class="btn-sm btn-secondary">Cập nhật</a>
-                        </td>
+                        </td> -->
                     </tr>
                     <?php
                     }
