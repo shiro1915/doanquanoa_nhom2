@@ -30,7 +30,7 @@
         }
 
         if(empty($confirm_password)) {
-            $error['confirm_password'] = 'Không được để trống';
+            $error['confirm_password'] = 'Xác nhận mật khẩu không được để trống';
         }
 
         if(strlen($confirm_password) > 255) {
@@ -66,7 +66,6 @@
 
 ?>
 <style>
-
 label {
     margin-top: 5px;
 }
@@ -78,7 +77,7 @@ label {
             <form action="" method="post" id="login" autocomplete="off" class="p-3">
                 <h4 class="my-3 text-center">Quên mật khẩu</h4>
                 <?=$html_alert?>
-                
+
                 <div class="form-row">
                     <?php
                         if(empty($success)) {
@@ -89,7 +88,8 @@ label {
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                             </div>
-                            <input name="new_password" type="text" value="<?=$temp?>" class="input form-control" id="new_pw" placeholder="Mật khẩu mới" />
+                            <input name="new_password" type="text" value="<?=$temp?>" class="input form-control"
+                                id="new_pw" placeholder="Mật khẩu mới" />
                             <span class="w-100 text-danger"><?=$error['new_password']?></span>
                         </div>
                     </div>
@@ -99,11 +99,12 @@ label {
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-check"></i></span>
                             </div>
-                            <input name="confirm_password" type="text" value="" class="input form-control" id="new_cfpw" placeholder="Xác nhận mật khẩu" />
+                            <input name="confirm_password" type="text" value="" class="input form-control" id="new_cfpw"
+                                placeholder="Xác nhận mật khẩu" />
                             <span class="w-100 text-danger"><?=$error['confirm_password']?></span>
                         </div>
                     </div>
-                    
+
 
                     <div class="col-12 mt-4">
                         <button class="btn btn-primary w-100" type="submit" name="reset_password">Đổi mật khẩu</button>
@@ -122,7 +123,7 @@ label {
                 <div class="col-12 text-center">
                     <a href="index.php?url=dang-ky" class="btn btn-success w-50">Tạo tài khoản</a>
                 </div>
-                
+
             </form>
         </div>
     </div>
