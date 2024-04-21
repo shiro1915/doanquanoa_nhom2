@@ -94,6 +94,16 @@
             });
         }
 
+        if(document.getElementById('khohang-list')) {
+            const dataTableSearch = new DataTable("#khohang-list", {
+                responsive: true,
+                searchable: true,
+                fixedHeight: false,
+                lengthMenu: [5, 10, 15, 20, 25],
+                pageLength: 5
+            });
+        }
+
         ClassicEditor
             .create(document.querySelector('#short_description'))
             .then(editor => {

@@ -75,6 +75,7 @@ for ($i = 1; $i <= $numberOfPages; $i++) {
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Quản lý kho hàng</h6>
+            <a href="them-hoa-don" class="btn btn-custom"><i class="fa fa-plus"></i> Thêm hóa đơn</a>
 
 
         </div>

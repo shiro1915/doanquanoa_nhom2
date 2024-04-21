@@ -13,6 +13,7 @@
     require_once "models_admin/OrderModel.php";
     require_once "models_admin/PostModel.php";
     require_once "models_admin/CommentModel.php";
+    require_once "models_admin/WarehousemModel.php";
 
     require_once "components/head.php";
     require_once "components/header.php";
@@ -127,8 +128,14 @@
             case 'xuat-exel':
                 require_once "export_exel/export_orders.php";         
                 break;
-            case 'kho-hang':
+            case 'kho-hang2':
                 require_once "kho-hang/list.php";         
+                break;
+            case 'kho-hang':
+                require_once "kho-hang/danhsach.php";         
+                break;
+            case 'them-hoa-don':
+                require_once "kho-hang/add.php";         
                 break;
             
 
