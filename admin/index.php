@@ -1,5 +1,3 @@
-
-
 <?php
     ob_start();
     session_start();
@@ -129,6 +127,9 @@
             case 'xuat-exel':
                 require_once "export_exel/export_orders.php";         
                 break;
+            case 'kho-hang':
+                require_once "kho-hang/list.php";         
+                break;
             
 
             default:
@@ -143,5 +144,3 @@
     
     ob_end_flush();
 ?>
-
-

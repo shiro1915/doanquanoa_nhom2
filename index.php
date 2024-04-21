@@ -12,6 +12,7 @@
     require_once "models/CartModel.php";
     require_once "models/OrderModel.php";
     require_once "models/PostModel.php";
+    require_once "models/AddressModel.php";
     define('BASE_URL', 'index.php?url=');
     define('URL_MOMO', 'http://localhost/DUAN1_BOOKSTORE/cam-on');
     define('URL_ORDER', 'http://localhost/DUAN1_BOOKSTORE/don-hang');
@@ -55,6 +56,13 @@
             case 'thanh-toan-momo':    
                 require_once "views/checkout/checkout_momo.php";
                 break;
+            case 'thanh-toan-dia-chi2':    
+                require_once "views/thanh-toan-dia-chi.php";
+                break; 
+
+            case 'remove-address':    
+                require_once "views/remove-address.php";
+                break; 
             case 'cam-on':    
                 require_once "views/thanks.php";
                 break; 
@@ -81,6 +89,9 @@
             case 'ho-so':    
                 require_once "views/user/edit-profile.php";
                 break; 
+            case 'them-dia-chi':    
+                require_once "views/user/add-address.php";
+                break;
             case 'doi-mat-khau':    
                 require_once "views/user/change-password.php";
                 break;
@@ -121,4 +132,3 @@
     ob_end_flush();
 ?>
 <br>
-

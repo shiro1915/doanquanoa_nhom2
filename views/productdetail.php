@@ -106,6 +106,16 @@
                         <?=$short_description?>
                     </div>
 
+                    <?php if($quantity == 0){?>
+
+                    <div class="quantity">
+                        <button style="border: none;" type="submit" class="btn btn-warning">
+                            Hết hàng
+                        </button>
+
+                    </div>
+                    <?php }else{?>
+
                     <div class="product__details__button">
 
                         <?php if(isset($_SESSION['user'])) {?>
@@ -170,6 +180,8 @@
                             <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
                         </ul>
                     </div>
+
+                    <?php }?>
 
                 </div>
             </div>

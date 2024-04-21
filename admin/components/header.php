@@ -1,8 +1,6 @@
-
-
 <body>
 
-    
+
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <!-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -30,58 +28,70 @@
                     </div>
                 </div> -->
                 <div class="navbar-nav w-100">
-                    <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="index.php" class="nav-item nav-link active"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-shopping-basket me-2"></i>Đơn hàng</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-shopping-basket me-2"></i>Đơn hàng</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            
+
                             <a href="index.php?quanli=danh-sach-don-hang" class="dropdown-item">Tất cả đơn</a>
                             <a href="danh-sach-don-cho" class="dropdown-item">Đơn chờ xác nhận</a>
-                            
+
                         </div>
                     </div>
-                    
+
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown"><i class="fa fa-th me-2"></i>Danh mục</a>
+                        <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown"><i
+                                class="fa fa-th me-2"></i>Danh mục</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="index.php?quanli=them-danh-muc" class="dropdown-item">Thêm mới</a>
                             <a href="index.php?quanli=danh-sach-danh-muc" class="dropdown-item">Tất cả</a>
-                            
+
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-box me-2"></i>Sản phẩm</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fas fa-box me-2"></i>Sản phẩm</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="index.php?quanli=them-san-pham" class="dropdown-item">Thêm mới</a>
                             <a href="index.php?quanli=danh-sach-san-pham" class="dropdown-item">Tất cả</a>
-                            
+
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-book me-2"></i> Bài viết</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fas fa-book me-2"></i> Bài viết</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="index.php?quanli=danh-sach-bai-viet" class="dropdown-item">Tất cả</a>
                             <a href="index.php?quanli=them-bai-viet" class="dropdown-item">Thêm bài viết</a>
                             <a href="index.php?quanli=danh-muc-bai-viet" class="dropdown-item">Chuyên mục</a>
-                            
+
                         </div>
                     </div>
 
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-chart-bar me-2"></i> Thống kê</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fas fa-chart-bar me-2"></i> Thống kê</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="thong-ke-san-pham" class="dropdown-item">Sản phẩm - danh mục</a>
                             <a href="thong-ke-don-hang" class="dropdown-item">Đơn hàng</a>
-                            
+
                         </div>
                     </div>
-                    
-                    <a href="index.php?quanli=danh-sach-khach-hang" class="nav-item nav-link"><i class="fas fa-users me-2"></i>Thành viên</a>
-                    <a href="index.php?quanli=binh-luan" class="nav-item nav-link"><i class="fas fa-comment me-2"></i>Bình luận</a>
 
-                    
-                    
-                    
+                    <a href="index.php?quanli=kho-hang" class="nav-item nav-link"><i
+                            class="fas fa-warehouse me-2"></i>Quản
+                        lý kho</a>
+
+                    <a href="index.php?quanli=danh-sach-khach-hang" class="nav-item nav-link"><i
+                            class="fas fa-users me-2"></i>Thành viên</a>
+                    <a href="index.php?quanli=binh-luan" class="nav-item nav-link"><i
+                            class="fas fa-comment me-2"></i>Bình luận</a>
+
+
+
+
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -119,7 +129,8 @@
                         <div class="dropdown-menu dropdown-menu-end bg-white border-1 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="public_admin/img/user-default.png" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="public_admin/img/user-default.png" alt=""
+                                        style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">hello everyone</h6>
                                         <small>15 phút trước</small>
@@ -127,7 +138,7 @@
                                 </div>
                             </a>
                             <hr class="dropdown-divider">
-                            
+
                             <a href="#" class="dropdown-item text-center">Xem tất cả</a>
                         </div>
                     </div>
@@ -142,13 +153,14 @@
                                 <small>10:20 20-11-2023</small>
                             </a>
                             <hr class="dropdown-divider">
-                            
+
                             <a href="#" class="dropdown-item text-center">Xem tất cả</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="public_admin/img/user-default.png" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle me-lg-2" src="public_admin/img/user-default.png" alt=""
+                                style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex">Khoa Nguyen</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-white border-1 rounded-0 rounded-bottom m-0">

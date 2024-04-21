@@ -109,13 +109,36 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Đia chỉ</p>
+                                <p class="mb-0">Đia chỉ 1</p>
                             </div>
-                            <div class="col-sm-9">
-                                <p class=" mb-0">Cần Thơ</p>
+                            <div class="col-sm-5">
+                                <p class=" mb-0"><?=$_SESSION['user']['address']?></p>
+                            </div>
+                            <div class="col-sm-3">
+                                <a href="index.php?url=them-dia-chi" class="text-primary mb-0">Thêm địa chỉ</a>
                             </div>
                         </div>
                         <hr>
+                         <?php
+                            $address = $AddressModel->select_address_user($_SESSION['user']['id']);
+                        ?>
+                        <?php
+                            if(is_array($address)) {
+                        ?>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Đia chỉ 2</p>
+                            </div>
+                            <div class="col-sm-5">
+                                
+                                <p class=" mb-0"><?=$address['address']?></p>
+                            </div>
+                           
+                        </div>
+                        <hr>
+                        <?php
+                            }
+                        ?>
                         <div class="row">
                             <div class="col-sm-4 d-flex">
 

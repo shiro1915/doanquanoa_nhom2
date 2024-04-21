@@ -1,15 +1,7 @@
 <!-- Breadcrumb Begin -->
 <?php
     $success = '';
-    $error = array(
-        'address' => '',
-        'phone' => '',
-    );
-    $temp = array(
-        'address' => '',
-        'phone' => '',
-        'note' => '',
-    );
+    $error = '';
 try {    
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["checkout"])) {
         // Table orders
@@ -19,63 +11,37 @@ try {
         $phone = $_POST["phone"];
         $note = $_POST["note"];
 
-        // Check form
-        if(empty($address)) {
-            $error['address'] = 'Địa chỉ không được để trống';
-        }
-
-        if(strlen($address) > 255) {
-            $error['address'] = 'Địa chỉ tối đa 255 ký tự';
-        }
-
-        if(empty($phone)) {
-            $error['phone'] = 'Số điện thoại không được để trống';
-        }
-        else {
-            //Biểu thức chính quy kiểm tra định dạng sdt
-            if (!preg_match('/^(03|05|07|08|09)\d{8}$/', $phone)) {
-                $error['phone'] = 'Số điện thoại không đúng định dạng.';
-            }
-        }
-        // End heck form
-
         // Table orderdetails
         $arr_product_id = $_POST["product_id"];
         $arr_quantity = $_POST["quantity"];
         $arr_price = $_POST["price"];
 
-        if(empty(array_filter($error))) {
+        // Bước 1: Insert dữ liệu vào orders
+        $OrderModel->insert_orders($user_id, $total, $address, $phone, $note);
+        // Bước 2: Lấy order_id mới tạo để thểm vào 
+        $result_select = $OrderModel->select_order_id();
+        $order_id = $result_select['order_id'];
 
-            // Bước 1: Insert dữ liệu vào orders
-            $OrderModel->insert_orders($user_id, $total, $address, $phone, $note);
-            // Bước 2: Lấy order_id mới tạo để thểm vào Oderdetails
-            $result_select = $OrderModel->select_order_id();
-            $order_id = $result_select['order_id'];
+        if(!empty($order_id)) {
+            // Insert orderdetails
+            for ($i = 0; $i < count($arr_product_id); $i++) {
+                $product_id = $arr_product_id[$i];
+                $quantity = $arr_quantity[$i];
+                $price = $arr_price[$i];
+    
+                $OrderModel->insert_orderdetails($order_id, $product_id, $quantity, $price);
 
-            if(!empty($order_id)) {
-                // Insert orderdetails
-                for ($i = 0; $i < count($arr_product_id); $i++) {
-                    $product_id = $arr_product_id[$i];
-                    $quantity = $arr_quantity[$i];
-                    $price = $arr_price[$i];
-        
-                    $OrderModel->insert_orderdetails($order_id, $product_id, $quantity, $price);
+                // Update số lượng của sản phẩm
+                $ProductModel->update_quantity_product($product_id, $quantity);
 
-                    // Update số lượng của sản phẩm
-                    $ProductModel->update_quantity_product($product_id, $quantity);
-
-                    // Update số lượt bán
-                    $ProductModel->update_sell_quantity_product($product_id, $quantity);
-                }
-                // Sau khi đặt hàng xóa giỏ hàng
-                $OrderModel->delete_cart_by_user_id($user_id);
-                header("Location: cam-on");
+                // Update số lượt bán
+                $ProductModel->update_sell_quantity_product($product_id, $quantity);
             }
-        }else {
-            $temp['address'] = $address;
-            $temp['phone'] = $phone;
-            $temp['note'] = $note;
+            // Sau khi đặt hàng xóa giỏ hàng
+            $OrderModel->delete_cart_by_user_id($user_id);
+            header("Location: cam-on");
         }
+        
 
     }
 } catch (Exception $e) {
@@ -117,7 +83,7 @@ try {
         <form action="" method="post" class="checkout__form">
             <?php
                     if($success != '') {
-                        $alert = $BaseModel->alert_error_success('', $success);
+                        $alert = $BaseModel->alert_error_success($error, $success);
                         echo $alert;
                     }
                 ?>
@@ -135,40 +101,51 @@ try {
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="checkout__form__input">
                                 <p>Email <span>*</span></p>
-                                <input disabled type="text" name="email" value="<?= $_SESSION['user']['email'] ?>">
+                                <input disabled type="text" value="<?= $_SESSION['user']['email'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-12">
+                            <?php
+                                $address = $AddressModel->select_address_user($_SESSION['user']['id']);
+                            ?>
 
                             <div class="checkout__form__input">
                                 <p>Địa chỉ <span>*</span></p>
-                                <input class="mb-0" type="text" name="address" value="<?=$temp['address']?>">
-                                <span class="text-danger error"><?=$error['address']?></span>
+                                <input disabled type="text" value="<?= $address['address'] ?>">
+
                             </div>
 
                         </div>
                         <div class="col-lg-12">
                             <div class="checkout__form__input">
                                 <p>Số điện thoại <span>*</span></p>
-                                <input class="mb-0" type="text" name="phone" value="<?=$temp['phone']?>">
-                                <span class="text-danger error"><?=$error['phone']?></span>
+                                <input disabled type="text" name="phone" value="<?= $_SESSION['user']['phone'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="checkout__form__input">
                                 <p>Ghi chú<span></span></p>
-                                <input type="text" value="<?=$temp['note']?>" name="note">
+                                <input type="text" name="note">
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <p style="color: #000000; font-weight:500; font-size: 15px;">Bạn có thể nhập nhập địa chỉ
-                                khác, hoặc sử dụng địa chỉ mặc định</p>
+                            <p style="color: #000000; font-weight:500; font-size: 15px;">Bạn có thể sử dụng địa chỉ mặc
+                                định khi đăng ký, hoặc nhập nhập địa chỉ khác</p>
                         </div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-3">
                             <div class="cart__btn">
-                                <a href="thanh-toan">Sử dụng địa chỉ mặc định</a>
+                                <a href="index.php?url=thanh-toan-2">Địa chỉ mới</a>
+                            </div>
+
+                        </div>
+
+                        <div class="col-4">
+                            <div class="cart__btn">
+                                <a href="index.php?url=thanh-toan">Sủ dụng địa chỉ 1</a>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -192,6 +169,8 @@ try {
                                 <li>
                                     <!-- Thông tin insert vào orders -->
                                     <input type="hidden" name="user_id" value="<?=$user_id?>">
+                                    <input type="hidden" name="address" value="<?=$_SESSION['user']['address']?>">
+                                    <input type="hidden" name="phone" value="<?=$_SESSION['user']['phone']?>">
                                     <input type="hidden" name="total_checkout" value="<?=$totalPayment?>">
                                     <!-- Thông tin insert vào orderdetails -->
                                     <input type="hidden" name="product_id[]" value="<?=$product_id?>">
@@ -214,17 +193,23 @@ try {
                                 <li>Tổng <span><?=number_format($totalPayment)?>đ</span></li>
                             </ul>
                         </div>
-
+                        <!-- <div class="checkout__order__widget">
+                                <label for="paypal">
+                                    Thanh toán khi nhận hàng
+                                    <input type="checkbox" id="paypal">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div> -->
                         <?php if($count_cart > 0) {?>
                         <div class="checkout__order__widget text-center text-dark mb-2">
                             Thanh toán khi nhận hàng
                         </div>
-                        <button type="button" class="site-btn" data-toggle="modal" data-target="#thanhtoan">
+                        <button type="button" class="site-btn" data-toggle="modal" data-target="#thanh-toan-1">
                             ĐẶT HÀNG
                         </button>
                         <!-- Modal thanh toán-->
-                        <div class="modal fade" id="thanhtoan" tabindex="-1" role="dialog" aria-labelledby="thanhtoan"
-                            aria-hidden="true">
+                        <div class="modal fade" id="thanh-toan-1" tabindex="-1" role="dialog"
+                            aria-labelledby="thanh-toan-1" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -286,11 +271,5 @@ try {
 
 .checkout__form .checkout__form__input input:focus {
     border: 1px solid #999999;
-}
-
-.error {
-    display: inline-block;
-    height: 20px;
-    font-size: 15px;
 }
 </style>

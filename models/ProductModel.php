@@ -103,6 +103,16 @@
             
         }
 
+        public function update_quantity_product($product_id, $quantity) {
+            $sql = "UPDATE products SET quantity = quantity - ? WHERE product_id  = ?";
+            pdo_execute($sql, $quantity , $product_id );
+        }
+
+        public function update_sell_quantity_product($product_id, $quantity) {
+            $sql = "UPDATE products SET sell_quantity = sell_quantity + ? WHERE product_id  = ?";
+            pdo_execute($sql, $quantity , $product_id );
+        }
+
     }
 
     $ProductModel = new ProductModel();
