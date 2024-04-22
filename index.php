@@ -56,6 +56,12 @@
             case 'thanh-toan-momo':    
                 require_once "views/checkout/checkout_momo.php";
                 break;
+            case 'thanh-toan-momo-address':    
+                require_once "views/checkout/momo-address.php";
+                break;
+            case 'thanh-toan-momo-address-2':    
+                require_once "views/checkout/momo-address-2.php";
+                break;
             case 'thanh-toan-dia-chi2':    
                 require_once "views/thanh-toan-dia-chi.php";
                 break; 

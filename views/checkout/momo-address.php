@@ -128,21 +128,21 @@ try {
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="checkout__form__input">
                                 <p>Họ tên <span>*</span></p>
-                                <input type="text" disabled name="full_name"
+                                <input type="text" readonly name="full_name"
                                     value="<?= $_SESSION['user']['full_name'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="checkout__form__input">
                                 <p>Email <span>*</span></p>
-                                <input disabled type="text" name="email" value="<?= $_SESSION['user']['email'] ?>">
+                                <input readonly type="text" name="email" value="<?= $_SESSION['user']['email'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-12">
 
                             <div class="checkout__form__input">
                                 <p>Địa chỉ <span>*</span></p>
-                                <input class="mb-0" type="text" name="address" value="<?=$temp['address']?>">
+                                <input class="mb-0" type="text" readonly name="address" value="<?=$_SESSION['user']['address']?>">
                                 <span class="text-danger error"><?=$error['address']?></span>
                             </div>
 
@@ -150,23 +150,22 @@ try {
                         <div class="col-lg-12">
                             <div class="checkout__form__input">
                                 <p>Số điện thoại <span>*</span></p>
-                                <input class="mb-0" type="text" name="phone" value="<?=$temp['phone']?>">
+                                <input class="mb-0" type="text" readonly name="phone" value="<?=$_SESSION['user']['phone']?>">
                                 <span class="text-danger error"><?=$error['phone']?></span>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="checkout__form__input">
-                                <p>Ghi chú<span></span></p>
+                                <p>Ghi chú a<span></span></p>
                                 <input type="text" value="<?=$temp['note']?>" name="note">
                             </div>
                         </div>
 
+                        
                         <div class="col-lg-12">
                             <div class="d-flex">
-                                <a href="thanh-toan-momo-address" class="btn btn-outline-dark block mr-1">Địa chỉ 1</a>
-                                
+                                <a href="thanh-toan-momo" class="btn btn-outline-dark block mr-1">Nhập địa chỉ khác</a>
                                 <?php
-                                    // Kiểm tra tồn tại địa chỉ 2 không
                                     $address = $AddressModel->select_address_user($_SESSION['user']['id']);
 
                                     if(is_array($address)) {
@@ -175,6 +174,7 @@ try {
                                 <?php
                                     }
                                 ?>
+
                             </div>
                         </div>
 
