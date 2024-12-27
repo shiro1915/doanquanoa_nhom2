@@ -1,4 +1,13 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/CategoryModel.php";
+include_once "models_admin/BaseModel.php"; 
+include_once "models_admin/PostModel.php"; 
+
+$CategoryModel = new CategoryModel(); 
+$PostModel = new PostModel(); 
+$BaseModel = new BaseModel();
     if(isset($_GET['id']) && $_GET['id'] >0) {
         $post_id = $_GET['id'];
         $post_one = $PostModel->select_post_by_id($post_id);
@@ -11,6 +20,8 @@
         'image' => '',
         'content' => '',
     );
+    $title ='';
+    $content = '';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_post"])) {
         $title = trim($_POST["title"]);

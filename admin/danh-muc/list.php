@@ -1,4 +1,11 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/CategoryModel.php";
+include_once "models_admin/BaseModel.php"; 
+
+$CategoryModel = new CategoryModel(); 
+$BaseModel = new BaseModel();
     $list_catgories = $CategoryModel->getCategoryProductCount();
 
     $success = '';
@@ -81,7 +88,7 @@
                         <td>
 
                             <div class="dropdown">
-                                <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray ">
+                                <a href="home.php" data-bs-toggle="dropdown" class="fs-24 text-gray ">
                                     <i class="bi bi-three-dots-vertical text-dark"></i>
                                 </a>
                                 <div class="dropdown-menu p-0">

@@ -1,4 +1,10 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/OrderModel.php";
+
+
+$OrderModel = new OrderModel(); 
 
 if (isset($_GET['limit_day'])) {
     $limit_day = $_GET['limit_day'];

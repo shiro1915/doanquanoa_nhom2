@@ -1,90 +1,96 @@
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/ProductModel.php";
+include_once "models/CartModel.php";
+include_once "models/BaseModel.php";
+include_once "models/CategoryModel.php";
 
-    $success = '';
-    $error = '';
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_to_cart"])) {
-        $product_id = $_POST["product_id"];
-        $user_id = $_POST["user_id"];
-        $product_name = $_POST["name"];
-        $product_price = $_POST["price"];
-        $product_quantity = $_POST["product_quantity"];
-        $product_image = $_POST["image"];
+$BaseModel  = new BaseModel();
+$product_quantity = new Product(); 
+$ProductModel = new Product(); 
+$CartModel = new CartModel(); 
+$category_id = new CategoryModel();
 
-        if($product_quantity < 1 ) {
-            
-            echo "<script>alert('Số lượng sản phẩm không được nhỏ hơn 0');</script>";
-            echo "<script>window.location.href='index.php?url=chitietsanpham&id_sp=".$product_id."&id_dm=16';</script>";
-            exit();
-        }
-
-        // Đếm số lượng sản trong giỏ hàng
-        $product = $CartModel->select_cart_by_id($product_id, $user_id);
-        // Kiểm tra xem có sản phẩm trong giỏ hàng hay không
-        if($product && is_array($product)) {
-            // Số lượng mới = số lượng hiện tại + số lượng vừa thêm
-            $current_quantity = $product['product_quantity'];
-            $new_quantity = $current_quantity + $product_quantity;
-
-            // Cập nhật số lượng
-            $CartModel->update_cart($new_quantity, $product_id, $user_id);
-            $success .= 'Đã cập nhật số lượng cho sản phẩm: '.$product_name;
-        }
-        else {
-            $product_quantity = $product_quantity;
-            $CartModel->insert_cart($product_id, $user_id, $product_name, $product_price, $product_quantity, $product_image);
-            $success = "Đã thêm sản phẩm vào giỏ hàng";
-            
-        }
-
-    }
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_cart"] ) && isset($_SESSION['user'])) {
-        // header("Location: index.php?url=gio-hang");
-        // Lấy thông tin cần thiết từ form
-        $user_id = $_SESSION['user']['id'];
-        $product_id = $_POST["product_id"];
-        $new_quantity = $_POST["quantity"];
-        $index = 0; // Đếm số sản phẩm xóa
-
-        for ($i = 0; $i < count($product_id); $i++) {
-            $id = $product_id[$i];
-            $quantity = $new_quantity[$i];
-            
-            if ($quantity <= 0) {
-                // Nếu số lượng >=0 xóa sản phẩm trong giỏ hàng     
-                $CartModel->delete_product_in_cart($id, $user_id);
-
-                $index += 1;
-            } elseif($quantity > 0) {
-                $CartModel->update_cart($quantity, $id, $user_id);
-                
-            }
-        }
-        
-        if ($index > 0) {
-            $success = 'Đã xóa ' . $index . ' sản phẩm ra khỏi giỏ hàng';
-        } else {
-            $success = 'Cập nhật thành công';
-        }
-    }
-
-    if(isset($_GET['xoa'])) {
-        $cart_id = $_GET['xoa'];
-        $result = $CartModel->delete_cart_by_id($cart_id);
-
-        $success = 'Đã xóa 1 sản phẩm';
-    }
-?>
+$success = '';
+$error = '';
 
 
-<?php 
-    if(isset($_SESSION['user'])) {
-        $user_id = $_SESSION['user']['id'];
-        $list_carts = $CartModel->select_all_carts($user_id);
-        $count_carts = count($CartModel->count_cart($user_id));
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_to_cart"])) {
+    $product_id = $_POST["product_id"];
+    $user_id = $_POST["user_id"];
+    $product_name = $_POST["name"];
+    $product_price = $_POST["price"];
+    $product_quantity = isset($_POST["product_quantity"]) && is_numeric($_POST["product_quantity"]) ? $_POST["product_quantity"] : 0;
+    $product_image = $_POST["image"];
     
+    if ($product_quantity < 1) {
+        echo "<script>alert('Số lượng sản phẩm không hợp lệ');</script>";
+        echo "<script>window.location.href='index.php?url=chitietsanpham&id_sp=".$product_id."&id_dm=16';</script>";
+        exit();
+    }
+
+    // Đếm số lượng sản phẩm trong giỏ hàng
+    $product = $CartModel->select_cart_by_id($product_id, $user_id);
+
+    // Kiểm tra sản phẩm có trong giỏ hàng không
+    if ($product && is_array($product) && isset($product['product_quantity'])) {
+        // Cập nhật số lượng
+        $current_quantity = $product['product_quantity'];
+        $new_quantity = $current_quantity + $product_quantity;
+        $CartModel->update_cart($new_quantity, $product_id, $user_id);
+        $success .= 'Đã cập nhật số lượng cho sản phẩm: ' . $product_name;
+    } else {
+        // Thêm mới vào giỏ hàng
+        $CartModel->insert_cart($product_id, $user_id, $product_name, $product_price, $product_quantity, $product_image);
+        $success = "Đã thêm sản phẩm vào giỏ hàng";
+    }
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_cart"]) && isset($_SESSION['user'])) {
+    // Lấy thông tin cần thiết từ form
+    $user_id = $_SESSION['user']['id'];
+    $product_id = $_POST["product_id"];
+    $new_quantity = $_POST["quantity"];
+    $index = 0; // Đếm số sản phẩm xóa
+
+    // Cập nhật giỏ hàng cho từng sản phẩm
+    for ($i = 0; $i < count($product_id); $i++) {
+        $id = $product_id[$i];
+        $quantity = $new_quantity[$i];
+
+        if ($quantity <= 0) {
+            // Xóa sản phẩm khỏi giỏ hàng nếu số lượng <= 0
+            $CartModel->delete_product_in_cart($id, $user_id);
+            $index += 1;
+        } elseif ($quantity > 0) {
+            // Cập nhật giỏ hàng nếu số lượng > 0
+            $CartModel->update_cart($quantity, $id, $user_id);
+        }
+    }
+
+    if ($index > 0) {
+        $success = 'Đã xóa ' . $index . ' sản phẩm ra khỏi giỏ hàng';
+    } else {
+        $success = 'Cập nhật thành công';
+    }
+}
+
+if (isset($_GET['xoa'])) {
+    $cart_id = $_GET['xoa'];
+    $result = $CartModel->delete_cart_by_id($cart_id);
+    $success = 'Đã xóa 1 sản phẩm';
+}
+
+// Lấy danh sách giỏ hàng của người dùng
+if (isset($_SESSION['user'])) {
+    $user_id = $_SESSION['user']['id'];
+    $list_carts = $CartModel->select_all_carts($user_id);
+    $count_carts = count($CartModel->count_cart($user_id));
+}
 ?>
+
 
 <?php if(isset($_SESSION['user'])) { ?>
 <div class="breadcrumb-option">
@@ -132,18 +138,24 @@
                                         $totalPayment += $totalPrice;
                                         // Lấy id danh mục của sản phẩm để hiện thị đường dẫn sang trang ctsp
                                         $product = $ProductModel->select_cate_in_product($product_id);
+                                        //var_dump($product);
+                                        if (isset($product[0]['category_id'])) {
+                                            $category_id = $product[0]['category_id'];
+                                        } else {
+                                            $category_id = 0; // Hoặc xử lý lỗi nếu không có category_id
+                                        }
                 
                                     ?>
                                 <tr>
                                     <td class="cart__product__item">
-                                        <a
-                                            href="chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$product['category_id']?>">
+                                    <a href="chitietsanpham&id_sp=<?= $product_id ?>&id_dm=<?= isset($product['category_id']) ? $product['category_id'] : 0 ?>">
+
                                             <img src="upload/<?=$product_image?>" alt="">
                                         </a>
                                         <div class="cart__product__item__title">
                                             <h6 class="text-truncate-1">
-                                                <a href="chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$product['category_id']?>"
-                                                    class="text-dark">
+                                                <a href="chitietsanpham?id_sp=<?=$product_id?>&id_dm=<?=$category_id?>" class="text-dark">
+                                                   
                                                     <?=$product_name?>
                                                 </a>
                                             </h6>
@@ -225,8 +237,7 @@
                         <!-- Tổng thanh toán -->
                         <li>Tổng <span><?=number_format($totalPayment)?>đ</span></li>
                     </ul>
-                    <a href="index.php?url=thanh-toan" class="primary-btn">THANH TOÁN COD</a>
-                    <a href="thanh-toan-momo" class="btn-momo primary-btn mt-3">THANH TOÁN MOMO</a>
+                    <a href="index.php?url=thanh-toan" class="primary-btn">THANH TOÁN</a>
                 </div>
             </div>
         </div>

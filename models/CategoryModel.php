@@ -1,23 +1,35 @@
 <?php
-    class CategoryModel {
+    class CategoryModel extends Db{
+        public function getAllCategory(){
+            $sql = self::$connection->prepare("SELECT * FROM `categories`");
+            $sql->execute();
+            $category = array();
+            $category = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $category;
+        }
+    
         public function select_categories_limit($limit) {
-            $sql = "SELECT * FROM categories WHERE status = 1 AND category_id > 1  ORDER BY category_id ASC LIMIT $limit";
-
-            return pdo_query($sql);
+            $sql = self::$connection->prepare("SELECT * FROM categories WHERE status = 1 AND category_id > 1 ORDER BY category_id ASC LIMIT ?");
+            $sql->bind_param("i", $limit);
+            $sql->execute();
+            $category = array();
+            $category = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $category;
         }
-
+        
         public function select_all_categories() {
-            $sql = "SELECT * FROM categories ORDER BY category_id";
-
-            return pdo_query($sql);
+            $sql = self::$connection->prepare("SELECT * FROM categories ORDER BY category_id");
+            $sql->execute();
+            $category = array();
+            $category = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $category;
         }
-
+        
         public function select_name_categories() {
-            $sql = "SELECT category_id, name FROM categories";
-
-            return pdo_query($sql);
+            $sql = self::$connection->prepare("SELECT category_id, name FROM categories");
+            $sql->execute();
+            $category = array();
+            $category = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $category;
         }
-    }
-
-    $CategoryModel = new CategoryModel();
-?>
+    }        

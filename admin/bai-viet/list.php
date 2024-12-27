@@ -1,4 +1,13 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/CategoryModel.php";
+include_once "models_admin/BaseModel.php"; 
+include_once "models_admin/PostModel.php"; 
+
+$CategoryModel = new CategoryModel(); 
+$PostModel = new PostModel(); 
+$BaseModel = new BaseModel();
     $list_posts = $PostModel->select_all_posts();
 
     $success = '';
@@ -53,7 +62,9 @@
                         </td>
                         <td style="min-width: 180px;"> <?=$created_at ?> </td>
                         <td style="min-width: 180px;">
-                            <a href="cap-nhat-bai-viet&id=<?=$post_id?>" class="btn-sm btn-success">Xem</a>
+                        <a class="btn-sm btn-success" href="chi-tiet-bai-viet.php?id=<?=$post_id?>" target="_blank">
+    Xem
+</a>
                             <a href="cap-nhat-bai-viet&id=<?=$post_id?>" class="btn-sm btn-secondary">Sửa</a>
                             <a onclick="return confirm('Bạn có chắc muốn xóa ?\nSau khi xóa sẽ không thể khôi phục');" href="danh-sach-bai-viet&xoa=<?=$post_id?>" class="btn-sm btn-danger">Xóa</a>
                         </td>

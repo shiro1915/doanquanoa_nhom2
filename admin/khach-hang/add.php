@@ -1,5 +1,13 @@
 <?php
-
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/CategoryModel.php";
+include_once "models_admin/BaseModel.php"; 
+include_once "models_admin/CustomerModel.php"; 
+$CustomerModel = new CustomerModel();
+$CategoryModel = new CategoryModel(); 
+$PostModel = new PostModel(); 
+$BaseModel = new BaseModel();
     $error = array(
         'email' => '',
         'fullname' => '',

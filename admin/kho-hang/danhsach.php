@@ -1,4 +1,13 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/CategoryModel.php";
+include_once "models_admin/BaseModel.php"; 
+include_once "models_admin/WarehousemModel.php"; 
+$WarehousemModel = new WarehousemModel();   
+$CategoryModel = new CategoryModel(); 
+$PostModel = new PostModel(); 
+$BaseModel = new BaseModel();
 if (isset($_POST['search'])) {
     $keyword = $_POST['keyword'];
     $cate_id = $_POST['search_cate'];
@@ -74,7 +83,7 @@ $list_warehouse = $WarehousemModel->select_all_warehouse();
                         <td class="text-dark"><?=$orderNumber?></td>
                         <td class="text-dark" style="min-width: 200px;"><?=$value['name']?></td>
                         
-                        <td class="text-dark"><?=$date_formated?></td>
+                        <td class="text-dark"><?= is_array($date_formated) ? implode(", ", $date_formated) : $date_formated ?></td>
                         <td class="text-dark"><?=$value['quantity']?></td>
                         <td class="text-dark">
                             <?php

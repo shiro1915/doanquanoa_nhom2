@@ -1,4 +1,8 @@
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/PostModel.php";
+$PostModel = new PostModel();
     if(isset($_GET['id']) && ($_GET['id'] > 0)) {
         $category_id = $_GET['id'];
     }

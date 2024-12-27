@@ -1,4 +1,13 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/CategoryModel.php";
+include_once "models_admin/BaseModel.php"; 
+include_once "models_admin/ProductModel.php"; 
+
+$CategoryModel = new CategoryModel(); 
+$BaseModel = new BaseModel(); 
+$ProductModel = new ProductModel(); 
     $success = '';
     if(isset($_GET['xoatam']) && $_GET['xoatam'] > 0) {
         $product_id = $_GET['xoatam'];

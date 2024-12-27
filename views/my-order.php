@@ -1,6 +1,13 @@
 
 
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/OrderModel.php";
+include_once "models/BaseModel.php";
+$BaseModel = new BaseModel();
+$OrderModel  = new OrderModel();
+
     if(isset($_SESSION['user'])) {
         $user_id = $_SESSION['user']['id'];
 
@@ -35,7 +42,7 @@
             $order_status = 'Giao thành công';
         }
 
-        $date_formated = $BaseModel->date_format($date, '');
+        $date_formated = date('d-m-Y H:i', strtotime($BaseModel->date_format()));
 ?>
 
 <div class="container pt-4 mb-0">
@@ -54,30 +61,23 @@
         <div class="card-body">
 
             <ul class="row">
-                
-                
-                <?php
-                    foreach ($list_products_buyed as $value) {
-                        extract($value);
-                ?>
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="upload/<?=$image?>" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title"><?=$product_name?> </p> 
-                            <span class="text-primary"><?=number_format($product_price)?>₫</span> <span style="font-size: 16px;" class="text-dark" >x<?=$quantity?></span>
-                        </figcaption>
-                    </figure>
-                </li>
-                <?php
-                   }
-                ?>
-                
-                
+            <?php foreach ($list_products_buyed as $value): ?>
+    <li class="col-md-4">
+        <figure class="itemside mb-3">
+            <div class="aside"><img src="upload/<?php echo $value['image'] ?>" class="img-sm border"></div>
+            <figcaption class="info align-self-center">
+                <p class="title"><?php echo $value['product_name'] ?> </p>
+                <span class="text-primary"><?php echo number_format($value['product_price']) ?>₫</span> 
+                <span style="font-size: 16px;" class="text-dark">x<?php echo $value['quantity'] ?></span>
+            </figcaption>
+        </figure>
+    </li>
+<?php endforeach; ?>
+
             </ul>
             <hr>
             <div >
-                <a href="#" class="btn btn-custom" data-abc="true"> <i class="fa fa-chevron-left"></i> Trở lại</a>
+                <a href="index.php" class="btn btn-custom" data-abc="true"> <i class="fa fa-chevron-left"></i> Trở lại</a>
                 <div class="float-right">
                     <span class="text-dark">Thành tiền: </span> 
                     <span style="font-weight: 600;" class="text-danger mr-3"><?=number_format($total)?>₫</span>

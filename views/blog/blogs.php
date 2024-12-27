@@ -1,4 +1,8 @@
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/PostModel.php";
+$PostModel = new PostModel();
     $list_posts = $PostModel->select_all_posts();
 
     $list_post_catgories = $PostModel->select_post_category();
@@ -88,9 +92,7 @@
                                 </a>
                                 <?php
                                 }
-                                ?>
-                                
-                                
+                                ?>                                                             
                             </div>
                             
                         </div>

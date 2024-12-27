@@ -1,5 +1,12 @@
 <!-- Breadcrumb Begin -->
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/BaseModel.php";
+include_once "models/CustomerModel.php";
+$BaseModel  = new BaseModel();
+$CustomerModel  = new CustomerModel();
+
     $success = '';
     $error = array(
         'full_name' => '',

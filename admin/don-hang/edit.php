@@ -1,4 +1,11 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/OrderModel.php";
+include_once "models_admin/BaseModel.php"; 
+
+$BaseModel = new BaseModel(); 
+$OrderModel = new OrderModel(); 
     if(isset($_GET['id']) && $_GET['id'] >0) {
         $order_id = $_GET['id'];
     }else {
@@ -146,7 +153,7 @@
                                     <p class="mb-0 text-right">Thời gian</p>
                                 </div>
                                 <div class="col-sm-8">
-                                    <p class="mb-0 text-right"><?=$date_formated?></p>
+                                <p class="mb-0 text-right"><?=$date_formated?></p>
                                 </div>
                             </div>
                             

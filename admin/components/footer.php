@@ -6,11 +6,10 @@
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Nhóm 2 | Dự Án 1 - Poly Cần Thơ</a>, All Right Reserved. 
+                            &copy; <a href="#">Nhóm 2  
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
-                            
-                            Designed By <a href="#1">Khoa</a>
+                    
                         </br>
                         <a class="border-bottom" href="#1" target="_blank"></a>
                         </div>

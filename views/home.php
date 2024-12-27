@@ -1,11 +1,21 @@
 <?php
-    $listProducts = $ProductModel->select_products_limit(8);
+// Include các file cần thiết
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/ProductModel.php";
+include_once "models/CategoryModel.php";
 
-    $listCategories = $CategoryModel->select_categories_limit(8);
+// Khởi tạo đối tượng
+$ProductModel = new Product(); // Giả sử class Product trong file ProductModel.php
+$CategoryModel = new CategoryModel(); // Giả sử class Category trong file CategoryModel.php
 
-    $product_limit_3 = $ProductModel->select_products_limit(3);
-    $product_order_by = $ProductModel->select_products_order_by(3, 'ASC');
+// Gọi các phương thức từ các đối tượng đã khởi tạo
+$listProducts = $ProductModel->select_products_limit(8);
+$listCategories = $CategoryModel->select_categories_limit(8);
+$product_limit_3 = $ProductModel->select_products_limit(3);
+$product_order_by = $ProductModel->select_products_order_by(3, 'ASC');
 ?>
+
 
 <!-- Banner Section Begin -->
 <section class="container my-3">
@@ -14,15 +24,15 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" style="border-radius: 10px;">
                         <div class="carousel-item active" >
-                            <img class="img-fluid" src="public/img/banner/banner-main-1.jpg" alt="Image">
+                            <img class="img-fluid" src="upload/banner_quanao_main4.png" alt="Image">
                             
                         </div>
                         <div class="carousel-item" >
-                            <img class="img-fluid" src="public/img/banner/banner-main-2.jpg" alt="Image">
+                            <img class="img-fluid" src="upload/banner_quanao_main5.png" alt="Image">
                             
                         </div>
                         <div class="carousel-item" >
-                            <img class="img-fluid" src="public/img/banner/banner-main-3.jpg" alt="Image">
+                            <img class="img-fluid" src="upload/banner_quanao_main6.png" alt="Image">
                             
                         </div>
                     </div>
@@ -41,11 +51,11 @@
             </div>
             <div class="col-lg-4">
                 <div class="product-offer" >
-                    <img class="img-fluid" src="public/img/banner/banner-sm-1.jpg" alt="">
+                    <img class="img-fluid"src="upload/banner_quanao_main4.png" alt="">
                     
                 </div>
                 <div class="product-offer">
-                    <img class="img-fluid" src="public/img/banner/banner-sm-2.png" alt="">
+                    <img class="img-fluid" src="upload/banner_quanao_main5.png" alt="">
                     
                 </div>
             </div>
@@ -175,33 +185,33 @@
 
 
 <!-- Banner Section Begin -->
-<section class="banner set-bg" data-setbg="public/img/banner/banner-4.jpg">
+<section class="banner set-bg" data-setbg="upload/banner_quanao1.png">
     <div class="container">
         <div class="row">
             <div class="col-xl-7 col-lg-8 m-auto">
-                <div class="banner__slider owl-carousel">
+                <!-- <div class="banner__slider owl-carousel">
                     <div class="banner__item">
                         <div class="banner__text">
                             <span>Bộ sưu tập</span>
-                            <h1>Sách thiếu nhi</h1>
+                            <h1>Máy tính bảng</h1>
                             <a href="cua-hang">Mua ngay</a>
                         </div>
                     </div>
                     <div class="banner__item">
                         <div class="banner__text">
                             <span>Bộ sưu tập</span>
-                            <h1>Halloween Sale</h1>
+                            <h1>Lap top</h1>
                             <a href="cua-hang">Mua ngay</a>
                         </div>
                     </div>
                     <div class="banner__item">
                         <div class="banner__text">
                             <span>Bộ sưu tập</span>
-                            <h1>Truyện tranh</h1>
+                            <h1>Tivi</h1>
                             <a href="cua-hang">Mua ngay</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -322,15 +332,15 @@
         <div class="row">
             <div class="col-lg-6 p-0">
                 <div class="discount__pic">
-                    <img src="public/img/discount-2.jpg" alt="Hình ảnh">
+                    <img src="upload/banner_quanao_small_1.png" alt="Hình ảnh">
                 </div>
             </div>
             <div class="col-lg-6 p-0">
                 <div class="discount__text">
                     <div class="discount__text__title">
                         <span>Khuyến mãi</span>
-                        <h2>Halloween</h2>
-                        <h5><span>Sale</span> 50%</h5>
+                        <h2>20 - 10</h2>
+                        <h5><span>Sale</span> 30%</h5>
                     </div>
                     <div class="discount__countdown" id="countdown-time">
                         <div class="countdown__item">

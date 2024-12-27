@@ -1,4 +1,10 @@
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/ProductModel.php";
+include_once "models/CategoryModel.php";
+$CategoryModel = new CategoryModel();
+$ProductModel = new Product();
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
     } else {

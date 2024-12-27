@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Fahasa Admin</title>
+    <title>Login Admin</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -32,47 +32,57 @@
 </head>
 
 <?php
-    ob_start();
-    session_start();
-    require_once "models_admin/pdo_library.php";
-    require_once "models_admin/BaseModel.php";
-    require_once "models_admin/CustomerModel.php";
+ob_start();
+session_start();
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/BaseModel.php";
+include_once "models_admin/CategoryModel.php";
+include_once "models_admin/CustomerModel.php"; 
 
-    $error ='';
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
-        $username = trim($_POST["username"]);
-        $password = trim($_POST["password"]);
+$BaseModel = new BaseModel(); 
+$CustomerModel = new CustomerModel();
 
-        if (!empty($username) && !empty($password)) {
-            $user = $CustomerModel->get_user_admin($username);
+$error = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
+    $username = trim($_POST["username"]);
+    $password = trim($_POST["password"]);
 
-            if ($user && isset($user[0]['password'])) { 
+    if (!empty($username) && !empty($password)) {
+        $user = $CustomerModel->get_user_admin($username);
 
-                if($user[0]['active'] != 1) {
-                    $error = 'Tài khoản đã bị khóa';
-                }else {
-                    if (password_verify($password, $user[0]['password'])) {
-                        //Lưu thông tin đăng nhập vào Sessison
-                        $_SESSION['user_admin']['id'] = $user[0]['user_id'];
-                        $_SESSION['user_admin']['username'] = $user[0]['username'];
-                        $_SESSION['user_admin']['full_name'] = $user[0]['full_name'];
-                        $_SESSION['user_admin']['image'] = $user[0]['image'];
-                        $_SESSION['user_admin']['email'] = $user[0]['email'];
-                        $_SESSION['user_admin']['phone'] = $user[0]['phone'];
-                        $_SESSION['user_admin']['address'] = $user[0]['address'];
-                        
+        // Kiểm tra xem người dùng có tồn tại không
+        if (!empty($user)) {
+            // Kiểm tra trạng thái tài khoản
+            if ($user[0]['active'] != 1) {
+                $error = 'Tài khoản đã bị khóa';
+            } else {
+                // So sánh mật khẩu
+                if ($password === $user[0]['password']) {
+                    // Lưu thông tin đăng nhập vào Session
+                    $_SESSION['user_admin']['id'] = $user[0]['user_id'];
+                    $_SESSION['user_admin']['username'] = $user[0]['username'];
+                    $_SESSION['user_admin']['full_name'] = $user[0]['full_name'];
+                    $_SESSION['user_admin']['image'] = $user[0]['image'];
+                    $_SESSION['user_admin']['email'] = $user[0]['email'];
+                    $_SESSION['user_admin']['phone'] = $user[0]['phone'];
+                    $_SESSION['user_admin']['address'] = $user[0]['address'];
 
-                        header("Location: index.php");
-                    } else {
-                        $error = 'Sai tên tài khoản hoặc mật khẩu';
-                    }
+                    header("Location: index.php");
+                    exit(); // Thêm exit để dừng thực thi mã sau khi chuyển hướng
+                } else {
+                    $error = 'Sai tên tài khoản hoặc mật khẩu';
                 }
-            }        
+            }
+        } else {
+            $error = 'Sai tên tài khoản hoặc mật khẩu';
         }
+    } else {
+        $error = 'Vui lòng nhập tên đăng nhập và mật khẩu';
     }
+}
 
-    $html_alert = $BaseModel->alert_error_success($error, '');
-    
+$html_alert = $BaseModel->alert_error_success($error, '');
 ?>
 
 <body>

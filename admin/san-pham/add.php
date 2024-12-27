@@ -1,4 +1,13 @@
 <?php   
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/CategoryModel.php";
+include_once "models_admin/BaseModel.php"; 
+include_once "models_admin/ProductModel.php"; 
+
+$CategoryModel = new CategoryModel(); 
+$BaseModel = new BaseModel(); 
+$ProductModel = new ProductModel(); 
     $list_categories = $CategoryModel->select_all_categories();
     $list_products = $ProductModel->select_products();
 

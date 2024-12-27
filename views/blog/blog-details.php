@@ -1,4 +1,8 @@
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/PostModel.php";
+$PostModel = new PostModel();
     if(isset($_GET['id']) && ($_GET['id'] > 0)) {
         $post_id = $_GET['id'];
         
@@ -16,7 +20,10 @@
                 <div class="breadcrumb__links">
                     <a href="trang-chu"><i class="fa fa-home"></i> Trang chủ</a>
                     <a href="bai-viet">Bài viết</a>
-                    <span><?=$post_details['title']?></span>
+                    <span><?= isset($post_details[0]['title']) ? $post_details[0]['title'] : 'Default Title' ?></span>
+
+                    <?php //var_dump($post_details); ?>
+
                 </div>
             </div>
         </div>
@@ -33,17 +40,24 @@
                     <div class="blog__details__item">
                         <img src="upload/<?=$post_details['image']?>" alt="">
                         <div class="blog__details__item__title">
-                            <span class="tip"><?=$post_details['cate_name']?></span>
-                            <h3><?=$post_details['title']?></h3>
+                        <span class="tip"><?= isset($post_details[0]['cate_name']) ? $post_details[0]['cate_name'] : 'Default Category' ?></span>
+
+                        <h3><?= isset($post_details[0]['title']) ? $post_details[0]['title'] : 'Default Title' ?></h3>
+
                             <ul>
-                                <li>by <span><?=$post_details['author']?></span></li>
-                                <li><?=$post_details['created_at']?></li>
-                            </ul>
+                            <li>by <span><?= isset($post_details[0]['author']) ? $post_details[0]['author'] : 'Unknown Author' ?></span></li>
+
+                            <li>
+  <?= isset($post_details[0]['created_at']) && !empty($post_details[0]['created_at']) ? date('Y-m-d H:i:s', strtotime($post_details[0]['created_at'])) : 'Date not available' ?>
+</li>
+
+
+                                </ul>
                         </div>
                     </div>
                     <div class="blog__details__desc">
-                        <?=$post_details['content']?>
-                        
+                    <?= isset($post_details[0]['content']) ? $post_details[0]['content'] : 'Content not available' ?>
+
                     </div>
                     <div class="blog__details__quote">
                         <div class="icon"><i class="fa fa-quote-left"></i></div>

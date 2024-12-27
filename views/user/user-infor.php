@@ -1,4 +1,11 @@
 <!-- User infor	 -->
+ <?php
+ include_once "config/config.php";
+ include_once "models/db.php";
+ include_once "models/AddressModel.php";
+ $AddressModel  = new AddressModel();
+
+ ?>
 <section style="background-color: #fff; ">
     <?php if (isset($_SESSION['user'])) { ?>
     <div class="container my-4">
@@ -131,7 +138,12 @@
                             </div>
                             <div class="col-sm-5">
                                 
-                                <p class=" mb-0"><?=$address['address']?></p>
+                               <?php if (isset($address['address']) && !empty($address['address'])): ?>
+    <p class="mb-0"><?= htmlspecialchars($address['address']) ?></p>
+<?php else: ?>
+    <p class="mb-0">Không có địa chỉ</p>
+<?php endif; ?>
+
                             </div>
                            
                         </div>

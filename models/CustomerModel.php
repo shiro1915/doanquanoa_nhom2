@@ -1,58 +1,92 @@
 <?php
-    class CustomerModel {
+    class CustomerModel extends Db{
+        public function getAllCustomer(){
+            $sql = self::$connection->prepare("SELECT * FROM `users`");
+            $sql->execute();
+            $users = array();
+            $users = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $users;
+        }
+    
 
         public function select_users() {
-            $sql = "SELECT username, full_name, email, phone FROM users";
-
-            return pdo_query($sql);
+            $sql = self::$connection->prepare("SELECT username, full_name, email, phone FROM users");
+            $sql->execute();
+            $users = array();
+            $users = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $users;
         }
-
+        
         public function select_email_in_users($email) {
-            $sql = "SELECT * FROM users WHERE email = ?";
-
-            return pdo_query_one($sql, $email);
+            $sql = self::$connection->prepare("SELECT * FROM users WHERE email = ?");
+            $sql->bind_param("s", $email);
+            $sql->execute();
+            $users = array();
+            $users = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $users;
         }
-
+        
         public function user_insert($username, $password, $full_name, $image, $email, $phone, $address) {
-            $sql = "INSERT INTO users(username, password, full_name, image, email, phone, address) VALUES(?,?,?,?,?,?,?)";
-
-            pdo_execute($sql, $username, $password, $full_name, $image, $email, $phone, $address);
-        }
-
-        public function get_user_by_username($username) {
-            $sql = "SELECT * FROM users WHERE username = ?";
-
-            return pdo_query($sql, $username);
-        }
-
-        public function update_password($new_password, $user_id) {
-            $sql = "UPDATE users SET password = ? WHERE user_id = ?";
-
-            pdo_execute($sql, $new_password, $user_id);
-        }
-
-        public function reset_password($new_password, $email) {
-            $sql = "UPDATE users SET password = ? WHERE email = ?";
-
-            pdo_execute($sql, $new_password, $email);
-        }
-
-        public function update_user($full_name, $address, $phone, $image, $user_id) {
-            $sql = "UPDATE users SET 
-            full_name = '".$full_name."',";
-
-            if ($image != '') {
-                $sql .= " image = '".$image."',";
+            $sql = self::$connection->prepare("INSERT INTO users(username, password, full_name, image, email, phone, address) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            if (!$sql) {
+                die("SQL Error: " . self::$connection->error);
             }
-    
-            $sql .= " address = '".$address."', phone = '".$phone."'
-                    WHERE user_id = ".$user_id;
-
-            
-
-            pdo_execute($sql);
+            $sql->bind_param("sssssss", $username, $password, $full_name, $image, $email, $phone, $address);
+            $sql->execute();
         }
-    }
-
-    $CustomerModel = new CustomerModel();
-?>
+        
+        
+        
+        
+        public function get_user_by_username($username) {
+            $sql = self::$connection->prepare("SELECT * FROM users WHERE username = ?");
+            $sql->bind_param("s", $username);
+            $sql->execute();
+            $users = array();
+            $users = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $users;
+        }
+        
+        public function update_password($new_password, $user_id) {
+            $sql = self::$connection->prepare("UPDATE users SET password = ? WHERE user_id = ?");
+            $sql->bind_param("si", $new_password, $user_id);
+            $sql->execute();
+            $users = array();
+            $users = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $users;
+        }
+        
+        public function reset_password($new_password, $email) {
+            $sql = self::$connection->prepare("UPDATE users SET password = ? WHERE email = ?");
+            $sql->bind_param("ss", $new_password, $email);
+            $sql->execute();
+            $users = array();
+            $users = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $users;
+        }
+        public function update_user($full_name, $address, $phone, $image, $user_id) {
+            // Chuẩn bị câu lệnh SQL
+            $sql = self::$connection->prepare("UPDATE users SET full_name = ?, image = ?, address = ?, phone = ? WHERE user_id = ?");
+            
+            // Nếu có ảnh, bind tham số
+            if ($image != '') {
+                $sql->bind_param("ssssi", $full_name, $image, $address, $phone, $user_id);
+            } else {
+                // Nếu không có ảnh, bind tham số mà không cần phần ảnh
+                $sql->bind_param("sssi", $full_name, $address, $phone, $user_id);
+            }
+        
+            // Thực thi câu lệnh
+            $result = $sql->execute();
+        
+            // Kiểm tra kết quả thực thi
+            if ($result) {
+                // Nếu cập nhật thành công, trả về true hoặc thông báo thành công
+                return true;
+            } else {
+                // Nếu có lỗi trong quá trình thực thi, trả về lỗi
+                return 'Lỗi cập nhật: ' . self::$connection->error;
+            }
+        }
+        
+    }        

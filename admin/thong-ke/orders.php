@@ -1,4 +1,10 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/OrderModel.php";
+
+$OrderModel = new OrderModel(); 
+$statistics_category = $OrderModel->get_statistics();
 $statistics_orders = $OrderModel->get_order_product_statistics();
 
 ?>

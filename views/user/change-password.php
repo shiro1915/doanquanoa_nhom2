@@ -1,5 +1,9 @@
 <!-- Breadcrumb Begin -->
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/BaseModel.php";
+$BaseModel  = new BaseModel();
     $success = '';
     $error = array(
         'password_old' => '',

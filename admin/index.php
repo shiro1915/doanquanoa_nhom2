@@ -5,7 +5,8 @@
         header("Location: login.php");
         exit();
     }
-    require_once "models_admin/pdo_library.php";
+    require_once "models_admin/db.php";
+    require_once "../config/config.php";
     require_once "models_admin/BaseModel.php";
     require_once "models_admin/CategoryModel.php";
     require_once "models_admin/ProductModel.php";
@@ -102,13 +103,7 @@
                 require_once "khach-hang/add.php";         
                 break;  
             
-            // Bình luận  
-            case 'binh-luan':
-                require_once "binh-luan/list.php";         
-                break; 
-            case 'chi-tiet-binh-luan':
-                require_once "binh-luan/edit.php";         
-                break;
+          
             // Thống kê  
             case 'thong-ke-san-pham':
                 require_once "thong-ke/products.php";         

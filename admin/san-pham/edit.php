@@ -1,4 +1,13 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/CategoryModel.php";
+include_once "models_admin/BaseModel.php"; 
+include_once "models_admin/ProductModel.php"; 
+
+$CategoryModel = new CategoryModel(); 
+$BaseModel = new BaseModel(); 
+$ProductModel = new ProductModel(); 
     $error = array(
         'name' => '',
         'image' => '',
@@ -6,6 +15,9 @@
         'price' => '',
         'sale_price' => '',   
     );
+    $name ='';
+    $short_description ='';
+    $details = '';
     $list_categories = $CategoryModel->select_all_categories();
     $list_products = $ProductModel->select_products();
 
@@ -121,7 +133,7 @@
                 <label for="text-dark">Mô tả ngắn</label>
                 <div class="form-floating mb-3">
                     <textarea name="short_description" class="form-control" placeholder="Mô tả ngắn" id="short_description">
-                        <?=$short_description?>
+                    <?=$short_description?>
                     </textarea>
 
                 </div>

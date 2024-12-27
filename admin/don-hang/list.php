@@ -1,4 +1,12 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/OrderModel.php";
+include_once "models_admin/BaseModel.php"; 
+
+$BaseModel = new BaseModel(); 
+$OrderModel = new OrderModel(); 
+
     $list_orders = $OrderModel->select_list_orders_admin();
     
 ?>
@@ -6,10 +14,7 @@
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Danh sách đơn hàng</h6>
-            <div class="d-flex align-items-center">
-                <span style="margin-right: 10px; color: #111;">Xuất Exel:</span>
-                <a href="xuat-exel" style="margin-right: 5px;" class="btn btn-custom ml-3"><i class="fas fa-download"></i> Tất cả</a>
-            </div>
+          
         </div>
 
 
@@ -33,8 +38,7 @@
                     foreach ($list_orders as $value) {
                         extract($value);
                         $i++;
-                        $formatted_date = $BaseModel->date_format($order_date, '');
-
+                        $date_formated = date('d-m-Y H:i', strtotime($BaseModel->date_format()));
                         //Trang thái đơn hàng
                         $order_status = '<a href="" class="btn btn-small btn-danger">Chờ xác nhận</a>';
                         if($status == 2) {
@@ -44,6 +48,7 @@
                         }elseif($status == 4) {
                             $order_status = '<a href="" class="btn btn-small btn-success">Giao thành công</a>';
                         }
+                       
                     ?>
                     <tr>
                         <td><?=$i?></td>
@@ -51,7 +56,7 @@
                             <?=$full_name?>
                         </td>
                         <td class="td-date">
-                            <?=$formatted_date?>
+                        <?=$date_formated?>
                         </td>
                         <td class="text-dark" style="font-weight: 600;">
                             <?=number_format($total)?>₫

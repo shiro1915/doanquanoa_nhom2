@@ -1,4 +1,10 @@
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/OrderModel.php";
+include_once "models/BaseModel.php";
+$BaseModel = new BaseModel();
+$OrderModel  = new OrderModel();
     if(isset($_SESSION['user'])) {
         $user_id = $_SESSION['user']['id'];
         if(isset($_GET['id']) && $_GET['id'] > 0) $order_id = $_GET['id'];
@@ -41,7 +47,7 @@
             <article class="card">
                 <div class="card-body row">
                     <?php
-                        $booking_date = $BaseModel->date_format($order_date, '');
+                        $booking_date =  $BaseModel->date_format();
                         
                         $delivery_date = $BaseModel->date_format($order_date, 5);
                         

@@ -3,7 +3,7 @@
     session_start();
 
 
-    require_once "models/pdo_library.php";
+    require_once "models/db.php";
     require_once "models/BaseModel.php";
     require_once "models/ProductModel.php";
     require_once "models/CategoryModel.php";
@@ -14,8 +14,8 @@
     require_once "models/PostModel.php";
     require_once "models/AddressModel.php";
     define('BASE_URL', 'index.php?url=');
-    define('URL_MOMO', 'http://localhost/DUAN1_BOOKSTORE/cam-on');
-    define('URL_ORDER', 'http://localhost/DUAN1_BOOKSTORE/don-hang');
+    define('URL_MOMO', 'http://localhost/DUAN1_QUANAO/cam-on');
+    define('URL_ORDER', 'http://localhost/DUAN1_QUANAO/don-hang');
 
     require_once "components/head.php";
     require_once "components/header.php";
@@ -52,19 +52,7 @@
                 break;  
             case 'thanh-toan-2':    
                 require_once "views/checkout-address.php";
-                break; 
-            case 'thanh-toan-momo':    
-                require_once "views/checkout/checkout_momo.php";
-                break;
-            case 'thanh-toan-momo-address':    
-                require_once "views/checkout/momo-address.php";
-                break;
-            case 'thanh-toan-momo-address-2':    
-                require_once "views/checkout/momo-address-2.php";
-                break;
-            case 'thanh-toan-dia-chi2':    
-                require_once "views/thanh-toan-dia-chi.php";
-                break; 
+                break;                    
 
             case 'remove-address':    
                 require_once "views/remove-address.php";

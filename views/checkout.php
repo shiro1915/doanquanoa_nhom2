@@ -1,53 +1,57 @@
 <!-- Breadcrumb Begin -->
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/OrderModel.php";
+include_once "models/ProductModel.php";
+$ProductModel = new Product();
+$OrderModel  = new OrderModel();
     $success = '';
     $error = '';
-try {    
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["checkout"])) {
-        // Table orders
-        $user_id = $_POST["user_id"];
-        $total = $_POST["total_checkout"];
-        $address = $_POST["address"];
-        $phone = $_POST["phone"];
-        $note = $_POST["note"];
-
-        // Table orderdetails
-        $arr_product_id = $_POST["product_id"];
-        $arr_quantity = $_POST["quantity"];
-        $arr_price = $_POST["price"];
-
-        // Bước 1: Insert dữ liệu vào orders
-        $OrderModel->insert_orders($user_id, $total, $address, $phone, $note);
-        // Bước 2: Lấy order_id mới tạo để thểm vào 
-        $result_select = $OrderModel->select_order_id();
-        $order_id = $result_select['order_id'];
-
-        if(!empty($order_id)) {
-            // Insert orderdetails
-            for ($i = 0; $i < count($arr_product_id); $i++) {
-                $product_id = $arr_product_id[$i];
-                $quantity = $arr_quantity[$i];
-                $price = $arr_price[$i];
+    try {    
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["checkout"])) {
+            // Table orders
+            $user_id = $_POST["user_id"];
+            $total = $_POST["total_checkout"];
+            $address = $_POST["address"];
+            $phone = $_POST["phone"];
+            $note = $_POST["note"];
     
-                $OrderModel->insert_orderdetails($order_id, $product_id, $quantity, $price);
-
-                // Update số lượng của sản phẩm
-                $ProductModel->update_quantity_product($product_id, $quantity);
-
-                // Update số lượt bán
-                $ProductModel->update_sell_quantity_product($product_id, $quantity);
+            // Table orderdetails
+            $arr_product_id = $_POST["product_id"];
+            $arr_quantity = $_POST["quantity"];
+            $arr_price = $_POST["price"];
+    
+            // Bước 1: Insert dữ liệu vào bảng orders
+            $OrderModel->insert_orders($user_id, $total, $address, $phone, $note);
+    
+            // Bước 2: Lấy order_id mới tạo từ cơ sở dữ liệu
+            $order_id = $OrderModel->get_last_inserted_order_id();
+            if(!empty($order_id)) {
+                // Insert orderdetails
+                for ($i = 0; $i < count($arr_product_id); $i++) {
+                    $product_id = $arr_product_id[$i];
+                    $quantity = $arr_quantity[$i];
+                    $price = $arr_price[$i];
+    
+                    // Thêm chi tiết đơn hàng vào orderdetails
+                    $OrderModel->insert_orderdetails($order_id, $product_id, $quantity, $price);
+    
+                    // Cập nhật số lượng của sản phẩm trong kho
+                    $ProductModel->update_quantity_product($product_id, $quantity);
+    
+                    // Cập nhật số lượt bán của sản phẩm
+                    $ProductModel->update_sell_quantity_product($product_id, $quantity);
+                }
+                // Sau khi đặt hàng xóa giỏ hàng
+                $OrderModel->delete_cart_by_user_id($user_id);
+                header("Location: cam-on"); // Chuyển hướng đến trang cảm ơn
             }
-            // Sau khi đặt hàng xóa giỏ hàng
-            $OrderModel->delete_cart_by_user_id($user_id);
-            header("Location: cam-on");
         }
-        
-
+    } catch (Exception $e) {
+        $error_message = $e->getMessage();
+        echo $error_message;  // Hiển thị thông báo lỗi
     }
-} catch (Exception $e) {
-    $error_message = $e->getMessage();
-    echo $error_message;
-}
 
 
 ?>
@@ -135,14 +139,6 @@ try {
                             </div>
 
                         </div>
-
-                        <div class="col-4">
-                            <div class="cart__btn">
-                                <a href="index.php?url=thanh-toan-dia-chi2">Sủ dụng địa chỉ 2</a>
-                            </div>
-                        </div>
-
-
                     </div>
                 </div>
                 <div class="col-lg-4">

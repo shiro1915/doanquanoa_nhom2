@@ -1,14 +1,8 @@
 <?php
-/**
- * Mở kết nối đến CSDL sử dụng PDO
- */
-function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=duan1;charset=utf8";
-    $username = 'root';
-    $password = '';
-
-    $conn = new PDO($dburl, $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $conn;
-}
+define('DB_HOST', 'localhost');      // Địa chỉ máy chủ
+define('DB_USER', 'root');          // Tên người dùng MySQL
+define('DB_PASSWORD', '');          // Mật khẩu MySQL
+define('DB_NAME', 'duan1_quanao');  // Tên cơ sở dữ liệu
+define('PORT', 3306);               // Cổng kết nối MySQL (mặc định là 3306)
+define('DB_CHARSET', 'utf8mb4');
 

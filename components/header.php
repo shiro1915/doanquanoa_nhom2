@@ -1,9 +1,9 @@
 <body>
-    <!-- Page Preloder -->
-    <!-- <div id="preloder">
-        <div class="loader"></div>
-    </div> -->
     <?php
+    include_once "config/config.php";
+    include_once "models/db.php";
+    include_once "models/CartModel.php";
+    $CartModel = new CartModel();
     if(isset($_SESSION['user'])) {
         $user_id = $_SESSION['user']['id'];
         $count_carts = count($CartModel->count_cart($user_id));
@@ -26,7 +26,7 @@
             </a></li>
         </ul>
         <div class="offcanvas__logo">
-            <a href="index.php"><img src="public/img/logo.png" alt=""></a>
+            <a href="index.php"><img src="upload/logo.png" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         
@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-2">
                     <div class="header__logo">
-                        <a href="index.php"><img style="max-height: 30px;" src="public/img/fahasa-logo.png" alt=""></a>
+                        <a href="index.php"><img style="max-height: 30px;" src="upload/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-7">

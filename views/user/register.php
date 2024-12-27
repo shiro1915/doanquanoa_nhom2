@@ -1,4 +1,12 @@
 <?php
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/BaseModel.php";
+include_once "models/CategoryModel.php";
+include_once "models/CustomerModel.php"; 
+include_once "models/BaseModel.php";
+$BaseModel = new BaseModel(); 
+$CustomerModel = new CustomerModel();
 
     $error = array(
         'email' => '',
@@ -83,7 +91,8 @@
 
         if(empty(array_filter($error))) {
             // Insert dữ liệu user
-            $CustomerModel->user_insert($username, $hashed_password, $full_name, $image, $email, $phone, $address);
+            $CustomerModel->user_insert($username, $password, $full_name, $image, $email, $phone, $address);
+
             $_SESSION['user_register'] = [
                 'username' => $username,
                 'password' => $password

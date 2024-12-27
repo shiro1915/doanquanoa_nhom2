@@ -1,4 +1,8 @@
 <?php
+include_once "../config/config.php";
+include_once "models_admin/db.php";
+include_once "models_admin/OrderModel.php";
+$OrderModel = new OrderModel();
     $total_revenue = $OrderModel->total_revenue_orders();
     $unconfirmed = $OrderModel->count_unconfirmed();
     $count_products = $OrderModel->count_products();
@@ -20,7 +24,7 @@
                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2 text-dark">Tổng doanh thu</p>
-                    <h6 class="mb-0"><?=number_format($total_revenue['tong_doanh_thu'])?>₫</h6>
+                    <h6 class="mb-0"><?= number_format(isset($total_revenue['tong_doanh_thu']) ? $total_revenue['tong_doanh_thu'] : 0) ?>₫</h6>
                 </div>
             </div>
         </div>

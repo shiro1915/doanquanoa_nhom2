@@ -1,28 +1,54 @@
 <?php
-   if(isset($_GET['id_sp'])) {
-        $id_sp = $_GET['id_sp'];
-        $id_danhmuc = $_GET['id_dm'];
+include_once "config/config.php";
+include_once "models/db.php";
+include_once "models/ProductModel.php";
+include_once "models/CategoryModel.php";
+include_once "models/CommentModel.php"; 
 
-        $product_details = $ProductModel->update_views($id_sp);
+$CategoryModel = new CategoryModel();
+$ProductModel = new Product();
+$CommentModel = new CommentModel();  
 
-        $product_details = $ProductModel->select_products_by_id($id_sp);
-        $similar_product = $ProductModel->select_products_similar($id_danhmuc);
-        $name_catgoty = $CategoryModel->select_name_categories();
-    } 
+if (isset($_GET['id_sp']) && isset($_GET['id_dm'])) {
+    $id_sp = $_GET['id_sp']; 
+    $id_danhmuc = $_GET['id_dm']; 
 
     
-?>
+    $ProductModel->update_views($id_sp);
 
-<?php
-    extract($product_details);
-    $discount_percentage = $ProductModel->discount_percentage($price, $sale_price);
+ 
+    $product_details = $ProductModel->select_product_by_id($id_sp); 
 
+
+if ($product_details && is_array($product_details)) {
+    extract($product_details[0]);
+
+    if (isset($price) && isset($sale_price) && $price > 0) {
+        $discount_percentage = $ProductModel->discount_percentage($price, $sale_price);
+    } else {
+        $discount_percentage = "Không có giảm giá"; 
+    }
+} else {
+    $discount_percentage = "Sản phẩm không tồn tại."; 
+}
+
+   
+   $name_catgoty = $CategoryModel->select_name_categories();
+//    if ($name_catgoty && is_array($name_catgoty)) {
+//        echo "<h3>Danh mục:</h3>";
+//        foreach ($name_catgoty as $category) {
+//            echo "<p>" . htmlspecialchars($category['name']) . "</p>";
+//        }
+//    } else {
+//        echo "<p>Không có danh mục nào.</p>";
+//    }    
     // Bình luận
-    if(isset($_GET['id_sp'])) {
+    $list_comments = [];
+    if (isset($_GET['id_sp'])) {
         $product_id = $_GET['id_sp'];
         $list_comments = $CommentModel->select_comments_by_id($product_id);
-
     }
+}
 ?>
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
@@ -60,9 +86,7 @@
                         <a class="pt" href="#product-2">
                             <img src="upload/<?=$image?>" alt="">
                         </a>
-                        <!-- <a class="pt" href="#product-3">
-                                <img src="img/product/conan-1.jpg" alt="">
-                            </a> -->
+                       
 
                     </div>
                     <div class="product__details__slider__content">
@@ -77,15 +101,23 @@
             </div>
             <div class="col-lg-6">
                 <div class="product__details__text">
-                    <h3><?=$name?>
-                        <span>
-                            Danh mục: <?php foreach ($name_catgoty as $value) {
-                                    if($value['category_id'] == $id_danhmuc) {
-                                        echo $value['name'];
-                                    }
-                                } ?>
-                        </span>
-                    </h3>
+                <h3><?=$name?>
+    <span>
+        Danh mục: 
+        <?php 
+        if ($name_catgoty && is_array($name_catgoty)) {
+            foreach ($name_catgoty as $value) {
+                if ($value['category_id'] == $id_danhmuc) {
+                    echo htmlspecialchars($value['name']);
+                }
+            }
+        } else {
+            echo "Không có danh mục nào.";
+        }
+        ?>
+    </span>
+</h3>
+
                     <div class="rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -99,7 +131,7 @@
                         <span class="ml-2">
                             <?=$ProductModel->formatted_price($price); ?>
                         </span>
-                        <div class="label_right ml-2"><?=$discount_percentage?></div>
+                        <div class="label_right ml-2"> <?= isset($discount_percentage) ? $discount_percentage : 'Thông tin giảm giá không có' ?></div>
                     </div>
 
                     <div class="short__description">
@@ -211,48 +243,48 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="related__title">
-                    <h5>SẢM PHẨM TƯƠNG TỰ</h5>
-                </div>
-            </div>
-            <?php
-                    foreach ($similar_product as $value) {
-                        if(is_array($value)) {
-                            extract($value);
-                            $discount_percentage = $ProductModel->discount_percentage($price, $sale_price);
-                        }
-                    
-                ?>
+    <div class="col-lg-12 text-center">
+        <div class="related__title">
+            <h5>SẢM PHẨM TƯƠNG TỰ</h5>
+        </div>
+    </div>
+
+    <?php
+    // Kiểm tra xem danh sách sản phẩm tương tự có tồn tại và là một mảng không
+    if (!empty($similar_product) && is_array($similar_product)) {
+        foreach ($similar_product as $value) {
+            if (is_array($value)) {
+                extract($value);
+                $discount_percentage = $ProductModel->discount_percentage($price, $sale_price);
+            }
+            ?>
             <div class="col-lg-3 col-md-4 col-sm-6 mix">
                 <div class="product__item sale">
                     <div class="product__item__pic set-bg" data-setbg="upload/<?=$image?>">
-
-                        <div class="label_right sale">-<?=$discount_percentage?></div>
+                        <?php if (isset($discount_percentage)) { ?>
+                            <div class="label_right sale">-<?=$discount_percentage?>%</div>
+                        <?php } ?>
                         <ul class="product__hover">
-                            <li><a href="upload/<?=$image?> " class="image-popup"><span class="arrow_expand"></span></a>
-                            </li>
+                            <li><a href="upload/<?=$image?>" class="image-popup"><span class="arrow_expand"></span></a></li>
                             <li>
-                                <a href="index.php?url=chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$category_id?>"><span
-                                        class="icon_search_alt"></span></a>
+                                <a href="index.php?url=chitietsanpham&id_sp=<?=$product_id?>&id_dm=<?=$category_id?>">
+                                    <span class="icon_search_alt"></span>
+                                </a>
                             </li>
-
                             <li>
                                 <form action="blog.html" method="post">
-                                    <input type="hidden" name="product_id">
-                                    <input type="hidden" name="user_id">
-                                    <input type="hidden" name="name">
-                                    <input type="hidden" name="price">
-                                    <input type="hidden" name="quantity">
-                                    <input type="hidden" name="image">
+                                    <input type="hidden" name="product_id" value="<?=$product_id?>">
+                                    <input type="hidden" name="user_id" value="">
+                                    <input type="hidden" name="name" value="<?=$name?>">
+                                    <input type="hidden" name="price" value="<?=$sale_price?>">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <input type="hidden" name="image" value="<?=$image?>">
                                     <button type="submit" name="add_to_cart">
                                         <a href="#"><span class="icon_bag_alt"></span></a>
                                     </button>
                                 </form>
                             </li>
-
                         </ul>
-
                     </div>
                     <div class="product__item__text">
                         <h6 class="text-truncate-1">
@@ -267,20 +299,21 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price"><?=$ProductModel->formatted_price($sale_price); ?>
-                            <span><?=$ProductModel->formatted_price($price); ?> </span>
+                        <div class="product__price">
+                            <?=$ProductModel->formatted_price($sale_price); ?>
+                            <span><?=$ProductModel->formatted_price($price); ?></span>
                         </div>
                     </div>
                 </div>
             </div>
             <?php
-                    }
-                ?>
+        }
+    } else {
+        echo "<p>Không có sản phẩm tương tự.</p>"; 
+    }
+    ?>
+</div>
 
-
-
-
-        </div>
     </div>
     </div>
 </section>
